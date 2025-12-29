@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float velocity = 1f;
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
     private InputAction moveAction;
     private Vector3 playerVelocity;
     private Vector3 moveDirection = Vector3.zero;
