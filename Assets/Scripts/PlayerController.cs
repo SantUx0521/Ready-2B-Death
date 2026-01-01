@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
+    // Used for managing player's movement XD
     [Header("Camera")]
     public Transform playerCamera; 
     public float mouseSensitivityX = 30f;

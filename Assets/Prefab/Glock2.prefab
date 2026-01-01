@@ -147,6 +147,9 @@ PrefabInstance:
       addedObject: {fileID: 2922586430539113655}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c34b6b9a3eb871b4e94d08fb285d3521, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3395724986572963346}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c34b6b9a3eb871b4e94d08fb285d3521, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6961702267380606052}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c34b6b9a3eb871b4e94d08fb285d3521, type: 3}
       insertIndex: -1
@@ -184,6 +187,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3395724986572963346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522624815532353690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e3b1116855e1942a60a565065b0382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlockSystem
+  Glock_range: 100
+  Glock_Damage: 10
 --- !u!114 &6961702267380606052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b64881d387ae4088ff7699c6bc209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
+  Hittable:
+    serializedVersion: 2
+    m_Bits: 1
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 128
+  range: 0
+  damage: 0
 --- !u!114 &3980991857956171305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,11 +235,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Swing
   amount: 1
   playerInput: {fileID: 0}
-  maxSway: 5
-  smoothness: 10
-  tiltAmount: 0.1
-  maxTilt: 1.48
-  tiltSmoothness: 0.1
+  maxSway: 1
+  smoothness: 1
+  tiltAmount: 1
+  maxTilt: 1
+  tiltSmoothness: 1
   tiltDirX: 1
   tiltDirY: 1
   tiltDirZ: 1

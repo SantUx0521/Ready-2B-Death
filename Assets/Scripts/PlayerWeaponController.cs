@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+    // Script for managing how the player's weapons work
     public List<WeaponController> starter = new List<WeaponController>();
 
     public Transform weaponParent;

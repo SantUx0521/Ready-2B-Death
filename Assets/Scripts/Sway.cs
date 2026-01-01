@@ -3,11 +3,14 @@ using UnityEngine.InputSystem;
 
 public class Swing : MonoBehaviour
 {
+    // Specific script to make the sway of every weapon when moving the camera, i have it only for glock for now
+    [Header("Trans XD")]
     public float amount;
     public PlayerInput playerInput;
     public float maxSway;
     public float smoothness;
     
+    [Header("Rotational")]
     public float tiltAmount;
     public float maxTilt;
     public float tiltSmoothness;
