@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.InferenceEngine;
 using UnityEngine;
 
@@ -11,11 +12,13 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float range;
     [HideInInspector] public float damage;
     private PlayerController playerController;
+    private Animator anim;
     private Transform cameraPlayer;
     void Start()
     {
         cameraPlayer = GameObject.FindWithTag("MainCamera").transform;
         playerController = GetComponentInParent<PlayerController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,6 +32,7 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         if (playerController.playerInput.actions["Fire"].triggered)
         {
+            anim.SetTrigger("Shoot");
             LayerMask combinedMask = Enemy | Hittable;
             if (Physics.Raycast(cameraPlayer.position, cameraPlayer.forward, out hit, range, combinedMask))
             {
