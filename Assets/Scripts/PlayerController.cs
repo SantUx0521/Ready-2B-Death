@@ -27,20 +27,30 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private CharacterController characterController;
 
+    [Header("Crouch")]
+    private InputAction crouchAction;
+    public float crouchHeight;
+    public bool isCrouching = false;
+    public float actualHeight;
+    public float actualVelocity;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+        crouchAction = playerInput.actions["Crouch"];
+        actualHeight = characterController.height;
+        actualVelocity = velocity;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-
-        cameraMovement();
+        CameraMovement();
+        Crouch();
     }
 
     private void Move()
@@ -59,8 +69,9 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y += gravity * Time.deltaTime; 
         }
-        characterController.Move(playerVelocity * Time.deltaTime);   
+        characterController.Move(playerVelocity * Time.deltaTime);
 
+        // Handle Jumping
         if (jumpAction.triggered && characterController.isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
@@ -70,7 +81,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(playerVelocity * Time.deltaTime);        
     }
 
-    private void cameraMovement()
+    private void CameraMovement()
     {
         // Look X
         Vector2 lookInput = playerInput.actions["Look"].ReadValue<Vector2>();
@@ -84,5 +95,21 @@ public class PlayerController : MonoBehaviour
         angleY = Mathf.Clamp(angleY, -70f, 70f);
         playerCamera.localRotation = Quaternion.Euler(angleY, 0, 0);
 
+    }
+
+    private void Crouch()
+    {
+        if (crouchAction.WasPressedThisFrame() && !isCrouching)
+        {
+            characterController.height = crouchHeight;
+            velocity /= 1.5f;
+            isCrouching = true;
+        }
+        else if (crouchAction.WasPressedThisFrame() && isCrouching)
+        {
+            characterController.height = actualHeight;
+            velocity = actualVelocity;
+            isCrouching = false;
+        }
     }
 }

@@ -17,7 +17,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private PlayerController playerController;
 
-    private bool isAiming = false;
+    public bool isAiming = false;
+    public float adsSpeed = 10f;
 
     void Start()
     {
@@ -55,15 +56,23 @@ public class PlayerWeaponController : MonoBehaviour
         if (playerController.playerInput.actions["Aim"].IsPressed())
         {
             isAiming = true;
-            weaponParent.position = AimParent.position;
-            weaponParent.rotation = AimParent.rotation;
+            weaponParent.localPosition = Vector3.Lerp(
+                                                    weaponParent.localPosition,
+                                                    AimParent.localPosition,
+                                                    Time.deltaTime * adsSpeed
+                                                );
+            weaponParent.localRotation = AimParent.localRotation;
             weaponParent.localScale = AimParent.localScale;
         }
         else
         {
             isAiming = false;
-            weaponParent.position = DefaultParent.position;
-            weaponParent.rotation = DefaultParent.rotation;
+            weaponParent.localPosition = Vector3.Lerp(
+                                                    weaponParent.localPosition,
+                                                    DefaultParent.localPosition,
+                                                    Time.deltaTime * adsSpeed
+                                                );
+            weaponParent.localRotation = DefaultParent.localRotation;
             weaponParent.localScale = DefaultParent.localScale;
         }
     }

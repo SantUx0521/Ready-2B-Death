@@ -13,9 +13,10 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public int damage;
     [HideInInspector] public float spread;
 
+    CameraShake cameraShake;
+
     public bool canShoot = true;
     private PlayerController playerController;
-    private Enemy enemy;
     private Animator anim;
     private Transform cameraPlayer;
     void Start()
@@ -23,7 +24,7 @@ public class WeaponController : MonoBehaviour
         cameraPlayer = GameObject.FindWithTag("MainCamera").transform;
         playerController = GetComponentInParent<PlayerController>();
         anim = GetComponent<Animator>();
-        enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
+        cameraShake = cameraPlayer.GetComponent<CameraShake>();
     }
 
     void Update()
@@ -38,6 +39,7 @@ public class WeaponController : MonoBehaviour
         {
             anim.SetTrigger("Shoot");
             StartCoroutine(Flashlight());
+            StartCoroutine(cameraShake.Shake(0.05f, 0.05f));
             BulletHit();
             StartCoroutine(Delay());
         }
@@ -61,7 +63,6 @@ public class WeaponController : MonoBehaviour
 
             if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)
             {
-                Debug.Log("Hit");
                 return;
             }
         }

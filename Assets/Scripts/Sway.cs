@@ -7,6 +7,7 @@ public class Swing : MonoBehaviour
     [Header("Trans XD")]
     public float amount;
     public PlayerInput playerInput;
+    public PlayerWeaponController playerWeapon;
     public float maxSway;
     public float smoothness;
     
@@ -22,13 +23,19 @@ public class Swing : MonoBehaviour
     void Start()
     {
         playerInput = GetComponentInParent<PlayerInput>();
+        playerWeapon = GetComponentInParent<PlayerWeaponController>();
         initialPosition = transform.localPosition;
         initialRotation = transform.localRotation;
-        
     }
 
     void Update()
     {
+        if(playerWeapon.isAiming)
+        {
+        transform.localPosition = initialPosition;
+        transform.localRotation = initialRotation;
+        return;
+        }
         Sway();
         rotationalSway();
     }

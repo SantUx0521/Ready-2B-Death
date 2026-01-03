@@ -1,31 +1,23 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraShake : MonoBehaviour
 {
-    PlayerInput playerInput;
-    Animator anim;
-
-    void Start()
+    public IEnumerator Shake(float duration, float magnitude)
     {
-        playerInput = GetComponentInParent<PlayerInput>();
-        anim = GetComponent<Animator>();
-    }
+        Vector3 originalPos = transform.localPosition;
+        float elapsed = 0.0f;
 
-    void Update()
-    {
-        Shake();
-    }
-
-    void Shake()
-    {
-        if(playerInput.actions["Move"].ReadValue<Vector2>() != Vector2.zero)
+        while (elapsed < duration)
         {
-            anim.SetBool("Walking", true);
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            transform.localPosition = new Vector3(x, y, originalPos.z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
         }
-        else
-        {
-            anim.SetBool("Walking", false);
-        }
+        transform.localPosition = originalPos;
     }
 }
