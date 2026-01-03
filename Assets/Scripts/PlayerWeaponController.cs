@@ -17,6 +17,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private PlayerController playerController;
 
+    private bool isAiming = false;
+
     void Start()
     {
         activeWeaponIndex = -1;
@@ -36,6 +38,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update()
     {
+        Aim();
+        if(isAiming){return;}
         if (playerController.playerInput.actions["FirstWeapon"].triggered)
         {
             SwitchWeapon(0);
@@ -43,6 +47,24 @@ public class PlayerWeaponController : MonoBehaviour
         else if (playerController.playerInput.actions["SecondWeapon"].triggered)
         {
             SwitchWeapon(2);
+        }
+    }
+
+    private void Aim()
+    {
+        if (playerController.playerInput.actions["Aim"].IsPressed())
+        {
+            isAiming = true;
+            weaponParent.position = AimParent.position;
+            weaponParent.rotation = AimParent.rotation;
+            weaponParent.localScale = AimParent.localScale;
+        }
+        else
+        {
+            isAiming = false;
+            weaponParent.position = DefaultParent.position;
+            weaponParent.rotation = DefaultParent.rotation;
+            weaponParent.localScale = DefaultParent.localScale;
         }
     }
 
