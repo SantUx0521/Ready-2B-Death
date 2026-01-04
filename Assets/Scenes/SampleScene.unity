@@ -2129,7 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ea0a9d025b56e41a0c9038f3d04660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  playerCamera: {fileID: 330585546}
+  playerCamera: {fileID: 0}
   mouseSensitivityX: 30
   mouseSensitivityY: 40
   velocity: 10
@@ -2137,7 +2137,9 @@ MonoBehaviour:
   gravity: -9.8
   crouchHeight: 0.5
   isCrouching: 0
+  actualVelocity: 0
   sprintVelocity: 15
+  isSprinting: 0
 --- !u!114 &1707240158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,6 +2188,7 @@ MonoBehaviour:
   DefaultParent: {fileID: 551012428}
   AimParent: {fileID: 1276592472}
   ShootPoint: {fileID: 1776044129}
+  playerCamera: {fileID: 330585545}
   isAiming: 0
   adsSpeed: 15
 --- !u!1 &1776044129

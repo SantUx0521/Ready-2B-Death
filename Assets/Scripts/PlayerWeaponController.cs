@@ -80,7 +80,10 @@ public class PlayerWeaponController : MonoBehaviour
         else
         {
             isAiming = false;
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
+            if(!playerController.isSprinting)
+            {
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
+            }
             ShootPoint.SetActive(true);
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,

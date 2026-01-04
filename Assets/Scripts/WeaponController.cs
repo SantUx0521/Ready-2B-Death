@@ -12,6 +12,8 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float range;
     [HideInInspector] public int damage;
     [HideInInspector] public float spread;
+    [HideInInspector] public int bullets;
+    [HideInInspector] public int maxBullets;
 
     CameraShake cameraShake;
 
@@ -25,23 +27,30 @@ public class WeaponController : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         anim = GetComponent<Animator>();
         cameraShake = cameraPlayer.GetComponent<CameraShake>();
+        bullets = maxBullets;
     }
 
     void Update()
     {
         Shoot();
         Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * range, Color.red);
+        Reload();
     }
 
     private void Shoot()
     {
-        if (playerController.playerInput.actions["Fire"].triggered && canShoot)
+        if ((playerController.playerInput.actions["Fire"].triggered || playerController.playerInput.actions["Fire"].IsPressed())  && canShoot && bullets > 0)
         {
             anim.SetTrigger("Shoot");
             StartCoroutine(Flashlight());
-            StartCoroutine(cameraShake.Shake(0.05f, 0.05f));
+            bullets -= 1;
+            StartCoroutine(cameraShake.Shake(0.07f, 0.07f));
             BulletHit();
             StartCoroutine(Delay());
+        }
+        else if ((playerController.playerInput.actions["Fire"].triggered || playerController.playerInput.actions["Fire"].IsPressed()) && canShoot && bullets <= 0)
+        {
+            anim.SetTrigger("Shoot");
         }
     }
 
@@ -79,10 +88,19 @@ public class WeaponController : MonoBehaviour
         fire.SetActive(false);
     }
 
+    private void Reload()
+    {
+        if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets)
+        {
+            bullets = maxBullets;
+            Debug.Log("Reloaded");
+        }
+    }
+
     private IEnumerator Delay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         canShoot = true;
     }
 }

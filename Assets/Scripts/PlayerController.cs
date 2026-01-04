@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Used for managing player's movement XD
-    [Header("Camera")]
+    [Header("CameraP")]
     public Transform playerCamera; 
     public float mouseSensitivityX = 30f;
     public float mouseSensitivityY = 40f;
@@ -32,24 +32,30 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight;
     public bool isCrouching = false;
     private float actualHeight;
-    private float actualVelocity;
+    public float actualVelocity;
 
     [Header("Sprint")]
     private InputAction sprintAction;
     public float sprintVelocity = 15f;
-    private bool isSprinting = false;
+    public bool isSprinting = false;
+    Camera cameraP;
+    private float originalFOV;
+    private float adsSpeed = 15f;
 
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+        playerCamera = GetComponentInChildren<Camera>().transform;
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         crouchAction = playerInput.actions["Crouch"];
         sprintAction = playerInput.actions["Sprint"];
         actualHeight = characterController.height;
         actualVelocity = velocity;
+        cameraP = GetComponentInChildren<Camera>();
+        originalFOV = cameraP.fieldOfView;
     }
 
     // Update is called once per frame
@@ -80,7 +86,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(playerVelocity * Time.deltaTime);
 
         // Handle Jumping
-        if (jumpAction.triggered && characterController.isGrounded)
+        if ((jumpAction.triggered || jumpAction.IsPressed()) && characterController.isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
         }
@@ -102,7 +108,6 @@ public class PlayerController : MonoBehaviour
         angleY -= moveDirection.y;
         angleY = Mathf.Clamp(angleY, -70f, 70f);
         playerCamera.localRotation = Quaternion.Euler(angleY, 0, 0);
-
     }
 
     private void Crouch()
@@ -129,10 +134,12 @@ public class PlayerController : MonoBehaviour
             isCrouching = false;
             characterController.height = actualHeight;
             velocity = sprintVelocity;
+            cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV + 20f, Time.deltaTime * adsSpeed);
         }
         else if (isSprinting && moveAction.WasReleasedThisFrame()){
             isSprinting = false;
             velocity = actualVelocity;
+            cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
         }
     }
 }
