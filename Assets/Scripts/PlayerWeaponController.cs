@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,14 +18,24 @@ public class PlayerWeaponController : MonoBehaviour
 
     private PlayerController playerController;
 
+    public GameObject ShootPoint;
+
+    public Camera playerCamera;
+
     public bool isAiming = false;
     public float adsSpeed = 10f;
+
+    private float originalFOV;
 
     void Start()
     {
         activeWeaponIndex = -1;
 
         playerController = GetComponent<PlayerController>();
+
+        playerCamera = GetComponentInChildren<Camera>();
+
+        originalFOV = playerCamera.fieldOfView;
 
         foreach (WeaponController weapon in starter)
         {
@@ -56,6 +67,8 @@ public class PlayerWeaponController : MonoBehaviour
         if (playerController.playerInput.actions["Aim"].IsPressed())
         {
             isAiming = true;
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV - 20f, Time.deltaTime * adsSpeed);
+            ShootPoint.SetActive(false);
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     AimParent.localPosition,
@@ -67,6 +80,8 @@ public class PlayerWeaponController : MonoBehaviour
         else
         {
             isAiming = false;
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
+            ShootPoint.SetActive(true);
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     DefaultParent.localPosition,

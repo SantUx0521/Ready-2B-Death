@@ -31,8 +31,14 @@ public class PlayerController : MonoBehaviour
     private InputAction crouchAction;
     public float crouchHeight;
     public bool isCrouching = false;
-    public float actualHeight;
-    public float actualVelocity;
+    private float actualHeight;
+    private float actualVelocity;
+
+    [Header("Sprint")]
+    private InputAction sprintAction;
+    public float sprintVelocity = 15f;
+    private bool isSprinting = false;
+
 
     void Awake()
     {
@@ -41,6 +47,7 @@ public class PlayerController : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         crouchAction = playerInput.actions["Crouch"];
+        sprintAction = playerInput.actions["Sprint"];
         actualHeight = characterController.height;
         actualVelocity = velocity;
     }
@@ -51,6 +58,7 @@ public class PlayerController : MonoBehaviour
         Move();
         CameraMovement();
         Crouch();
+        Run();
     }
 
     private void Move()
@@ -110,6 +118,21 @@ public class PlayerController : MonoBehaviour
             characterController.height = actualHeight;
             velocity = actualVelocity;
             isCrouching = false;
+        }
+    }
+
+    private void Run()
+    {
+        if((sprintAction.IsPressed() || sprintAction.WasPressedThisFrame()) && moveAction.IsPressed())
+        {
+            isSprinting = true;
+            isCrouching = false;
+            characterController.height = actualHeight;
+            velocity = sprintVelocity;
+        }
+        else if (isSprinting && moveAction.WasReleasedThisFrame()){
+            isSprinting = false;
+            velocity = actualVelocity;
         }
     }
 }

@@ -156,7 +156,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.00089, z: 0}
-  m_LocalScale: {x: -0.016337767, y: -0.016337767, z: -0.016337767}
+  m_LocalScale: {x: -0.00983942, y: -0.00983942, z: -0.00983942}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3646106305384244648}
@@ -481,6 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Swing
   amount: 1
   playerInput: {fileID: 0}
+  playerWeapon: {fileID: 0}
   maxSway: 1
   smoothness: 1
   tiltAmount: 1

@@ -48,7 +48,6 @@ public class WeaponController : MonoBehaviour
     private void BulletHit()
     {
         LayerMask combinedMask = Enemy | Hittable;
-
         Vector3 direction = cameraPlayer.forward;
         direction = Quaternion.Euler(Random.Range(-spread, spread), Random.Range(-spread, spread), 0) * direction;
 
@@ -72,6 +71,9 @@ public class WeaponController : MonoBehaviour
     {
         flash.SetActive(true);
         fire.SetActive(true);
+        Vector3 currentEuler = fire.transform.localEulerAngles;
+        currentEuler.y = Random.Range(-180, 180);
+        fire.transform.localEulerAngles = currentEuler;
         yield return new WaitForSeconds(0.1f);
         flash.SetActive(false);
         fire.SetActive(false);
