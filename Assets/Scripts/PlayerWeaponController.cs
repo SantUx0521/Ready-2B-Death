@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
@@ -27,6 +28,11 @@ public class PlayerWeaponController : MonoBehaviour
 
     private float originalFOV;
 
+    public TwoBoneIKConstraint rightHandIK;
+    public TwoBoneIKConstraint leftHandIK;
+
+    private RigBuilder rigBuilder;
+
     void Start()
     {
         activeWeaponIndex = -1;
@@ -36,6 +42,8 @@ public class PlayerWeaponController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
 
         originalFOV = playerCamera.fieldOfView;
+
+        rigBuilder = GetComponentInChildren<RigBuilder>();
 
         foreach (WeaponController weapon in starter)
         {
@@ -116,6 +124,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void SwitchWeapon(int index)
     {
+        WeaponController weapon = weaponSlots[index];
         if (index < 0 || index >= weaponSlots.Length || weaponSlots[index] == null)
         {
             return;
@@ -133,5 +142,13 @@ public class PlayerWeaponController : MonoBehaviour
         activeWeaponIndex = index;
         
         Debug.Log($"Arma cambiada a slot {index}");
+
+        Transform gripL = weapon.transform.Find("GripL");
+        Transform gripR = weapon.transform.Find("GripR");
+
+        rightHandIK.data.target = gripR;
+        leftHandIK.data.target = gripL;
+
+        rigBuilder.Build();
     }
 }
