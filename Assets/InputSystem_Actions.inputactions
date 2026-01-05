@@ -554,6 +554,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5c60217b-55bb-4ec8-ad43-42dbd756c6a1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ba4039e6-6694-4bd5-9486-288d42e2ee49",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -565,11 +576,22 @@
                 },
                 {
                     "name": "",
+                    "id": "6c8d391a-91c1-42c1-804f-547207938360",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fe79b875-1417-4a41-a4ee-a0367bbc066e",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -577,10 +599,10 @@
                 {
                     "name": "",
                     "id": "e9b91c8f-4ffd-4ef5-b092-7f5188ec3f30",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -604,7 +626,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

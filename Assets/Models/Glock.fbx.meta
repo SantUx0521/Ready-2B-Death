@@ -3,7 +3,27 @@ guid: c34b6b9a3eb871b4e94d08fb285d3521
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mango
+    second: {fileID: 2100000, guid: 620233990ad8fb14f86b522d38b132a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 620233990ad8fb14f86b522d38b132a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 885e233c440a14243ade31c147f6bfd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Slider
+    second: {fileID: 2100000, guid: 620233990ad8fb14f86b522d38b132a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
