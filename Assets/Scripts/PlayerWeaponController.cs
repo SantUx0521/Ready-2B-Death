@@ -28,9 +28,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     private float originalFOV;
 
-    public TwoBoneIKConstraint rightHandIK;
-    public TwoBoneIKConstraint leftHandIK;
-
     private RigBuilder rigBuilder;
 
     void Start()
@@ -47,7 +44,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         foreach (WeaponController weapon in starter)
         {
-            AddWeapon(weapon);
+            AddWeapon();
         }
         
         if (weaponSlots[0] != null)
@@ -83,7 +80,6 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = AimParent.localRotation;
-            weaponParent.localScale = AimParent.localScale;
         }
         else
         {
@@ -99,32 +95,35 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = DefaultParent.localRotation;
-            weaponParent.localScale = DefaultParent.localScale;
         }
     }
 
-    private void AddWeapon(WeaponController weapon)
+    private void AddWeapon()
     {
 
-        for (int i = 0; i < weaponSlots.Length; i++)
-        {
-            if(weaponSlots[i] == null)
-            {
-                weaponParent.position = DefaultParent.position;
-                weaponParent.rotation = DefaultParent.rotation;
-                weaponParent.localScale = DefaultParent.localScale;
-                WeaponController weaponClone = Instantiate(weapon, weaponParent);
-                weaponClone.gameObject.SetActive(false);
+        int slotIndex = 0;
 
-                weaponSlots[i] = weaponClone;
-                return;
+            foreach (Transform child in weaponParent)
+            {
+                if (slotIndex >= weaponSlots.Length)
+                    break;
+
+                WeaponController weapon = child.GetComponent<WeaponController>();
+                if (weapon == null)
+                    continue;
+                weaponParent.position = DefaultParent.position; 
+                weaponParent.rotation = DefaultParent.rotation; 
+                weaponParent.localScale = DefaultParent.localScale;
+
+                weaponSlots[slotIndex] = weapon;
+                weapon.gameObject.SetActive(false);
+
+                slotIndex++;
             }
-        }
     }
 
     private void SwitchWeapon(int index)
     {
-        WeaponController weapon = weaponSlots[index];
         if (index < 0 || index >= weaponSlots.Length || weaponSlots[index] == null)
         {
             return;
@@ -142,12 +141,6 @@ public class PlayerWeaponController : MonoBehaviour
         activeWeaponIndex = index;
         
         Debug.Log($"Arma cambiada a slot {index}");
-
-        Transform gripL = weapon.transform.Find("GripL");
-        Transform gripR = weapon.transform.Find("GripR");
-
-        rightHandIK.data.target = gripR;
-        leftHandIK.data.target = gripL;
 
         rigBuilder.Build();
     }
