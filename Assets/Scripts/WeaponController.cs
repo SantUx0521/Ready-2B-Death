@@ -36,9 +36,9 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
+        if(reloading){return;}
         Shoot();
         Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * range, Color.red);
-        if(reloading){return;}
         Reload();
     }
 
@@ -95,21 +95,19 @@ public class WeaponController : MonoBehaviour
 
     private void Reload()
     {
-        if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets)
+        if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets && !reloading)
         {
+            reloading = true;
+            canShoot = false;
             playerWeapon.anim.SetTrigger(ReloadName);
-
-            while(playerWeapon.anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 && !playerWeapon.anim.IsInTransition(0))
-            {
-                canShoot = false;
-                reloading = true;
-                return;
-            }
-            canShoot = true;
-            reloading = false;
-            bullets = maxBullets;
-            playerWeapon.GoBack();
         }
+    }
+
+    public void FinishReload()
+    {
+        bullets = maxBullets;
+        canShoot = true;
+        reloading = false;
     }
 
     private IEnumerator Delay()

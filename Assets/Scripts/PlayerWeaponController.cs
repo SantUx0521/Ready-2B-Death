@@ -48,6 +48,8 @@ public class PlayerWeaponController : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
+        activeWeapon = GetComponentInChildren<WeaponController>();
+
         foreach (WeaponController weapon in starter)
         {
             AddWeapon();
@@ -153,6 +155,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void GoBack()
     {
+        activeWeapon.FinishReload();
         weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     DefaultParent.localPosition,
