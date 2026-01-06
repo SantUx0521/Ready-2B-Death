@@ -14,11 +14,15 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float spread;
     [HideInInspector] public int bullets;
     [HideInInspector] public int maxBullets;
+    [HideInInspector] public string ReloadName;
 
     CameraShake cameraShake;
 
     public bool canShoot = true;
+
+    public bool reloading = false;
     private PlayerController playerController;
+    private PlayerWeaponController playerWeapon;
     private Animator anim;
     private Transform cameraPlayer;
     void Start()
@@ -27,13 +31,14 @@ public class WeaponController : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         anim = GetComponent<Animator>();
         cameraShake = cameraPlayer.GetComponent<CameraShake>();
-        bullets = maxBullets;
+        playerWeapon = GetComponentInParent<PlayerWeaponController>();
     }
 
     void Update()
     {
         Shoot();
         Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * range, Color.red);
+        if(reloading){return;}
         Reload();
     }
 
@@ -50,7 +55,7 @@ public class WeaponController : MonoBehaviour
         }
         else if ((playerController.playerInput.actions["Fire"].triggered || playerController.playerInput.actions["Fire"].IsPressed()) && canShoot && bullets <= 0)
         {
-            anim.SetTrigger("Shoot");
+            anim.SetTrigger("NoBullets");
         }
     }
 
@@ -92,8 +97,18 @@ public class WeaponController : MonoBehaviour
     {
         if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets)
         {
+            playerWeapon.anim.SetTrigger(ReloadName);
+
+            while(playerWeapon.anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 && !playerWeapon.anim.IsInTransition(0))
+            {
+                canShoot = false;
+                reloading = true;
+                return;
+            }
+            canShoot = true;
+            reloading = false;
             bullets = maxBullets;
-            Debug.Log("Reloaded");
+            playerWeapon.GoBack();
         }
     }
 

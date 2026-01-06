@@ -30,6 +30,10 @@ public class PlayerWeaponController : MonoBehaviour
 
     private RigBuilder rigBuilder;
 
+    private WeaponController activeWeapon;
+
+    public Animator anim;
+
     void Start()
     {
         activeWeaponIndex = -1;
@@ -41,6 +45,8 @@ public class PlayerWeaponController : MonoBehaviour
         originalFOV = playerCamera.fieldOfView;
 
         rigBuilder = GetComponentInChildren<RigBuilder>();
+
+        anim = GetComponent<Animator>();
 
         foreach (WeaponController weapon in starter)
         {
@@ -143,5 +149,15 @@ public class PlayerWeaponController : MonoBehaviour
         Debug.Log($"Arma cambiada a slot {index}");
 
         rigBuilder.Build();
+    }
+
+    public void GoBack()
+    {
+        weaponParent.localPosition = Vector3.Lerp(
+                                                    weaponParent.localPosition,
+                                                    DefaultParent.localPosition,
+                                                    Time.deltaTime * adsSpeed
+                                                );
+        weaponParent.localRotation = DefaultParent.localRotation;
     }
 }

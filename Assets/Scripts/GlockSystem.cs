@@ -9,6 +9,7 @@ public class GlockSystem : MonoBehaviour
     public int Glock_Damage = 10; 
     public float spread = 0.05f;
     public int maxBullets = 9;
+    public string ReloadName = "Glock_Reload";
     void Start()
     {
         weaponControl = GetComponent<WeaponController>();
@@ -16,5 +17,7 @@ public class GlockSystem : MonoBehaviour
         weaponControl.damage = Glock_Damage;
         weaponControl.spread = spread;
         weaponControl.maxBullets = maxBullets;
+        weaponControl.bullets = maxBullets;
+        weaponControl.ReloadName = ReloadName;
     }
 }

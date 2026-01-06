@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         // Look Y
         angleY -= moveDirection.y;
-        angleY = Mathf.Clamp(angleY, -70f, 70f);
+        angleY = Mathf.Clamp(angleY, -60f, 60f);
         playerCamera.localRotation = Quaternion.Euler(angleY, 0, 0);
     }
 
