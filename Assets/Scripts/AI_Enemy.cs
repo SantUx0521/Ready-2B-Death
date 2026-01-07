@@ -6,17 +6,22 @@ public class AI_Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform[] destinations;
+    private EnemyFOV view;
+    Animator anim;
     private int i = 0;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(destinations[0].transform.position);
+        view = GetComponent<EnemyFOV>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
         Path();
+        EnemyShoot();
     }
 
     public void Path()
@@ -29,6 +34,15 @@ public class AI_Enemy : MonoBehaviour
             {
                 i = 0;
             }
+        }
+    }
+
+    private void EnemyShoot()
+    {
+        if (view.playerSeen)
+        {
+            anim.SetTrigger("Shoot");
+            Debug.Log("Visto Mamaguevo");
         }
     }
 }

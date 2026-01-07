@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     [Header("Layers")]
     public LayerMask Hittable;
     public LayerMask Enemy;
+    public LayerMask Head;
     [SerializeField] GameObject flash;
     [SerializeField] GameObject fire;
     [HideInInspector] public float range;
@@ -23,7 +24,7 @@ public class WeaponController : MonoBehaviour
     public bool reloading = false;
     private PlayerController playerController;
     private PlayerWeaponController playerWeapon;
-    private Animator anim;
+    public Animator anim;
     private Transform cameraPlayer;
     void Start()
     {
@@ -61,17 +62,20 @@ public class WeaponController : MonoBehaviour
 
     private void BulletHit()
     {
-        LayerMask combinedMask = Enemy | Hittable;
+        LayerMask combinedMask = Enemy | Hittable | Head;
         Vector3 direction = cameraPlayer.forward;
-        direction = Quaternion.Euler(Random.Range(-spread, spread), Random.Range(-spread, spread), 0) * direction;
 
         RaycastHit hit;
-        if (Physics.Raycast(cameraPlayer.position, direction, out hit, range, combinedMask))
+        if (Physics.Raycast(cameraPlayer.position, (direction + Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
         {
             if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
                 hit.collider.gameObject.GetComponent<Enemy>().takeDamage(damage);
-                return;
+            }
+            else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
+            {
+                hit.collider.gameObject.GetComponentInParent<Enemy>().headShot();
+                Debug.Log("HEADSHOT MADAFAKA");
             }
 
             if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)

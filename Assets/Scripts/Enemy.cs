@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
         health -= damage;
     }
 
+    public void headShot()
+    {
+        health = 0;
+    }
+
     void die()
     {
         if(health <= 0)

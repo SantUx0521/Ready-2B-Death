@@ -5,17 +5,18 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Head
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Weapon
   - Enemy
-  - HandL
-  - HandR
+  - Head
+  - 
   - 
   - 
   - 
