@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Behavior;
 public class EnemyFOV : MonoBehaviour
 {
     public float viewRadius;
 	[Range(0,360)]
 	public float viewAngle;
     public bool playerSeen;
+	public BehaviorGraphAgent agent;
 	public LayerMask target;
 	public LayerMask obstacle;
     [HideInInspector] public List<Transform> visibleTargets = new List<Transform>();
@@ -21,10 +23,12 @@ public class EnemyFOV : MonoBehaviour
     void Start()
     {
         StartCoroutine ("FindTargetsWithDelay", .2f);
+		agent = GetComponent<BehaviorGraphAgent>();
     }
     void FindVisibleTargets() {
 		visibleTargets.Clear();
         playerSeen = false;
+		agent.BlackboardReference.SetVariableValue("playerSeen", false);
 		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, target);
 
 		for (int i = 0; i < targetsInViewRadius.Length; i++) {
@@ -40,6 +44,7 @@ public class EnemyFOV : MonoBehaviour
 		}
         foreach (Transform visibleTarget in visibleTargets) {
 			playerSeen = true;
+			agent.BlackboardReference.SetVariableValue("playerSeen", true);
 		}
 	}
     IEnumerator FindTargetsWithDelay(float delay) {

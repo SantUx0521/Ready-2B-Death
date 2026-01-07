@@ -20,7 +20,6 @@ public class AI_Enemy : MonoBehaviour
 
     void Update()
     {
-        Path();
         EnemyShoot();
     }
 
@@ -42,7 +41,6 @@ public class AI_Enemy : MonoBehaviour
         if (view.playerSeen)
         {
             anim.SetTrigger("Shoot");
-            Debug.Log("Visto Mamaguevo");
         }
     }
 }

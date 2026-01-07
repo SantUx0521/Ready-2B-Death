@@ -1902,6 +1902,7 @@ GameObject:
   - component: {fileID: 791466434}
   - component: {fileID: 791466433}
   - component: {fileID: 791466435}
+  - component: {fileID: 791466436}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -2072,6 +2073,7 @@ MonoBehaviour:
   viewRadius: 20.07
   viewAngle: 49
   playerSeen: 0
+  agent: {fileID: 0}
   target:
     serializedVersion: 2
     m_Bits: 8
@@ -2079,6 +2081,56 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   visibleTargets: []
+--- !u!114 &791466436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791466427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
+  m_Graph: {fileID: 5013463312068175839, guid: 5c567fcdb3a4fbf4e8923b0dd7aafb85, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 4353839724811518505
+  - rid: 4353839727333343280
+  - rid: 4353839727333343279
+  m_OriginalGraph: {fileID: 5013463312068175839, guid: 5c567fcdb3a4fbf4e8923b0dd7aafb85, type: 2}
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4353839724811518505
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 791466427}
+    - rid: 4353839727333343279
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5207887344453647060
+          m_Value1: 9803917376914076325
+        Name: Player
+        m_Value: {fileID: 1707240154}
+    - rid: 4353839727333343280
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4949989116007116773
+          m_Value1: 5247855075918564292
+        Name: Destinations
+        m_Value:
+        - {fileID: 1701258351}
+        - {fileID: 433572893}
+        - {fileID: 406854723}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
