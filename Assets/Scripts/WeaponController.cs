@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using TMPro;
 public class WeaponController : MonoBehaviour
 {
     // Using as a universal base for weapons, so i can manage damage, recoil, range, etc from their own scripts
@@ -16,9 +16,11 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public int bullets;
     [HideInInspector] public int maxBullets;
     [HideInInspector] public string ReloadName;
+    [SerializeField] public int actualBulletsAmount;
 
     CameraShake cameraShake;
-
+    public TextMeshProUGUI bulletsText;
+    public TextMeshProUGUI bulletsAmountText;
     public bool canShoot = true;
 
     public bool reloading = false;
@@ -99,7 +101,9 @@ public class WeaponController : MonoBehaviour
 
     private void Reload()
     {
-        if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets && !reloading)
+        bulletsText.text = bullets.ToString();
+        bulletsAmountText.text = actualBulletsAmount.ToString();
+        if (playerController.playerInput.actions["Reload"].triggered && bullets < maxBullets && !reloading && actualBulletsAmount > 0)
         {
             reloading = true;
             canShoot = false;
@@ -109,7 +113,11 @@ public class WeaponController : MonoBehaviour
 
     public void FinishReload()
     {
-        bullets = maxBullets;
+        int bulletsLeft =  maxBullets - bullets;
+        int bulletsToReload = Mathf.Min(bulletsLeft, actualBulletsAmount);
+        bullets += bulletsToReload;
+        actualBulletsAmount -= bulletsToReload;
+
         canShoot = true;
         reloading = false;
     }

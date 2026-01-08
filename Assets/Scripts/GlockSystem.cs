@@ -8,7 +8,7 @@ public class GlockSystem : MonoBehaviour
     public float Glock_range = 100f;
     public int Glock_Damage = 10; 
     public float spread = 0.05f;
-    public int maxBullets = 9;
+    public int maxBullets = 15;
     public string ReloadName = "Glock_Reload";
     void Start()
     {

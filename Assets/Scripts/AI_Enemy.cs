@@ -19,8 +19,8 @@ public class AI_Enemy : MonoBehaviour
     private float searchTimer;
     private Vector3 lastKnownPlayerPos;
 
-    float decisionCooldown;
-    float decisionTimer;
+    [SerializeField] float decisionCooldown;
+    [SerializeField] float decisionTimer;
 
     Combat currentAction;
 
@@ -53,7 +53,6 @@ public class AI_Enemy : MonoBehaviour
         enemy = GetComponent<Enemy>();
 
         GoToNextPatrolPoint();
-        InvokeRepeating("TakeDesition",5,5);
     }
 
     void Update()
@@ -64,22 +63,35 @@ public class AI_Enemy : MonoBehaviour
                 Path();
                 break;
 
-            case AIState.Chase:
-                Chase();
-                break;
-
             case AIState.Search:
                 Search();
                 break;
             case AIState.CombatState:
-                Attack();
+                CombatMode();
                 break;
         }
+    }
+
+    public void CombatMode()
+    {
         decisionTimer -= Time.deltaTime;
         if (decisionTimer <= 0f)
         {
             DecideCombat();
             decisionTimer = decisionCooldown;
+        }
+
+        switch (currentAction)
+        {
+            case Combat.Shoot:
+                Shoot();
+                break;
+            case Combat.Advance:
+                Chase();
+                break;
+            case Combat.Strafe:
+                Strafe();
+                break;
         }
     }
 
@@ -99,26 +111,15 @@ public class AI_Enemy : MonoBehaviour
 
     private void Chase()
     {
-        if (view.playerSeen)
-        {
-            agent.SetDestination(enemy.player.transform.position);
-            lastKnownPlayerPos = enemy.player.transform.position;
-        }
-        else
-        {
-            searchTimer = searchTime;
-            agent.SetDestination(lastKnownPlayerPos);
-            state = AIState.Search;
-        }
+        agent.SetDestination(enemy.player.transform.position);
     }
 
     private void Search()
     {
-        CancelInvoke("TakeDesition");
         searchTimer -= Time.deltaTime;
         if (view.playerSeen)
         {
-            InvokeRepeating("TakeDesition",5,5);
+            
         }
         else if(searchTimer <= 0)
         {
@@ -141,18 +142,17 @@ public class AI_Enemy : MonoBehaviour
     {
         float dist = Vector3.Distance(transform.position, enemy.player.transform.position);
 
-        if (dist < 6f)
-            currentAction = Combat.Strafe;
-        else if (dist < 12f)
+        if (dist < 40f)
             currentAction = UnityEngine.Random.value > 0.6f
                 ? Combat.Shoot
-                : Combat.TakeCover;
+                : Combat.Strafe;
         else
             currentAction = Combat.Advance;
     }
 
-    private void Attack()
+    private void Shoot()
     {
+        LookAtPlayer();
         if (view.playerSeen)
         {
             agent.SetDestination(transform.position);
@@ -166,18 +166,57 @@ public class AI_Enemy : MonoBehaviour
             {
                 if (((1 << Hit.collider.gameObject.layer) & Player) != 0)
                 {
-                    Debug.Log("OUCH");
-                }
-                else
-                {
-                    Debug.Log("Failed");
+                    Debug.Log("te voy a pegar");
+                    StartCoroutine(BeDummier());
                 }
             }
         }
         else
         {
-            searchTimer = searchTime;
-            state = AIState.Search;
+            return;
         }
     }
+
+    private IEnumerator BeDummier()
+    {
+        Debug.Log("decido");
+        int madeIt = UnityEngine.Random.Range(0,5);
+        if (madeIt > 2)
+        {
+            Debug.Log("Te jodiste");
+        }
+        else
+        {
+            Debug.Log("Fallo el tiro");
+        }
+        yield return new WaitForSeconds(1);
+    }
+
+    private void Strafe()
+    {
+        Vector3 dirToPlayer = (transform.position - enemy.player.transform.position).normalized;
+        Vector3 strafeDir = Vector3.Cross(Vector3.up, dirToPlayer);
+
+        if(UnityEngine.Random.value > 0.5f)
+        {
+            strafeDir = -strafeDir;
+        } 
+        agent.SetDestination(transform.position + strafeDir * 4f);
+    }
+
+    void LookAtPlayer()
+    {
+        Vector3 dir = enemy.player.transform.position - transform.position;
+        dir.y = 0f; // solo rotar en Y
+
+        if (dir.sqrMagnitude < 0.001f) return;
+
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRot,
+            Time.deltaTime * 8f
+        );
+    }
+
 }
