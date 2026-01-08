@@ -88,6 +88,15 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = AimParent.localRotation;
+            if (playerController.isCrouching)
+            {
+                playerController.velocity = 6.0f;
+            }
+            else
+            {
+                playerController.velocity = 8.5f;
+            }
+            
         }
         else
         {
@@ -103,6 +112,7 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = DefaultParent.localRotation;
+            playerController.velocity = playerController.actualVelocity;
         }
     }
 

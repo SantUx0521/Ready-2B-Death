@@ -9,6 +9,8 @@ public class AI_Enemy : MonoBehaviour
     private NavMeshAgent agent;
     public Transform[] destinations;
     private EnemyFOV view;
+    public LayerMask Hittable;
+    public LayerMask Player;
     Enemy enemy;
     Animator anim;
     public float extraRotationSpeed;
@@ -17,11 +19,27 @@ public class AI_Enemy : MonoBehaviour
     private float searchTimer;
     private Vector3 lastKnownPlayerPos;
 
+    float decisionCooldown;
+    float decisionTimer;
+
+    Combat currentAction;
+
     enum AIState
     {
         Patrol,
         Chase,
-        Search
+        Search,
+        CombatState
+    }
+
+    enum Combat
+    {
+        Shoot,
+        Advance,
+        Strafe,
+        TakeCover,
+        Reload,
+        TrowGranade,
     }
     private AIState state = AIState.Patrol;
 
@@ -29,12 +47,13 @@ public class AI_Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(destinations[0].transform.position);
-        agent.updateRotation = false;
+        agent.updateRotation = true;
         view = GetComponent<EnemyFOV>();
         anim = GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
 
         GoToNextPatrolPoint();
+        InvokeRepeating("TakeDesition",5,5);
     }
 
     void Update()
@@ -52,16 +71,23 @@ public class AI_Enemy : MonoBehaviour
             case AIState.Search:
                 Search();
                 break;
+            case AIState.CombatState:
+                Attack();
+                break;
         }
-
-        extraRotation();
+        decisionTimer -= Time.deltaTime;
+        if (decisionTimer <= 0f)
+        {
+            DecideCombat();
+            decisionTimer = decisionCooldown;
+        }
     }
 
     public void Path()
     {
         if (view.playerSeen)
         {
-            state = AIState.Chase;
+            state = AIState.CombatState;
             return;
         }
 
@@ -88,10 +114,11 @@ public class AI_Enemy : MonoBehaviour
 
     private void Search()
     {
+        CancelInvoke("TakeDesition");
         searchTimer -= Time.deltaTime;
         if (view.playerSeen)
         {
-            state = AIState.Chase;
+            InvokeRepeating("TakeDesition",5,5);
         }
         else if(searchTimer <= 0)
         {
@@ -110,17 +137,47 @@ public class AI_Enemy : MonoBehaviour
             }
     }
 
-    void extraRotation()
+    private void DecideCombat()
     {
-            if (agent.velocity.sqrMagnitude < 0.1f) return;
+        float dist = Vector3.Distance(transform.position, enemy.player.transform.position);
 
-            Vector3 dir = agent.velocity.normalized;
-            Quaternion targetRot = Quaternion.LookRotation(dir);
+        if (dist < 6f)
+            currentAction = Combat.Strafe;
+        else if (dist < 12f)
+            currentAction = UnityEngine.Random.value > 0.6f
+                ? Combat.Shoot
+                : Combat.TakeCover;
+        else
+            currentAction = Combat.Advance;
+    }
 
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRot,
-                extraRotationSpeed * Time.deltaTime
-            );
+    private void Attack()
+    {
+        if (view.playerSeen)
+        {
+            agent.SetDestination(transform.position);
+            LayerMask combinedMask = Player | Hittable ;
+            lastKnownPlayerPos = enemy.player.transform.position;
+            Vector3 shootDir = (lastKnownPlayerPos - transform.position).normalized;
+            float distToTarget = Vector3.Distance(transform.position, lastKnownPlayerPos);
+
+            RaycastHit Hit;
+            if(Physics.Raycast(transform.position, shootDir, out Hit, distToTarget, combinedMask))
+            {
+                if (((1 << Hit.collider.gameObject.layer) & Player) != 0)
+                {
+                    Debug.Log("OUCH");
+                }
+                else
+                {
+                    Debug.Log("Failed");
+                }
+            }
+        }
+        else
+        {
+            searchTimer = searchTime;
+            state = AIState.Search;
+        }
     }
 }

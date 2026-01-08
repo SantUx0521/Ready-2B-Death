@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     Camera cameraP;
     private float originalFOV;
     private float adsSpeed = 15f;
+    PlayerWeaponController playerWeapon;
 
 
     void Awake()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>().transform;
+        playerWeapon = GetComponent<PlayerWeaponController>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         crouchAction = playerInput.actions["Crouch"];
@@ -115,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (crouchAction.WasPressedThisFrame() && !isCrouching)
         {
             characterController.height = crouchHeight;
-            velocity /= 1.5f;
+            velocity = 6.5f;
             isCrouching = true;
         }
         else if (crouchAction.WasPressedThisFrame() && isCrouching)
@@ -140,6 +142,11 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
             velocity = actualVelocity;
             cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
+        }
+        if (playerWeapon.isAiming)
+        {
+            isSprinting = false;
+            velocity = actualVelocity;
         }
     }
 }
