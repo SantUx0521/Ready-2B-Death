@@ -2020,6 +2020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 30
   speed: 3
+  player: {fileID: 0}
 --- !u!114 &791466433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,6 +2037,7 @@ MonoBehaviour:
   - {fileID: 1701258352}
   - {fileID: 433572894}
   - {fileID: 406854724}
+  extraRotationSpeed: 1
 --- !u!195 &791466434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2047,9 +2049,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3
-  m_Acceleration: 1
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 900
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -2073,7 +2075,7 @@ MonoBehaviour:
   viewRadius: 20.07
   viewAngle: 49
   playerSeen: 0
-  agent: {fileID: 0}
+  agent: {fileID: 791466436}
   target:
     serializedVersion: 2
     m_Bits: 8
@@ -2093,18 +2095,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
-  m_Graph: {fileID: 5013463312068175839, guid: 5c567fcdb3a4fbf4e8923b0dd7aafb85, type: 2}
+  m_Graph: {fileID: 2218481137872597546, guid: bd47097c2e1d5e34096d714ffa6f0b97, type: 2}
   m_BlackboardVariableOverridesList:
-  - rid: 4353839724811518505
-  - rid: 4353839727333343280
-  - rid: 4353839727333343279
-  m_OriginalGraph: {fileID: 5013463312068175839, guid: 5c567fcdb3a4fbf4e8923b0dd7aafb85, type: 2}
+  - rid: 4353839730525732881
+  - rid: 4353839730525732960
+  - rid: 4353839730525732961
+  m_OriginalGraph: {fileID: 2218481137872597546, guid: bd47097c2e1d5e34096d714ffa6f0b97, type: 2}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 4353839724811518505
+    - rid: 4353839730525732881
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -2112,21 +2114,21 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 791466427}
-    - rid: 4353839727333343279
+    - rid: 4353839730525732960
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 5207887344453647060
-          m_Value1: 9803917376914076325
+          m_Value0: 7827248153290540631
+          m_Value1: 8311350109728761660
         Name: Player
         m_Value: {fileID: 1707240154}
-    - rid: 4353839727333343280
+    - rid: 4353839730525732961
       type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 4949989116007116773
-          m_Value1: 5247855075918564292
-        Name: Destinations
+          m_Value0: 17001359384185673130
+          m_Value1: 12816639601411691018
+        Name: Paths
         m_Value:
         - {fileID: 1701258351}
         - {fileID: 433572893}

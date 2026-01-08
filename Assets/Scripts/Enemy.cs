@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
 
-    PlayerController player;
+    public PlayerController player;
 
     void Awake()
     {
