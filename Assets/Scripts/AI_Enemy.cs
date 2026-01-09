@@ -19,13 +19,14 @@ public class AI_Enemy : MonoBehaviour
     private float searchTimer;
     private Vector3 lastKnownPlayerPos;
     public GameObject fire;
+    public GameObject Firelight;
     [SerializeField] float decisionCooldown;
     [SerializeField] float decisionTimer;
     private bool beDummierIsRunning = false;
     private readonly WaitForSeconds waiting = new WaitForSeconds(1f);
     Combat currentAction;
+    bool movingToCover;
     GetCover getCover;
-
     enum AIState
     {
         Patrol,
@@ -33,12 +34,11 @@ public class AI_Enemy : MonoBehaviour
         Search,
         CombatState
     }
-
     enum Combat
     {
         Shoot,
         Advance,
-        Strafe,
+        Stalk,
         TakeCover,
         Reload,
         TrowGranade,
@@ -94,6 +94,10 @@ public class AI_Enemy : MonoBehaviour
                 break;
             case Combat.TakeCover:
                 TakeCover();
+                if (movingToCover && agent.remainingDistance < 0.5f)
+                {
+                    movingToCover = false;
+                }
                 break;
         }
     }
@@ -186,21 +190,23 @@ public class AI_Enemy : MonoBehaviour
         yield return waiting;
 
         fire.SetActive(true);
+        Firelight.SetActive(true);
         Vector3 currentEuler = fire.transform.localEulerAngles;
         currentEuler.y = UnityEngine.Random.Range(-180, 180);
         fire.transform.localEulerAngles = currentEuler;
         yield return new WaitForSeconds(0.1f);
 
         int madeIt = UnityEngine.Random.Range(0, 10);
-        if (madeIt < 7)
+        if (madeIt < 5)
         {
-            Debug.Log("Te jodiste");
+            Debug.Log("Te jodiste"); //Quedo pendiente de hacer el sistema de salud porque ahorita puro Log XD
         }
         else
         {
             Debug.Log("Fallo el tiro");
         }
         fire.SetActive(false);
+        Firelight.SetActive(false);
         beDummierIsRunning = false;
     }
 
@@ -209,8 +215,16 @@ public class AI_Enemy : MonoBehaviour
         Vector3 dirToPlayer = (transform.position - enemy.player.transform.position).normalized;
         float disToPlayer = Vector3.Distance(transform.position, enemy.player.transform.position);
         Vector3 bestCover = getCover.GetBestCover(dirToPlayer, Player);
-        float distToCover = Vector3.Distance(transform.position, bestCover);
-        agent.SetDestination(bestCover);
+
+        if (!movingToCover && disToPlayer > 10) //Queda medio mal pero solo con un else no garantizo que dispare cuando tiene que hacerlo
+        {
+            agent.SetDestination(bestCover);
+            movingToCover = true;
+        }
+        else if (!movingToCover && disToPlayer < 10)
+        {
+            currentAction = Combat.Shoot;
+        }
     }
 
     void LookAtPlayer()
