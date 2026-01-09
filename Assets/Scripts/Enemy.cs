@@ -3,8 +3,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 30;
-    public float speed = 3f;
-
     private bool isDead = false;
 
     public PlayerController player;

@@ -24,6 +24,7 @@ public class AI_Enemy : MonoBehaviour
     private bool beDummierIsRunning = false;
     private readonly WaitForSeconds waiting = new WaitForSeconds(1f);
     Combat currentAction;
+    GetCover getCover;
 
     enum AIState
     {
@@ -52,6 +53,7 @@ public class AI_Enemy : MonoBehaviour
         view = GetComponent<EnemyFOV>();
         anim = GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
+        getCover = GetComponent<GetCover>();
 
         GoToNextPatrolPoint();
     }
@@ -90,8 +92,8 @@ public class AI_Enemy : MonoBehaviour
             case Combat.Advance:
                 Chase();
                 break;
-            case Combat.Strafe:
-                Strafe();
+            case Combat.TakeCover:
+                TakeCover();
                 break;
         }
     }
@@ -120,7 +122,7 @@ public class AI_Enemy : MonoBehaviour
         searchTimer -= Time.deltaTime;
         if (view.playerSeen)
         {
-            
+            state = AIState.CombatState;
         }
         else if(searchTimer <= 0)
         {
@@ -183,6 +185,12 @@ public class AI_Enemy : MonoBehaviour
 
         yield return waiting;
 
+        fire.SetActive(true);
+        Vector3 currentEuler = fire.transform.localEulerAngles;
+        currentEuler.y = UnityEngine.Random.Range(-180, 180);
+        fire.transform.localEulerAngles = currentEuler;
+        yield return new WaitForSeconds(0.1f);
+
         int madeIt = UnityEngine.Random.Range(0, 10);
         if (madeIt < 7)
         {
@@ -196,16 +204,13 @@ public class AI_Enemy : MonoBehaviour
         beDummierIsRunning = false;
     }
 
-    private void Strafe()
+    private void TakeCover()
     {
         Vector3 dirToPlayer = (transform.position - enemy.player.transform.position).normalized;
-        Vector3 strafeDir = Vector3.Cross(Vector3.up, dirToPlayer);
-
-        if(UnityEngine.Random.value > 0.5f)
-        {
-            strafeDir = -strafeDir;
-        } 
-        agent.SetDestination(transform.position + strafeDir * 4f);
+        float disToPlayer = Vector3.Distance(transform.position, enemy.player.transform.position);
+        Vector3 bestCover = getCover.GetBestCover(dirToPlayer, Player);
+        float distToCover = Vector3.Distance(transform.position, bestCover);
+        agent.SetDestination(bestCover);
     }
 
     void LookAtPlayer()
