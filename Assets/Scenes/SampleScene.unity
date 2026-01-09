@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -2270,7 +2270,7 @@ Transform:
   m_GameObject: {fileID: 791466427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 1.08, z: -10.2622}
+  m_LocalPosition: {x: -3.71, y: 1.08, z: -10.2622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2317,6 +2317,7 @@ MonoBehaviour:
     m_Bits: 8
   extraRotationSpeed: 1
   searchTime: 5
+  fire: {fileID: 1402882527}
   decisionCooldown: 5
   decisionTimer: 0
 --- !u!195 &791466434
@@ -2353,8 +2354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0365c417ef4e345a1f005a836b157d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFOV
-  viewRadius: 20.07
-  viewAngle: 49
+  viewRadius: 21
+  viewAngle: 45
   playerSeen: 0
   agent: {fileID: 791466436}
   target:
@@ -2584,7 +2585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915681695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Estructura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3004,6 +3005,118 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1402882527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402882531}
+  - component: {fileID: 1402882530}
+  - component: {fileID: 1402882529}
+  - component: {fileID: 1402882528}
+  m_Layer: 7
+  m_Name: Fogonazo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!64 &1402882528
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402882527}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1402882529
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402882527}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f145245411cf458489c6ba96188c9451, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1402882530
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402882527}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1402882531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402882527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7257534, y: 0.017021444, z: -0.013087122, w: 0.6876198}
+  m_LocalPosition: {x: -0.00012, y: 0.00887, z: 0.00015}
+  m_LocalScale: {x: 0.0075506205, y: 0.008849198, z: 0.02790841}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6002527631749477704}
+  m_LocalEulerAnglesHint: {x: 86.893, y: -184.67, z: -187.111}
 --- !u!1 &1556030803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,7 +4075,7 @@ GameObject:
   - component: {fileID: 6908711458195833784}
   - component: {fileID: 6857727203519866382}
   - component: {fileID: 1615798152467285404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HighCoos.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4033,7 +4146,7 @@ GameObject:
   - component: {fileID: 1888668363415876556}
   - component: {fileID: 133731825937789389}
   - component: {fileID: 2386398332650081947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: High.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4082,36 +4195,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450652639907875}
-  - component: {fileID: 919132148101679770}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &919132148101679770
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148101679769}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b9170c0b9fca54e45a699fc1e0aff712, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &936907498755818451
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1256455643024158645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.001_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4348,7 +4438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1441683805708391712}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4716,7 +4806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 835797315455659542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,7 +4938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5171390193336205507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5037,7 +5127,7 @@ GameObject:
   - component: {fileID: 1045098438220226720}
   - component: {fileID: 5287799366896743644}
   - component: {fileID: 5722853963513734469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HighReca.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5116,7 +5206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2219118222333059145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.003_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5138,6 +5228,7 @@ Transform:
   m_Children:
   - {fileID: 1045098438220226720}
   - {fileID: 5812135405591730745}
+  - {fileID: 1402882531}
   m_Father: {fileID: 915681695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6528425598000862467
@@ -5165,7 +5256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5523619050170864108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5287,7 +5378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5812135405591730745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.002_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5302,7 +5393,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759164916156975331}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -5419,7 +5510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6002527631749477704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hueso.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5518,7 +5609,7 @@ GameObject:
   - component: {fileID: 3873433187519686335}
   - component: {fileID: 3077056105661986050}
   - component: {fileID: 4984432734369289425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HighGati.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,10 +18,11 @@ public class AI_Enemy : MonoBehaviour
     public float searchTime = 5f;
     private float searchTimer;
     private Vector3 lastKnownPlayerPos;
-
+    public GameObject fire;
     [SerializeField] float decisionCooldown;
     [SerializeField] float decisionTimer;
-
+    private bool beDummierIsRunning = false;
+    private readonly WaitForSeconds waiting = new WaitForSeconds(1f);
     Combat currentAction;
 
     enum AIState
@@ -142,10 +143,10 @@ public class AI_Enemy : MonoBehaviour
     {
         float dist = Vector3.Distance(transform.position, enemy.player.transform.position);
 
-        if (dist < 40f)
+        if (dist < 21f)
             currentAction = UnityEngine.Random.value > 0.6f
                 ? Combat.Shoot
-                : Combat.Strafe;
+                : Combat.TakeCover;
         else
             currentAction = Combat.Advance;
     }
@@ -166,7 +167,6 @@ public class AI_Enemy : MonoBehaviour
             {
                 if (((1 << Hit.collider.gameObject.layer) & Player) != 0)
                 {
-                    Debug.Log("te voy a pegar");
                     StartCoroutine(BeDummier());
                 }
             }
@@ -176,12 +176,15 @@ public class AI_Enemy : MonoBehaviour
             return;
         }
     }
-
-    private IEnumerator BeDummier()
+    private IEnumerator BeDummier() //Quiero hacer más tonta a la IA porque si le dejo pegarlos todos se vuelve exagerada la dificulta XD
     {
-        Debug.Log("decido");
-        int madeIt = UnityEngine.Random.Range(0,5);
-        if (madeIt > 2)
+        if (beDummierIsRunning) yield break;
+        beDummierIsRunning = true;
+
+        yield return waiting;
+
+        int madeIt = UnityEngine.Random.Range(0, 10);
+        if (madeIt < 7)
         {
             Debug.Log("Te jodiste");
         }
@@ -189,7 +192,8 @@ public class AI_Enemy : MonoBehaviour
         {
             Debug.Log("Fallo el tiro");
         }
-        yield return new WaitForSeconds(1);
+        fire.SetActive(false);
+        beDummierIsRunning = false;
     }
 
     private void Strafe()
@@ -207,7 +211,7 @@ public class AI_Enemy : MonoBehaviour
     void LookAtPlayer()
     {
         Vector3 dir = enemy.player.transform.position - transform.position;
-        dir.y = 0f; // solo rotar en Y
+        dir.y = 0f;
 
         if (dir.sqrMagnitude < 0.001f) return;
 
