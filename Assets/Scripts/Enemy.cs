@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 30;
+    public int damage = 10;
     private bool isDead = false;
 
     public PlayerController player;

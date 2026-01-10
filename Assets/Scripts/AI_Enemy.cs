@@ -173,7 +173,7 @@ public class AI_Enemy : MonoBehaviour
             {
                 if (((1 << Hit.collider.gameObject.layer) & Player) != 0)
                 {
-                    StartCoroutine(BeDummier());
+                    StartCoroutine(BeDummier(Hit));
                 }
             }
         }
@@ -182,7 +182,7 @@ public class AI_Enemy : MonoBehaviour
             return;
         }
     }
-    private IEnumerator BeDummier() //Quiero hacer más tonta a la IA porque si le dejo pegarlos todos se vuelve exagerada la dificulta XD
+    private IEnumerator BeDummier(RaycastHit Hit) //Quiero hacer más tonta a la IA porque si le dejo pegarlos todos se vuelve exagerada la dificulta XD
     {
         if (beDummierIsRunning) yield break;
         beDummierIsRunning = true;
@@ -199,11 +199,11 @@ public class AI_Enemy : MonoBehaviour
         int madeIt = UnityEngine.Random.Range(0, 10);
         if (madeIt < 5)
         {
-            Debug.Log("Te jodiste"); //Quedo pendiente de hacer el sistema de salud porque ahorita puro Log XD
+            Hit.collider.gameObject.GetComponent<GameManager>().TakeDamage(enemy.damage); //Listo mai brodel
         }
         else
         {
-            Debug.Log("Fallo el tiro");
+            Debug.Log("Fallo el tiro"); // Ahora queda pendiente esto porque tecnicamente quiero que haga chispas o algo de impacto contra superficie cerca del player i guess
         }
         fire.SetActive(false);
         Firelight.SetActive(false);

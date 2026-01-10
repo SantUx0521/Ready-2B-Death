@@ -1,6 +1,9 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -11,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivityX = 30f;
     public float mouseSensitivityY = 40f;
     private float angleY;
+    public Volume volume;
 
     [Header("Movement")]
     public float velocity = 1f;
@@ -119,12 +123,23 @@ public class PlayerController : MonoBehaviour
             characterController.height = crouchHeight;
             velocity = 6.5f;
             isCrouching = true;
+            if (volume.profile.TryGet<UnityEngine.Rendering.Universal.Vignette>(out var vignette))
+            {
+                float crouchVignette = Mathf.Lerp(0.33f, 0.12f, 0.1f);
+                vignette.intensity.Override(crouchVignette);
+            }
         }
         else if (crouchAction.WasPressedThisFrame() && isCrouching)
         {
             characterController.height = actualHeight;
             velocity = actualVelocity;
             isCrouching = false;
+            if (volume.profile.TryGet<UnityEngine.Rendering.Universal.Vignette>(out var vignette))
+            {
+                float crouchVignette = Mathf.Lerp(0.12f, 0.33f, 0.1f);
+                vignette.intensity.Override(crouchVignette);
+            }
+            
         }
     }
 
