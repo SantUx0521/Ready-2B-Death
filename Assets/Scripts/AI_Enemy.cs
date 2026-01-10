@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
 
 public class AI_Enemy : MonoBehaviour
 {
@@ -27,6 +25,8 @@ public class AI_Enemy : MonoBehaviour
     Combat currentAction;
     bool movingToCover;
     GetCover getCover;
+    public float hearRadius;
+    float distToTarget;
     enum AIState
     {
         Patrol,
@@ -150,7 +150,7 @@ public class AI_Enemy : MonoBehaviour
         float dist = Vector3.Distance(transform.position, enemy.player.transform.position);
 
         if (dist < 21f)
-            currentAction = UnityEngine.Random.value > 0.6f
+            currentAction = Random.value > 0.6f
                 ? Combat.Shoot
                 : Combat.TakeCover;
         else
@@ -166,7 +166,7 @@ public class AI_Enemy : MonoBehaviour
             LayerMask combinedMask = Player | Hittable ;
             lastKnownPlayerPos = enemy.player.transform.position;
             Vector3 shootDir = (lastKnownPlayerPos - transform.position).normalized;
-            float distToTarget = Vector3.Distance(transform.position, lastKnownPlayerPos);
+            distToTarget = Vector3.Distance(transform.position, lastKnownPlayerPos);
 
             RaycastHit Hit;
             if(Physics.Raycast(transform.position, shootDir, out Hit, distToTarget, combinedMask))
@@ -192,12 +192,21 @@ public class AI_Enemy : MonoBehaviour
         fire.SetActive(true);
         Firelight.SetActive(true);
         Vector3 currentEuler = fire.transform.localEulerAngles;
-        currentEuler.y = UnityEngine.Random.Range(-180, 180);
+        currentEuler.y = Random.Range(-180, 180);
         fire.transform.localEulerAngles = currentEuler;
         yield return new WaitForSeconds(0.1f);
+        float dynamicAim = 5;
+        if (distToTarget < 5)
+        {
+            dynamicAim = 8;
+        }
+        else if (distToTarget > 10)
+        {
+            dynamicAim = 2;
+        }
 
-        int madeIt = UnityEngine.Random.Range(0, 10);
-        if (madeIt < 5)
+        float madeIt = Random.Range(0, 10);
+        if (madeIt < dynamicAim)
         {
             Hit.collider.gameObject.GetComponent<GameManager>().TakeDamage(enemy.damage); //Listo mai brodel
         }
@@ -242,4 +251,28 @@ public class AI_Enemy : MonoBehaviour
         );
     }
 
+    private void Hear(Vector3 noisePos, float maxRadious)
+    {
+        float distToNoise = Vector3.Distance(transform.position, noisePos);
+        if(maxRadious < distToNoise) return;
+
+        lastKnownPlayerPos = noisePos;
+        state = AIState.CombatState;
+        agent.SetDestination(lastKnownPlayerPos);
+        DecideCombat();
+    }
+    void OnEnable()
+    {
+        WeaponController.OnNoise += OnNoiseHeard;
+    }
+
+    void OnDisable()
+    {
+        WeaponController.OnNoise -= OnNoiseHeard;
+    }
+
+    private void OnNoiseHeard(Vector3 noisePos, float radius)
+    {
+        Hear(noisePos, radius);
+    }
 }

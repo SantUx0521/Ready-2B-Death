@@ -28,6 +28,7 @@ public class WeaponController : MonoBehaviour
     private PlayerWeaponController playerWeapon;
     public Animator anim;
     private Transform cameraPlayer;
+    public static System.Action<Vector3, float> OnNoise;
     void Start()
     {
         cameraPlayer = GameObject.FindWithTag("MainCamera").transform;
@@ -66,6 +67,8 @@ public class WeaponController : MonoBehaviour
     {
         LayerMask combinedMask = Enemy | Hittable | Head;
         Vector3 direction = cameraPlayer.forward;
+        
+        OnNoise?.Invoke(transform.position, 22f);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))

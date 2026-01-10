@@ -15,7 +15,7 @@ public class GetCover : MonoBehaviour
 
             if(disToCover > bestDisToCover) continue;
             
-            if(Physics.Raycast(Cover.transform.position, -dirToPlayer, out RaycastHit hit))
+            if(Physics.Raycast(Cover.transform.position, dirToPlayer, out RaycastHit hit))
             {
                 if (((1 << hit.collider.gameObject.layer) & Player) == 0)
                 {
