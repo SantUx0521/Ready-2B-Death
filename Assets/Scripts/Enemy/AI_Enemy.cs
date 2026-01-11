@@ -51,7 +51,7 @@ public class AI_Enemy : MonoBehaviour
         agent.SetDestination(destinations[0].transform.position);
         agent.updateRotation = true;
         view = GetComponent<EnemyFOV>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
         getCover = GetComponent<GetCover>();
 
@@ -74,7 +74,7 @@ public class AI_Enemy : MonoBehaviour
                 CombatMode();
                 break;
         }
-
+        Walking();
     }
 
     public void CombatMode()
@@ -281,5 +281,11 @@ public class AI_Enemy : MonoBehaviour
     {
         if(enemy.isDead) return;
         Hear(noisePos, radius);
+    }
+
+    private void Walking()
+    {
+        bool notMoving = agent.velocity.sqrMagnitude < 0.01f || (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
+        anim.SetBool("Walking", !notMoving);
     }
 }
