@@ -67,8 +67,8 @@ public class WeaponController : MonoBehaviour
     {
         LayerMask combinedMask = Enemy | Hittable | Head;
         Vector3 direction = cameraPlayer.forward;
-        
-        OnNoise?.Invoke(transform.position, 22f);
+
+        OnNoise?.Invoke(transform.position, 42f);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))

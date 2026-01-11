@@ -258,8 +258,12 @@ public class AI_Enemy : MonoBehaviour
 
         lastKnownPlayerPos = noisePos;
         state = AIState.CombatState;
-        agent.SetDestination(lastKnownPlayerPos);
         DecideCombat();
+
+        if(!view.playerSeen)
+        {
+            agent.SetDestination(lastKnownPlayerPos);
+        }  
     }
     void OnEnable()
     {
