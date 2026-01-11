@@ -1,16 +1,21 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
     public int health = 30;
     public int damage = 10;
-    private bool isDead = false;
+    public bool isDead = false;
+    RagdollEnemy ragdoll;
+    RigBuilder rig;
 
     public PlayerController player;
 
     void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        ragdoll = GetComponent<RagdollEnemy>();
+        rig = GetComponentInChildren<RigBuilder>();
     }
 
     void Update()
@@ -33,7 +38,8 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
-            Destroy(gameObject);
+            rig.enabled = false;
+            ragdoll.ragdollON();
         }
     }
 }

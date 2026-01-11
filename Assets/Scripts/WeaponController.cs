@@ -75,7 +75,7 @@ public class WeaponController : MonoBehaviour
         {
             if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
-                hit.collider.gameObject.GetComponent<Enemy>().takeDamage(damage);
+                hit.collider.gameObject.GetComponentInParent<Enemy>().takeDamage(damage);
             }
             else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
             {

@@ -60,6 +60,7 @@ public class AI_Enemy : MonoBehaviour
 
     void Update()
     {
+        if (enemy.isDead) return;
         switch (state)
         {
             case AIState.Patrol:
@@ -73,6 +74,7 @@ public class AI_Enemy : MonoBehaviour
                 CombatMode();
                 break;
         }
+
     }
 
     public void CombatMode()
@@ -277,6 +279,7 @@ public class AI_Enemy : MonoBehaviour
 
     private void OnNoiseHeard(Vector3 noisePos, float radius)
     {
+        if(enemy.isDead) return;
         Hear(noisePos, radius);
     }
 }
