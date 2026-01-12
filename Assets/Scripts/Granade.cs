@@ -1,0 +1,64 @@
+using System.Collections;
+using UnityEngine;
+
+public class Granade : MonoBehaviour
+{
+    public float delay = 3f;
+    public float radius = 5f;
+    public float force = 700;
+    public GameObject explosionEffect;
+    float countdown;
+    bool Exploded = false;
+    void Start()
+    {
+        countdown = delay;
+    }
+    void Update()
+    {
+        if(Exploded == true) return;
+        countdown -= Time.deltaTime;
+        if(countdown <= 0f && Exploded == false)
+        {
+            Explode();
+        }
+    }
+
+    public void Explode()
+    {
+        GameObject effect = Instantiate(explosionEffect, transform.position, transform.rotation);
+        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            Destroy(effect, ps.main.duration);
+        }
+        else
+        {
+            Destroy(effect, 2f);
+        }
+        Exploded = true;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        foreach(Collider collider in colliders)
+        {
+            if (collider.GetComponentInParent<Enemy>())
+            {
+                collider.gameObject.GetComponentInParent<Enemy>().takeDamage(50);
+            } 
+        }
+        StartCoroutine(EnableExplosion());        
+    }
+
+    public IEnumerator EnableExplosion()
+    {
+        yield return new WaitForSeconds(0.001f);
+        Collider[] explosionColliders = Physics.OverlapSphere(transform.position, radius);
+        foreach(Collider collider in explosionColliders)
+        {
+            Rigidbody[] rbs = collider.GetComponents<Rigidbody>();
+            foreach (Rigidbody rb in rbs)
+            {
+                rb.AddExplosionForce(force, transform.position, radius, 0f,ForceMode.Impulse);
+            }
+        }
+        Destroy(gameObject);
+    }
+}

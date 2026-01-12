@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerWeaponController : MonoBehaviour
 {
     // Script for managing how the player's weapons work
+    [Header("Armas en posesion")]
     public List<WeaponController> starter = new List<WeaponController>();
 
     public Transform weaponParent;
@@ -34,6 +35,11 @@ public class PlayerWeaponController : MonoBehaviour
 
     public Animator anim;
 
+    [Header("Granadas")]
+    InputAction granadeAction;
+    public GameObject granade;
+    public float trowForce = 10;
+
     void Start()
     {
         activeWeaponIndex = -1;
@@ -49,6 +55,7 @@ public class PlayerWeaponController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         activeWeapon = GetComponentInChildren<WeaponController>();
+        granadeAction = playerController.playerInput.actions["Granade"];
 
         foreach (WeaponController weapon in starter)
         {
@@ -64,6 +71,7 @@ public class PlayerWeaponController : MonoBehaviour
     void Update()
     {
         Aim();
+        TrowGranade();
         if(isAiming){return;}
         if (playerController.playerInput.actions["FirstWeapon"].triggered)
         {
@@ -172,5 +180,15 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
         weaponParent.localRotation = DefaultParent.localRotation;
+    }
+
+    public void TrowGranade()
+    {
+        if (granadeAction.WasPressedThisFrame())
+        {
+            GameObject newGranade = Instantiate(granade, playerCamera.transform.position, playerCamera.transform.rotation);
+
+            newGranade.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * trowForce);
+        }
     }
 }
