@@ -60,7 +60,12 @@ public class AI_Enemy : MonoBehaviour
 
     void Update()
     {
-        if (enemy.isDead) return;
+        if (enemy.isDead) 
+        {
+            agent.isStopped = true;
+            return;
+        }
+        
         switch (state)
         {
             case AIState.Patrol:
