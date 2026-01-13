@@ -16,7 +16,9 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public int bullets;
     [HideInInspector] public int maxBullets;
     [HideInInspector] public string ReloadName;
+    [HideInInspector] public float cadence;
     [SerializeField] public int actualBulletsAmount;
+    [HideInInspector] public float weaponForce;
 
     CameraShake cameraShake;
     public TextMeshProUGUI bulletsText;
@@ -76,10 +78,12 @@ public class WeaponController : MonoBehaviour
             if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().takeDamage(damage);
+                hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
             }
             else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().headShot();
+                hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
                 Debug.Log("HEADSHOT MADAFAKA");
             }
 
@@ -128,7 +132,7 @@ public class WeaponController : MonoBehaviour
     private IEnumerator Delay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(cadence);
         canShoot = true;
     }
 }

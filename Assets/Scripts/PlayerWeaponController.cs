@@ -39,21 +39,18 @@ public class PlayerWeaponController : MonoBehaviour
     InputAction granadeAction;
     public GameObject granade;
     public float trowForce = 10;
+    public float maxGranadeCap = 5;
+    public float actualGranades;
 
     void Start()
     {
         activeWeaponIndex = -1;
-
         playerController = GetComponent<PlayerController>();
-
         playerCamera = GetComponentInChildren<Camera>();
-
         originalFOV = playerCamera.fieldOfView;
-
         rigBuilder = GetComponentInChildren<RigBuilder>();
-
         anim = GetComponent<Animator>();
-
+        actualGranades = maxGranadeCap;
         activeWeapon = GetComponentInChildren<WeaponController>();
         granadeAction = playerController.playerInput.actions["Granade"];
 
@@ -73,6 +70,7 @@ public class PlayerWeaponController : MonoBehaviour
         Aim();
         TrowGranade();
         if(isAiming){return;}
+
         if (playerController.playerInput.actions["FirstWeapon"].triggered)
         {
             SwitchWeapon(0);
@@ -96,6 +94,7 @@ public class PlayerWeaponController : MonoBehaviour
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = AimParent.localRotation;
+
             if (playerController.isCrouching)
             {
                 playerController.velocity = 6.0f;
@@ -184,11 +183,15 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void TrowGranade()
     {
-        if (granadeAction.WasPressedThisFrame())
+        if (granadeAction.WasPressedThisFrame() && actualGranades > 0)
         {
             GameObject newGranade = Instantiate(granade, playerCamera.transform.position, playerCamera.transform.rotation);
-
             newGranade.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * trowForce);
+            actualGranades -= 1;
+        }
+        else if (granadeAction.WasPressedThisFrame() && actualGranades <= 0)
+        {
+            Debug.Log("no tienes más granadas");
         }
     }
 }

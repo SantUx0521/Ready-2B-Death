@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
     private float adsSpeed = 15f;
     PlayerWeaponController playerWeapon;
 
+    [Header("Flashlight")]
+    private InputAction flashlightAction;
+    [SerializeField] private GameObject flashlight;
+    private bool flashing = false;
+
 
     void Awake()
     {
@@ -58,6 +63,7 @@ public class PlayerController : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
         crouchAction = playerInput.actions["Crouch"];
         sprintAction = playerInput.actions["Sprint"];
+        flashlightAction = playerInput.actions["Flashlight"];
         actualHeight = characterController.height;
         actualVelocity = velocity;
         cameraP = GetComponentInChildren<Camera>();
@@ -71,6 +77,7 @@ public class PlayerController : MonoBehaviour
         CameraMovement();
         Crouch();
         Run();
+        Flashlight();
     }
 
     private void Move()
@@ -162,6 +169,20 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = false;
             velocity = actualVelocity;
+        }
+    }
+
+    private void Flashlight()
+    {
+        if (flashlightAction.WasPressedThisFrame() && !flashing)
+        {
+            flashing = true;
+            flashlight.SetActive(true);
+        }
+        else if (flashlightAction.WasPressedThisFrame() && flashing)
+        {
+            flashing = false;
+            flashlight.SetActive(false);
         }
     }
 }

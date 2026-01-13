@@ -8,7 +8,7 @@ public class Granade : MonoBehaviour
     public float force = 700;
     public GameObject explosionEffect;
     float countdown;
-    bool Exploded = false;
+    public bool Exploded = false;
     void Start()
     {
         countdown = delay;
@@ -42,7 +42,11 @@ public class Granade : MonoBehaviour
             if (collider.GetComponentInParent<Enemy>())
             {
                 collider.gameObject.GetComponentInParent<Enemy>().takeDamage(50);
-            } 
+            }
+            else if (collider.GetComponent<GameManager>())
+            {
+                collider.gameObject.GetComponent<GameManager>().TakeDamage(40);
+            }
         }
         StartCoroutine(EnableExplosion());        
     }
