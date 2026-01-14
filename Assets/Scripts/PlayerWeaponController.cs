@@ -36,6 +36,7 @@ public class PlayerWeaponController : MonoBehaviour
     private RigBuilder rigBuilder;
 
     public WeaponController activeWeapon;
+    public Vector3 desviacion = Vector3.zero;
 
     public Animator anim;
 
@@ -90,7 +91,7 @@ public class PlayerWeaponController : MonoBehaviour
             ShootPoint.SetActive(false);
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
-                                                    AimParent.localPosition,
+                                                    AimParent.localPosition + activeWeapon.desviacion,
                                                     Time.deltaTime * adsSpeed
                                                 );
             weaponParent.localRotation = AimParent.localRotation;

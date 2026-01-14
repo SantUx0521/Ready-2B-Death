@@ -20,6 +20,7 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float cadence;
     [SerializeField] public int actualBulletsAmount;
     [HideInInspector] public float weaponForce;
+    [HideInInspector] public Vector3 desviacion;
     [SerializeField] GameObject bulletHole;
     [SerializeField] GameObject bulletHoleContainer;
 
