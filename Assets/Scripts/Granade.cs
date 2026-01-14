@@ -7,11 +7,13 @@ public class Granade : MonoBehaviour
     public float radius = 5f;
     public float force = 700;
     public GameObject explosionEffect;
+    public GameObject cameraPlayer;
     float countdown;
     public bool Exploded = false;
     void Start()
     {
         countdown = delay;
+        cameraPlayer = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
@@ -36,6 +38,7 @@ public class Granade : MonoBehaviour
             Destroy(effect, 2f);
         }
         Exploded = true;
+        StartCoroutine(cameraPlayer.GetComponentInChildren<CameraShake>().Shake(1f, 0.07f));
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
         foreach(Collider collider in colliders)
         {

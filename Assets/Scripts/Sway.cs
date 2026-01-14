@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Swing : MonoBehaviour
 {
     // Specific script to make the sway of every weapon when moving the camera, i have it only for glock for now
+    // Hay comentarios en ingles porque ns, a veces me gusta ser yo mismo
     [Header("Trans XD")]
     public float amount;
     public PlayerInput playerInput;

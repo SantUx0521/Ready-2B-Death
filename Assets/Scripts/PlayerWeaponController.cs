@@ -17,11 +17,11 @@ public class PlayerWeaponController : MonoBehaviour
     public TwoBoneIKConstraint leftHandIK;
     public string GripR = "GripR";
     public string GripL = "GripL";
-
     public int activeWeaponIndex {get; private set;}
 
     private WeaponController[] weaponSlots = new WeaponController[2];
 
+    public HUD playerHud;
     private PlayerController playerController;
 
     public GameObject ShootPoint;
@@ -55,6 +55,7 @@ public class PlayerWeaponController : MonoBehaviour
         originalFOV = playerCamera.fieldOfView;
         rigBuilder = GetComponentInChildren<RigBuilder>();
         anim = GetComponent<Animator>();
+        playerHud = GetComponent<HUD>();
         actualGranades = maxGranadeCap;
         granadeAction = playerController.playerInput.actions["Granade"];
 
@@ -70,7 +71,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Aim();
         TrowGranade();
-        if(isAiming){return;}
+        if(isAiming || activeWeapon.reloading){return;}
 
         if (playerController.playerInput.actions["FirstWeapon"].triggered)
         {
@@ -162,7 +163,7 @@ public class PlayerWeaponController : MonoBehaviour
         weaponParent.position = DefaultParent.position;
         weaponParent.rotation = DefaultParent.rotation;
         weaponParent.localScale = DefaultParent.localScale;
-
+        playerHud.ChangeIcon(index);
         WeaponController weapon = weaponSlots[index]; 
         weapon.gameObject.SetActive(true);
         AssignIK(weapon);

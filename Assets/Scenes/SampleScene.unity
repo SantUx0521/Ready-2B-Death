@@ -2273,7 +2273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -4042,6 +4042,81 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &821701088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821701089}
+  - component: {fileID: 821701091}
+  - component: {fileID: 821701090}
+  m_Layer: 5
+  m_Name: M4A1_Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &821701089
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821701088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.7691, y: 1.7691, z: 1.7691}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 935252833}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 822, y: -354}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &821701090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821701088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &821701091
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821701088}
+  m_CullTransparentMesh: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,6 +4891,7 @@ RectTransform:
   - {fileID: 403287344}
   - {fileID: 835246711}
   - {fileID: 1978011368}
+  - {fileID: 821701089}
   m_Father: {fileID: 330585546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6591,7 +6667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1475023469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7445,6 +7521,7 @@ GameObject:
   - component: {fileID: 1707240157}
   - component: {fileID: 1707240161}
   - component: {fileID: 1707240159}
+  - component: {fileID: 1707240162}
   - component: {fileID: 1707240158}
   - component: {fileID: 1707240160}
   m_Layer: 3
@@ -7573,6 +7650,7 @@ MonoBehaviour:
   leftHandIK: {fileID: 95772382}
   GripR: GripR
   GripL: GripL
+  playerHud: {fileID: 0}
   ShootPoint: {fileID: 1776044129}
   playerCamera: {fileID: 330585545}
   isAiming: 0
@@ -7622,6 +7700,21 @@ MonoBehaviour:
   HealthCounter: {fileID: 1978011369}
   currentHealth: 100
   MaxHealth: 100
+--- !u!114 &1707240162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707240154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03237381e637b044e9cedc8ac7a0c527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUD
+  Icons:
+  - {fileID: 2115600015}
+  - {fileID: 821701088}
 --- !u!1 &1708662703
 GameObject:
   m_ObjectHideFlags: 0
@@ -10612,7 +10705,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8492494073017927643, guid: e9974573fefb31846af42de488b1f2a6, type: 3}
+  - {fileID: 2100000, guid: d2a41db567c2f9940a41daa268babe89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10751,7 +10844,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8492494073017927643, guid: e9974573fefb31846af42de488b1f2a6, type: 3}
+  - {fileID: 2100000, guid: d2a41db567c2f9940a41daa268babe89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10971,7 +11064,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8896624839919815055, guid: e9974573fefb31846af42de488b1f2a6, type: 3}
+  - {fileID: 2100000, guid: 46fe777dc9edc0545902770468eb0f14, type: 2}
+  - {fileID: 2100000, guid: bf9e3be729411924086697a44f26f491, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11357,6 +11451,7 @@ MonoBehaviour:
   actualBulletsAmount: 100
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
+  gunName: 
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
   bulletHoleContainer: {fileID: 403287343}
   bulletsText: {fileID: 366085771}
@@ -11401,11 +11496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::M4A1_System
   Glock_range: 200
   Glock_Damage: 10
-  spread: 0.0085
+  spread: 0.02
   maxBullets: 30
   ReloadName: M4A1_Reload
+  gunName: M4A1
   weaponForce: 60
-  cadence: 0.1
+  cadence: 0.15
   desviacion: {x: 0.06, y: -0.05, z: 0}
 --- !u!95 &5378346770023739056
 Animator:
@@ -11738,6 +11834,7 @@ MonoBehaviour:
   actualBulletsAmount: 30
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
+  gunName: 
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
   bulletHoleContainer: {fileID: 1845071557}
   bulletsText: {fileID: 366085771}
