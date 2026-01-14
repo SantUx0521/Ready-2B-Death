@@ -13,6 +13,10 @@ public class PlayerWeaponController : MonoBehaviour
     public Transform weaponParent;
     public Transform DefaultParent;
     public Transform AimParent;
+    public TwoBoneIKConstraint rightHandIK;
+    public TwoBoneIKConstraint leftHandIK;
+    public string GripR = "GripR";
+    public string GripL = "GripL";
 
     public int activeWeaponIndex {get; private set;}
 
@@ -31,7 +35,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private RigBuilder rigBuilder;
 
-    private WeaponController activeWeapon;
+    public WeaponController activeWeapon;
 
     public Animator anim;
 
@@ -51,13 +55,9 @@ public class PlayerWeaponController : MonoBehaviour
         rigBuilder = GetComponentInChildren<RigBuilder>();
         anim = GetComponent<Animator>();
         actualGranades = maxGranadeCap;
-        activeWeapon = GetComponentInChildren<WeaponController>();
         granadeAction = playerController.playerInput.actions["Granade"];
 
-        foreach (WeaponController weapon in starter)
-        {
-            AddWeapon();
-        }
+        AddWeapon();
         
         if (weaponSlots[0] != null)
         {
@@ -77,7 +77,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
         else if (playerController.playerInput.actions["SecondWeapon"].triggered)
         {
-            SwitchWeapon(2);
+            SwitchWeapon(1);
         }
     }
 
@@ -162,12 +162,15 @@ public class PlayerWeaponController : MonoBehaviour
         weaponParent.rotation = DefaultParent.rotation;
         weaponParent.localScale = DefaultParent.localScale;
 
-        weaponSlots[index].gameObject.SetActive(true);
+        WeaponController weapon = weaponSlots[index]; 
+        weapon.gameObject.SetActive(true);
+        AssignIK(weapon);
         activeWeaponIndex = index;
         
         Debug.Log($"Arma cambiada a slot {index}");
 
         rigBuilder.Build();
+        activeWeapon = weapon;
     }
 
     public void GoBack()
@@ -193,5 +196,14 @@ public class PlayerWeaponController : MonoBehaviour
         {
             Debug.Log("no tienes más granadas");
         }
+    }
+
+    public void AssignIK(WeaponController weapon)
+    {
+        Transform rightTarget = weapon.transform.Find(GripR);
+        Transform leftTarget = weapon.transform.Find(GripL);
+
+        rightHandIK.data.target = rightTarget;
+        leftHandIK.data.target  = leftTarget;    
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 public class WeaponController : MonoBehaviour
 {
     // Using as a universal base for weapons, so i can manage damage, recoil, range, etc from their own scripts
@@ -19,6 +20,8 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float cadence;
     [SerializeField] public int actualBulletsAmount;
     [HideInInspector] public float weaponForce;
+    [SerializeField] GameObject bulletHole;
+    [SerializeField] GameObject bulletHoleContainer;
 
     CameraShake cameraShake;
     public TextMeshProUGUI bulletsText;
@@ -73,7 +76,7 @@ public class WeaponController : MonoBehaviour
         OnNoise?.Invoke(transform.position, 42f);
 
         RaycastHit hit;
-        if (Physics.Raycast(cameraPlayer.position, (direction + Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
+        if (Physics.Raycast(cameraPlayer.position, (direction + UnityEngine.Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
         {
             if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
@@ -89,6 +92,9 @@ public class WeaponController : MonoBehaviour
 
             if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)
             {
+                GameObject spawned = Instantiate(bulletHole, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal, cameraPlayer.up));
+                spawned.transform.SetParent(bulletHoleContainer.transform);
+                Destroy(spawned, 10f);
                 return;
             }
         }
@@ -99,7 +105,7 @@ public class WeaponController : MonoBehaviour
         flash.SetActive(true);
         fire.SetActive(true);
         Vector3 currentEuler = fire.transform.localEulerAngles;
-        currentEuler.y = Random.Range(-180, 180);
+        currentEuler.y = UnityEngine.Random.Range(-180, 180);
         fire.transform.localEulerAngles = currentEuler;
         yield return new WaitForSeconds(0.1f);
         flash.SetActive(false);
