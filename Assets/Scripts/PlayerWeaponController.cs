@@ -169,8 +169,6 @@ public class PlayerWeaponController : MonoBehaviour
         weapon.gameObject.SetActive(true);
         AssignIK(weapon);
         activeWeaponIndex = index;
-        
-        Debug.Log($"Arma cambiada a slot {index}");
 
         rigBuilder.Build();
         activeWeapon = weapon;
@@ -194,10 +192,6 @@ public class PlayerWeaponController : MonoBehaviour
             GameObject newGranade = Instantiate(granade, playerCamera.transform.position, playerCamera.transform.rotation);
             newGranade.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * trowForce);
             actualGranades -= 1;
-        }
-        else if (granadeAction.WasPressedThisFrame() && actualGranades <= 0)
-        {
-            Debug.Log("no tienes más granadas");
         }
     }
 

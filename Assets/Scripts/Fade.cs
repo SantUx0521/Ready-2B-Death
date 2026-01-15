@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public void FadeOut(Image image, float duration)
+    public void FadeOut(Image image, float duration, float iconDuration)
     {
         image.gameObject.SetActive(true);
-        StartCoroutine(gradiantOut(image, duration));
+        StartCoroutine(gradiantOut(image, duration, iconDuration));
     }
 
-    public IEnumerator gradiantOut(Image image, float duration)
+    public IEnumerator gradiantOut(Image image, float duration, float iconDuration)
     {
         Color color = image.color;
         float timer = 0f;
@@ -28,7 +28,7 @@ public class Fade : MonoBehaviour
         color.a = 1f;
         image.color = color;
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(iconDuration);
 
         timer = 0f;
         while (timer < duration)

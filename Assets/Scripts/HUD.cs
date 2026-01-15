@@ -6,13 +6,14 @@ public class HUD : MonoBehaviour
 {
     public GameObject[] Icons;
     public PlayerWeaponController playerWeapon;
+    public WeaponController weapon;
     private Fade fade;
     public Image granadeIcon;
     public float duration;
     public int activeIcon {get; private set;}
     void Start()
     {
-        activeIcon = -1;
+        activeIcon = 0;
         playerWeapon = GetComponent<PlayerWeaponController>();
         fade = GetComponent<Fade>();
     }
@@ -33,9 +34,15 @@ public class HUD : MonoBehaviour
 
     public void GranadeIcon()
     {
-        if (playerWeapon.granadeAction.WasPressedThisFrame())
+        if (playerWeapon.granadeAction.WasPressedThisFrame() && playerWeapon.actualGranades > 0)
         {
-            fade.FadeOut(granadeIcon, 2f);
+            fade.FadeOut(granadeIcon, 1f, 10f);
+        }
+        else if(playerWeapon.granadeAction.WasPressedThisFrame() && playerWeapon.actualGranades <= 0)
+        {
+            ColorUtility.TryParseHtmlString("#F45B69", out Color warningColor);
+            granadeIcon.color = warningColor;
+            fade.FadeOut(granadeIcon, 1f, 1f);
         }
     }
 
