@@ -26,6 +26,7 @@ public class AI_Enemy : MonoBehaviour
     bool movingToCover;
     GetCover getCover;
     public float hearRadius;
+    private bool stay;
     float distToTarget;
     enum AIState
     {
@@ -94,12 +95,14 @@ public class AI_Enemy : MonoBehaviour
         switch (currentAction)
         {
             case Combat.Shoot:
+                stay = true;
                 Shoot();
                 break;
             case Combat.Advance:
                 Chase();
                 break;
             case Combat.TakeCover:
+                stay = false;
                 TakeCover();
                 if (movingToCover && agent.remainingDistance < 0.5f)
                 {
@@ -169,7 +172,10 @@ public class AI_Enemy : MonoBehaviour
         LookAtPlayer();
         if (view.playerSeen)
         {
-            agent.SetDestination(transform.position);
+            if (stay)
+            {
+                agent.SetDestination(transform.position);
+            }
             LayerMask combinedMask = Player | Hittable ;
             lastKnownPlayerPos = enemy.player.transform.position;
             Vector3 shootDir = (lastKnownPlayerPos - transform.position).normalized;
@@ -228,6 +234,8 @@ public class AI_Enemy : MonoBehaviour
 
     private void TakeCover()
     {
+        LookAtPlayer();
+        Shoot();
         Vector3 dirToPlayer = (transform.position - enemy.player.transform.position).normalized;
         float disToPlayer = Vector3.Distance(transform.position, enemy.player.transform.position);
         Vector3 bestCover = getCover.GetBestCover(dirToPlayer, Player);
