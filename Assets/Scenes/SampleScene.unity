@@ -1515,7 +1515,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -4548,6 +4548,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -33.302}
+--- !u!1 &900195761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900195762}
+  - component: {fileID: 900195764}
+  - component: {fileID: 900195763}
+  m_Layer: 5
+  m_Name: Granades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &900195762
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900195761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1.078896, y: 1.078896, z: 1.078896}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 935252833}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 642.7, y: -398.5}
+  m_SizeDelta: {x: 201.6359, y: 117.03}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &900195763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900195761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 785fbc368ed2a3b4d99f80f3414dd84c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &900195764
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900195761}
+  m_CullTransparentMesh: 1
 --- !u!1 &904123254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,6 +4967,7 @@ RectTransform:
   - {fileID: 835246711}
   - {fileID: 1978011368}
   - {fileID: 821701089}
+  - {fileID: 900195762}
   m_Father: {fileID: 330585546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7522,6 +7598,7 @@ GameObject:
   - component: {fileID: 1707240161}
   - component: {fileID: 1707240159}
   - component: {fileID: 1707240162}
+  - component: {fileID: 1707240163}
   - component: {fileID: 1707240158}
   - component: {fileID: 1707240160}
   m_Layer: 3
@@ -7658,6 +7735,15 @@ MonoBehaviour:
   activeWeapon: {fileID: 0}
   desviacion: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
+  granadeAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f9b3d012-2e91-4307-a2bd-9efa210bccbd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   granade: {fileID: 1831743473824476997, guid: 37fc3a9b815eac24bb9d3c5e77cf6db2, type: 3}
   trowForce: 700
   maxGranadeCap: 5
@@ -7715,6 +7801,21 @@ MonoBehaviour:
   Icons:
   - {fileID: 2115600015}
   - {fileID: 821701088}
+  playerWeapon: {fileID: 0}
+  granadeIcon: {fileID: 900195763}
+  duration: 5
+--- !u!114 &1707240163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707240154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8935297538481b24cb5bbabd429cd41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fade
 --- !u!1 &1708662703
 GameObject:
   m_ObjectHideFlags: 0
@@ -9872,8 +9973,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 822, y: -354}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 810.49304, y: -384.61285}
+  m_SizeDelta: {x: 113.0088, y: 65.3916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115600017
 MonoBehaviour:
@@ -9895,7 +9996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5105a5627d94ac4aa073a0384745aa9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b74c7988ca440a4ba7f3b8755513fda, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11451,7 +11552,6 @@ MonoBehaviour:
   actualBulletsAmount: 100
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
-  gunName: 
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
   bulletHoleContainer: {fileID: 403287343}
   bulletsText: {fileID: 366085771}
@@ -11499,7 +11599,6 @@ MonoBehaviour:
   spread: 0.02
   maxBullets: 30
   ReloadName: M4A1_Reload
-  gunName: M4A1
   weaponForce: 60
   cadence: 0.15
   desviacion: {x: 0.06, y: -0.05, z: 0}
@@ -11834,7 +11933,6 @@ MonoBehaviour:
   actualBulletsAmount: 30
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
-  gunName: 
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
   bulletHoleContainer: {fileID: 1845071557}
   bulletsText: {fileID: 366085771}

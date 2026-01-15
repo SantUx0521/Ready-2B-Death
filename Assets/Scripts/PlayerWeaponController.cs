@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class PlayerWeaponController : MonoBehaviour
     public Animator anim;
 
     [Header("Granadas")]
-    InputAction granadeAction;
+    [HideInInspector] public InputAction granadeAction;
     public GameObject granade;
     public float trowForce = 10;
     public float maxGranadeCap = 5;
