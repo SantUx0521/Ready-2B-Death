@@ -236,9 +236,9 @@ public class AI_Enemy : MonoBehaviour
     {
         LookAtPlayer();
         Shoot();
-        Vector3 dirToPlayer = (transform.position - enemy.player.transform.position).normalized;
+        Vector3 playerPos = enemy.player.transform.position;
         float disToPlayer = Vector3.Distance(transform.position, enemy.player.transform.position);
-        Vector3 bestCover = getCover.GetBestCover(dirToPlayer, Player);
+        Vector3 bestCover = getCover.GetBestCover(playerPos, Player);
 
         if (!movingToCover && disToPlayer > 10) //Queda medio mal pero solo con un else no garantizo que dispare cuando tiene que hacerlo
         {

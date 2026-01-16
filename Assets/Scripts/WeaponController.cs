@@ -83,14 +83,13 @@ public class WeaponController : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().takeDamage(damage);
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
-                StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction));
+                StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
             else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().headShot();
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
-                StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction));
-                Debug.Log("HEADSHOT MADAFAKA");
+                StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
 
             if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)

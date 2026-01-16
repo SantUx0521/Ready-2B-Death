@@ -29,20 +29,18 @@ public class Enemy : MonoBehaviour
     public void takeDamage(int damage){
         health -= damage;
     }
-    public IEnumerator Bleed(Vector3 dir)
+    public IEnumerator Bleed(Vector3 dir, Vector3 hitPoint)
     {
-        if (!isDead)
-        {
-            blood.SetActive(true);
-            Quaternion targetRot = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(
+        blood.SetActive(true);
+        blood.transform.position = hitPoint;
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(
                 blood.transform.rotation,
                 targetRot,
                 Time.deltaTime * 8f
-            );
-            yield return new WaitForSeconds(2f);
-            blood.SetActive(false);
-        }   
+            );            
+        yield return new WaitForSeconds(1f);
+        blood.SetActive(false);
     }
 
     public void headShot()

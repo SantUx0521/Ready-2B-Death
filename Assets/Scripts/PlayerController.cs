@@ -52,6 +52,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject flashlight;
     private bool flashing = false;
 
+    [Header("Interact")]
+    public LayerMask InteractableLayer;
+    public bool isInteractable = false;
+    InputAction interactAction;
+    public float interactRange;
+
 
     void Awake()
     {
@@ -64,6 +70,7 @@ public class PlayerController : MonoBehaviour
         crouchAction = playerInput.actions["Crouch"];
         sprintAction = playerInput.actions["Sprint"];
         flashlightAction = playerInput.actions["Flashlight"];
+        interactAction = playerInput.actions["Interact"];
         actualHeight = characterController.height;
         actualVelocity = velocity;
         cameraP = GetComponentInChildren<Camera>();
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour
         Crouch();
         Run();
         Flashlight();
+        Interactable();
     }
 
     private void Move()
@@ -183,6 +191,27 @@ public class PlayerController : MonoBehaviour
         {
             flashing = false;
             flashlight.SetActive(false);
+        }
+    }
+
+    private void Interactable()
+    {
+        RaycastHit Interact;
+        if (Physics.Raycast(cameraP.transform.position, cameraP.transform.forward, out Interact, interactRange, InteractableLayer))
+        {
+            if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0)
+            {
+                isInteractable = true;
+            }
+        }
+        else
+        {
+            isInteractable = false;
+        }
+
+        if (isInteractable && interactAction.WasPressedThisFrame())
+        {
+            Debug.Log("Interactuaste");
         }
     }
 }
