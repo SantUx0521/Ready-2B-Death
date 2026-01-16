@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -202,6 +203,7 @@ public class PlayerController : MonoBehaviour
             if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0)
             {
                 isInteractable = true;
+                Interact.collider.gameObject.GetComponent<InteractableObject>().state = true;
             }
         }
         else
