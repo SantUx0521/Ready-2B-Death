@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -6,6 +7,7 @@ public class Enemy : MonoBehaviour
     public int health = 30;
     public int damage = 10;
     public bool isDead = false;
+    public GameObject blood;
     RagdollEnemy ragdoll;
     RigBuilder rig;
 
@@ -26,6 +28,21 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage(int damage){
         health -= damage;
+    }
+    public IEnumerator Bleed(Vector3 dir)
+    {
+        if (!isDead)
+        {
+            blood.SetActive(true);
+            Quaternion targetRot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(
+                blood.transform.rotation,
+                targetRot,
+                Time.deltaTime * 8f
+            );
+            yield return new WaitForSeconds(2f);
+            blood.SetActive(false);
+        }   
     }
 
     public void headShot()
