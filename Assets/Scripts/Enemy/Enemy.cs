@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
             isDead = true;
             rig.enabled = false;
             ragdoll.ragdollON();
-        }
+            Destroy(gameObject, 120);
+        }   
     }
 }

@@ -11,7 +11,6 @@ public class AI_Enemy : MonoBehaviour
     public LayerMask Player;
     Enemy enemy;
     Animator anim;
-    public float extraRotationSpeed;
     private int i = 0;
     public float searchTime = 5f;
     private float searchTimer;
@@ -25,7 +24,6 @@ public class AI_Enemy : MonoBehaviour
     Combat currentAction;
     bool movingToCover;
     GetCover getCover;
-    public float hearRadius;
     private bool stay;
     float distToTarget;
     enum AIState
@@ -70,9 +68,9 @@ public class AI_Enemy : MonoBehaviour
         switch (state)
         {
             case AIState.Patrol:
+                Walking();
                 Path();
                 break;
-
             case AIState.Search:
                 Search();
                 break;
@@ -80,7 +78,6 @@ public class AI_Enemy : MonoBehaviour
                 CombatMode();
                 break;
         }
-        Walking();
     }
 
     public void CombatMode()
@@ -129,10 +126,12 @@ public class AI_Enemy : MonoBehaviour
     private void Chase()
     {
         agent.SetDestination(enemy.player.transform.position);
+        Walking();
     }
 
     private void Search()
     {
+        Walking();
         searchTimer -= Time.deltaTime;
         if (view.playerSeen)
         {
@@ -174,6 +173,7 @@ public class AI_Enemy : MonoBehaviour
         {
             if (stay)
             {
+                Walking();
                 agent.SetDestination(transform.position);
             }
             LayerMask combinedMask = Player | Hittable ;
@@ -225,7 +225,7 @@ public class AI_Enemy : MonoBehaviour
         }
         else
         {
-            Debug.Log("Fallo el tiro"); // Ahora queda pendiente esto porque tecnicamente quiero que haga chispas o algo de impacto contra superficie cerca del player i guess
+             // Ahora queda pendiente esto porque tecnicamente quiero que haga chispas o algo de impacto contra superficie cerca del player i guess
         }
         fire.SetActive(false);
         Firelight.SetActive(false);
@@ -235,6 +235,7 @@ public class AI_Enemy : MonoBehaviour
     private void TakeCover()
     {
         LookAtPlayer();
+        Walking();
         Shoot();
         Vector3 playerPos = enemy.player.transform.position;
         float disToPlayer = Vector3.Distance(transform.position, enemy.player.transform.position);
@@ -299,6 +300,26 @@ public class AI_Enemy : MonoBehaviour
     private void Walking()
     {
         bool notMoving = agent.velocity.sqrMagnitude < 0.01f || (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance);
-        anim.SetBool("Walking", !notMoving);
+        
+        if (notMoving)
+        {
+            anim.SetBool("Walking", false);
+            anim.SetBool("WalkingBack", false);
+            return;
+        }
+
+        Vector3 moveDirection = agent.velocity.normalized;
+        float dot = Vector3.Dot(transform.forward, moveDirection);
+        
+        if (dot > 0)
+        {
+            anim.SetBool("Walking", true);
+            anim.SetBool("WalkingBack", false);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+            anim.SetBool("WalkingBack", true);
+        }
     }
 }

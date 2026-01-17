@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
-            Debug.Log("Muelto brodel");
         } 
     }
 }
