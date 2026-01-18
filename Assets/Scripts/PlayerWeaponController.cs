@@ -165,6 +165,7 @@ public class PlayerWeaponController : MonoBehaviour
         weaponParent.rotation = DefaultParent.rotation;
         weaponParent.localScale = DefaultParent.localScale;
         playerHud.ChangeIcon(index);
+        transitionAnim(index);
         WeaponController weapon = weaponSlots[index]; 
         weapon.gameObject.SetActive(true);
         AssignIK(weapon);
@@ -202,5 +203,17 @@ public class PlayerWeaponController : MonoBehaviour
 
         rightHandIK.data.target = rightTarget;
         leftHandIK.data.target  = leftTarget;    
+    }
+
+    public void transitionAnim(int index)
+    {
+        if(index == 1)
+        {
+            anim.SetTrigger("M4A1Op");
+        }
+        else if (index == 0)
+        {
+            anim.SetTrigger("GlockOp");
+        }
     }
 }
