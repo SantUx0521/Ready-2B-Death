@@ -3,18 +3,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public UnityEngine.UI.Image HealthBar;
     public TextMeshProUGUI HealthCounter;
+    public GameObject HUD;
+    public GameObject Notes;
     public float currentHealth;
     private Color originalColor;
     private Color originalTextColor;
     private PlayerController player;
     [HideInInspector] public float MaxHealth = 100;
+    public bool isMenuOn;
     void Start()
     {
+        Cursor.visible = false;
         currentHealth = MaxHealth;
         originalColor = HealthBar.color;
         originalTextColor = HealthCounter.color;
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateBar();
         Die();
+        InMenu();
     }
 
     public void Heal(int healAmount)
@@ -76,4 +82,32 @@ public class GameManager : MonoBehaviour
         {
         } 
     }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void InMenu()
+    {
+        if (isMenuOn)
+        {
+            player.playerInput.SwitchCurrentActionMap("UI");
+            Cursor.visible = true;
+            if (player.playerInput.actions["Close"].WasPressedThisFrame())
+            {
+                Resume();
+                Cursor.visible = false;
+                HUD.SetActive(true);
+                Notes.SetActive(false);
+                isMenuOn = false;
+                player.playerInput.SwitchCurrentActionMap("Player");
+            }
+        }
+    }
+
 }

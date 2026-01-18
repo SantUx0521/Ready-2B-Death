@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivityY = 40f;
     private float angleY;
     public Volume volume;
+    GameManager gameManager;
 
     [Header("Movement")]
     public float velocity = 1f;
@@ -72,13 +74,13 @@ public class PlayerController : MonoBehaviour
         sprintAction = playerInput.actions["Sprint"];
         flashlightAction = playerInput.actions["Flashlight"];
         interactAction = playerInput.actions["Interact"];
+        gameManager = GetComponent<GameManager>();
         actualHeight = characterController.height;
         actualVelocity = velocity;
         cameraP = GetComponentInChildren<Camera>();
         originalFOV = cameraP.fieldOfView;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
@@ -213,7 +215,10 @@ public class PlayerController : MonoBehaviour
 
         if (isInteractable && interactAction.WasPressedThisFrame())
         {
-            Debug.Log("Interactuaste");
+            gameManager.HUD.SetActive(false);
+            gameManager.Pause();
+            gameManager.Notes.SetActive(true);
+            gameManager.isMenuOn = true;
         }
     }
 }

@@ -16,7 +16,7 @@ public class GetCover : MonoBehaviour
             
             Vector3 dirToPlayer = (Cover.position - playerPos).normalized;
             
-            if(Physics.Raycast(Cover.transform.position, dirToPlayer, out RaycastHit hit))
+            if(Physics.Raycast(Cover.transform.position, -dirToPlayer, out RaycastHit hit))
             {
                 if (((1 << hit.collider.gameObject.layer) & Player) == 0)
                 {
