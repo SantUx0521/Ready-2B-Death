@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
             {
                 isInteractable = true;
                 Interact.collider.gameObject.GetComponent<InteractableObject>().state = true;
+                Interact.collider.gameObject.GetComponent<StaticText>().ShowText();
             }
         }
         else

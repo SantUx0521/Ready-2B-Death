@@ -20,7 +20,7 @@ public class AI_Enemy : MonoBehaviour
     [SerializeField] float decisionCooldown;
     [SerializeField] float decisionTimer;
     private bool beDummierIsRunning = false;
-    private readonly WaitForSeconds waiting = new WaitForSeconds(1f);
+    public float waiting;
     Combat currentAction;
     bool movingToCover;
     GetCover getCover;
@@ -200,7 +200,7 @@ public class AI_Enemy : MonoBehaviour
         if (beDummierIsRunning) yield break;
         beDummierIsRunning = true;
 
-        yield return waiting;
+        yield return new WaitForSeconds(waiting);
 
         fire.SetActive(true);
         Firelight.SetActive(true);
