@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Granade : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Granade : MonoBehaviour
     public float force = 700;
     public GameObject explosionEffect;
     public GameObject cameraPlayer;
+    public AudioMixer audioMixer;
+    public AudioSource audioSource;
     float countdown;
     public bool Exploded = false;
     void Start()
@@ -66,6 +69,8 @@ public class Granade : MonoBehaviour
                 rb.AddExplosionForce(force, transform.position, radius, 0f,ForceMode.Impulse);
             }
         }
+        audioSource.Play();
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

@@ -72,7 +72,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Aim();
         TrowGranade();
-        if(isAiming || activeWeapon.reloading){return;}
+        if(isAiming || activeWeapon.reloading || activeWeapon.canShoot == false){return;}
 
         if (playerController.playerInput.actions["FirstWeapon"].triggered)
         {
@@ -173,6 +173,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         rigBuilder.Build();
         activeWeapon = weapon;
+        activeWeapon.canShoot = true;
     }
 
     public void GoBack()

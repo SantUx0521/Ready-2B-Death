@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class AI_Enemy : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class AI_Enemy : MonoBehaviour
     private bool beDummierIsRunning = false;
     public float waiting;
     Combat currentAction;
+    [SerializeField] AudioMixer shootAudioMixer;
+     public AudioSource shootSound;
     bool movingToCover;
     GetCover getCover;
     private bool stay;
@@ -204,6 +207,8 @@ public class AI_Enemy : MonoBehaviour
 
         fire.SetActive(true);
         Firelight.SetActive(true);
+        shootSound.Stop();
+        shootSound.Play();
         Vector3 currentEuler = fire.transform.localEulerAngles;
         currentEuler.y = Random.Range(-180, 180);
         fire.transform.localEulerAngles = currentEuler;
