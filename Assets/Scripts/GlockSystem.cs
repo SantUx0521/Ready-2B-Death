@@ -10,6 +10,7 @@ public class GlockSystem : MonoBehaviour
     public float spread = 0.05f;
     public int maxBullets = 15;
     public string ReloadName = "Glock_Reload";
+    public AudioSource shootSound;
     public float weaponForce = 40;
     public float cadence = 0.5f;
     void Start()
@@ -23,5 +24,6 @@ public class GlockSystem : MonoBehaviour
         weaponControl.ReloadName = ReloadName;
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
+        weaponControl.shootSound = shootSound;
     }
 }

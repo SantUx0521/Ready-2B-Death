@@ -11,6 +11,7 @@ public class M4A1_System : MonoBehaviour
     public float weaponForce = 60;
     public float cadence = 0.3f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);
+    public AudioSource shootSound;
     
 void Start()
     {
@@ -24,5 +25,6 @@ void Start()
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
         weaponControl.desviacion = desviacion;
+        weaponControl.shootSound = shootSound;
     }
 }

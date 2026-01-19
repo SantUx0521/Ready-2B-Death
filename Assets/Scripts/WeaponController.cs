@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
+using UnityEngine.Audio;
 public class WeaponController : MonoBehaviour
 {
     // Using as a universal base for weapons, so i can manage damage, recoil, range, etc from their own scripts
@@ -23,6 +24,9 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public Vector3 desviacion;
     [SerializeField] GameObject bulletHole;
     [SerializeField] GameObject bulletHoleContainer;
+
+    [SerializeField] AudioMixer shootAudioMixer;
+    [HideInInspector] public AudioSource shootSound;
 
     CameraShake cameraShake;
     public TextMeshProUGUI bulletsText;
@@ -75,6 +79,8 @@ public class WeaponController : MonoBehaviour
         Vector3 direction = cameraPlayer.forward;
 
         OnNoise?.Invoke(transform.position, 42f);
+        shootSound.Stop();
+        shootSound.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + UnityEngine.Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
