@@ -38552,7 +38552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562089fc651ac6c4eb11526325fda9cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Swing
-  amount: 0.5
+  amount: 1
   playerInput: {fileID: 1707240158}
   playerWeapon: {fileID: 1707240159}
   maxSway: 0.1
@@ -38991,10 +38991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562089fc651ac6c4eb11526325fda9cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Swing
-  amount: 0.5
+  amount: 1
   playerInput: {fileID: 1707240158}
   playerWeapon: {fileID: 1707240159}
-  maxSway: 0.1
+  maxSway: 0.3
   smoothness: 0.5
   tiltAmount: 0.5
   maxTilt: 0.5
