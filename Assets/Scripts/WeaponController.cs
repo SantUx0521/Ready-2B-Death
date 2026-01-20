@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject flash;
     [SerializeField] GameObject fire;
     [HideInInspector] public float range;
-    [HideInInspector] public int damage;
+    [HideInInspector] public float damage;
     [HideInInspector] public float spread;
     [HideInInspector] public int bullets;
     [HideInInspector] public int maxBullets;
@@ -24,6 +24,7 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public Vector3 desviacion;
     [SerializeField] GameObject bulletHole;
     [SerializeField] GameObject bulletHoleContainer;
+    [HideInInspector] public bool isShotgun;
 
     [SerializeField] AudioMixer shootAudioMixer;
     [HideInInspector] public AudioSource shootSound;
@@ -54,6 +55,7 @@ public class WeaponController : MonoBehaviour
         Shoot();
         Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * range, Color.red);
         Reload();
+        
     }
 
     private void Shoot()
@@ -64,7 +66,15 @@ public class WeaponController : MonoBehaviour
             StartCoroutine(Flashlight());
             bullets -= 1;
             StartCoroutine(cameraShake.Shake(0.07f, 0.07f));
-            BulletHit();
+            if (isShotgun)
+            {
+                HandleShotgun();
+            }
+            else
+            {
+                BulletHit();
+            }
+            
             StartCoroutine(Delay());
         }
         else if ((playerController.playerInput.actions["Fire"].triggered || playerController.playerInput.actions["Fire"].IsPressed()) && canShoot && bullets <= 0)
@@ -85,27 +95,51 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + UnityEngine.Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
         {
-            if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
+            WhatItHits(hit, direction);
+        }
+    }
+
+    private void HandleShotgun()
+    {
+        LayerMask combinedMask = Enemy | Hittable | Head;
+        Vector3 direction = cameraPlayer.forward;
+        OnNoise?.Invoke(transform.position, 42f);
+        shootSound.Stop();
+        shootSound.Play();
+
+        int pellets = 8;
+        for(int i = 0; i < pellets; i++)
+        {
+            Vector3 pelletDirection = direction + UnityEngine.Random.insideUnitSphere * spread;
+
+            RaycastHit hit;
+            if (Physics.Raycast(cameraPlayer.position, pelletDirection.normalized, out hit, range, combinedMask))
+            {
+                WhatItHits(hit, pelletDirection);
+            }
+        }
+    }
+
+    private void WhatItHits(RaycastHit hit, Vector3 direction)
+    {
+        if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().takeDamage(damage);
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
                 StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
-            else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
+        else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().headShot();
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
                 StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
-
-            if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)
+        else if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)
             {
                 GameObject spawned = Instantiate(bulletHole, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal, cameraPlayer.up));
                 spawned.transform.SetParent(bulletHoleContainer.transform);
                 Destroy(spawned, 10f);
-                return;
             }
-        }
     }
 
     private IEnumerator Flashlight()

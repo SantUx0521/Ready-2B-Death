@@ -149,6 +149,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdWeapon",
+                    "type": "Button",
+                    "id": "b752dbfc-954f-462d-b15c-9f193bd4c41d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -644,6 +653,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Flashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aae55eaa-e005-4d93-9f06-c61b954efbac",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThirdWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,23 +1,24 @@
 using UnityEngine;
 
-public class M4A1_System : MonoBehaviour
+public class Pump_System : MonoBehaviour
 {
     WeaponController weaponControl;
-    public float Glock_range = 200f;
-    public float Glock_Damage = 10; 
+    public float pump_range = 50f;
+    public float pump_Damage = 30; 
     public float spread = 0.6f;
-    public int maxBullets = 30;
-    public string ReloadName = "M4A1_Reload";
-    public float weaponForce = 60;
-    public float cadence = 0.3f;
+    public int maxBullets = 8;
+    public string ReloadName = "pump_Reload";
+    public float weaponForce = 100;
+    public float cadence = 1.5f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);
     public AudioSource shootSound;
+    public bool isShotgun = true;
     
-void Start()
+    void Start()
     {
         weaponControl = GetComponent<WeaponController>();
-        weaponControl.range = Glock_range;
-        weaponControl.damage = Glock_Damage;
+        weaponControl.range = pump_range;
+        weaponControl.damage = pump_Damage;
         weaponControl.spread = spread;
         weaponControl.maxBullets = maxBullets;
         weaponControl.bullets = maxBullets;
@@ -26,5 +27,6 @@ void Start()
         weaponControl.cadence = cadence;
         weaponControl.desviacion = desviacion;
         weaponControl.shootSound = shootSound;
+        weaponControl.isShotgun = isShotgun;
     }
 }

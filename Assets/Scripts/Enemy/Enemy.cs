@@ -4,7 +4,7 @@ using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 30;
+    public float health = 30;
     public int damage = 10;
     public bool isDead = false;
     public GameObject blood;
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         if(!isDead){return;}
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(float damage){
         health -= damage;
     }
     public IEnumerator Bleed(Vector3 dir, Vector3 hitPoint)

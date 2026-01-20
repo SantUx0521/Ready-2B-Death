@@ -20,7 +20,7 @@ public class PlayerWeaponController : MonoBehaviour
     public string GripL = "GripL";
     public int activeWeaponIndex {get; private set;}
 
-    private WeaponController[] weaponSlots = new WeaponController[2];
+    private WeaponController[] weaponSlots = new WeaponController[3];
 
     public HUD playerHud;
     private PlayerController playerController;
@@ -81,6 +81,10 @@ public class PlayerWeaponController : MonoBehaviour
         else if (playerController.playerInput.actions["SecondWeapon"].triggered)
         {
             SwitchWeapon(1);
+        }
+        else if (playerController.playerInput.actions["ThirdWeapon"].triggered)
+        {
+            SwitchWeapon(2);
         }
     }
 
