@@ -109,6 +109,10 @@ public class AI_Enemy : MonoBehaviour
                     movingToCover = false;
                 }
                 break;
+            case Combat.TrowGranade:
+                stay = true;
+                LauchGranade();
+                break;
         }
     }
 
@@ -160,11 +164,21 @@ public class AI_Enemy : MonoBehaviour
     private void DecideCombat()
     {
         float dist = Vector3.Distance(transform.position, enemy.player.transform.position);
-
+        float randint = Random.value;
         if (dist < 21f)
-            currentAction = Random.value > 0.6f
-                ? Combat.Shoot
-                : Combat.TakeCover;
+            if( randint > 0.6f)
+            {
+                currentAction = Combat.Shoot;
+            }
+            else if (randint < 0.6 && randint > 0.1)
+            {
+                currentAction = Combat.TakeCover;
+            }
+            else
+            {
+                currentAction = Combat.TrowGranade;
+            }
+                
         else
             currentAction = Combat.Advance;
     }
@@ -255,6 +269,13 @@ public class AI_Enemy : MonoBehaviour
         {
             currentAction = Combat.Shoot;
         }
+    }
+
+    private void LauchGranade()
+    {
+        GameObject newGranade = Instantiate(enemy.granade, transform.position, transform.rotation);
+        newGranade.GetComponent<Rigidbody>().AddForce(transform.forward * 700);
+        currentAction = Combat.Shoot;
     }
 
     void LookAtPlayer()

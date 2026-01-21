@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public AudioClip scream;
     public AudioSource audioSource;
     public GameObject blood;
+    public GameObject granade;
     RagdollEnemy ragdoll;
     RigBuilder rig;
 
