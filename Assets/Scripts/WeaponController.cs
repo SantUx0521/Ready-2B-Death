@@ -40,11 +40,15 @@ public class WeaponController : MonoBehaviour
     public Animator anim;
     private Transform cameraPlayer;
     public static System.Action<Vector3, float> OnNoise;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Start()
     {
         cameraPlayer = GameObject.FindWithTag("MainCamera").transform;
         playerController = GetComponentInParent<PlayerController>();
-        anim = GetComponent<Animator>();
         cameraShake = cameraPlayer.GetComponent<CameraShake>();
         playerWeapon = GetComponentInParent<PlayerWeaponController>();
     }
@@ -95,7 +99,7 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + UnityEngine.Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
         {
-            WhatItHits(hit, direction);
+            StartCoroutine(WhatItHits(hit, direction));
         }
     }
 
@@ -115,22 +119,24 @@ public class WeaponController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cameraPlayer.position, pelletDirection.normalized, out hit, range, combinedMask))
             {
-                WhatItHits(hit, pelletDirection);
+                StartCoroutine(WhatItHits(hit, pelletDirection));
             }
         }
     }
 
-    private void WhatItHits(RaycastHit hit, Vector3 direction)
+    private IEnumerator WhatItHits(RaycastHit hit, Vector3 direction)
     {
         if (((1 << hit.collider.gameObject.layer) & Enemy) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().takeDamage(damage);
+                yield return null;
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
                 StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
         else if(((1 << hit.collider.gameObject.layer) & Head) != 0)
             {
                 hit.collider.gameObject.GetComponentInParent<Enemy>().headShot();
+                yield return null;
                 hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-hit.normal * weaponForce, ForceMode.Impulse);
                 StartCoroutine(hit.collider.gameObject.GetComponentInParent<Enemy>().Bleed(-direction, hit.point));
             }
@@ -138,7 +144,7 @@ public class WeaponController : MonoBehaviour
             {
                 GameObject spawned = Instantiate(bulletHole, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal, cameraPlayer.up));
                 spawned.transform.SetParent(bulletHoleContainer.transform);
-                Destroy(spawned, 10f);
+                Destroy(spawned, 30f);
             }
     }
 
@@ -162,12 +168,13 @@ public class WeaponController : MonoBehaviour
         {
             reloading = true;
             canShoot = false;
-            playerWeapon.anim.SetTrigger(ReloadName);
+            anim.SetTrigger(ReloadName); 
         }
     }
 
     public void FinishReload()
     {
+        playerWeapon.GoBack();
         int bulletsLeft =  maxBullets - bullets;
         int bulletsToReload = Mathf.Min(bulletsLeft, actualBulletsAmount);
         bullets += bulletsToReload;
@@ -175,6 +182,11 @@ public class WeaponController : MonoBehaviour
 
         canShoot = true;
         reloading = false;
+    }
+
+    public void initAnim()
+    {
+        anim.SetTrigger("Opening");
     }
 
     private IEnumerator Delay()

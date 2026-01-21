@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     public float health = 30;
     public int damage = 10;
     public bool isDead = false;
+    public AudioClip scream;
+    public AudioSource audioSource;
     public GameObject blood;
     RagdollEnemy ragdoll;
     RigBuilder rig;
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
+            audioSource.PlayOneShot(scream);
             rig.enabled = false;
             ragdoll.ragdollON();
             Destroy(gameObject, 120);

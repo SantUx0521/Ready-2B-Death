@@ -56,7 +56,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -108,7 +108,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -152,7 +152,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -204,7 +204,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -216,7 +216,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3626326598
+      path: 360465359
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -225,7 +225,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 248118795
+      path: 4204044209
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -234,7 +234,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3626326598
+      path: 360465359
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -243,7 +243,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 248118795
+      path: 4204044209
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -317,7 +317,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -365,7 +365,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -413,7 +413,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -461,7 +461,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -509,7 +509,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -557,7 +557,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -614,7 +614,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -671,7 +671,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -728,7 +728,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -785,7 +785,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -842,7 +842,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -899,7 +899,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -912,7 +912,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -924,7 +924,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -936,7 +936,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/Estructura
+    path: Estructura
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -948,7 +948,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -960,7 +960,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -972,7 +972,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: CameraHolder/Main Camera/FPSocket/WEPASCK/M4A1/GripL
+    path: GripL
     classID: 4
     script: {fileID: 0}
     flags: 0
