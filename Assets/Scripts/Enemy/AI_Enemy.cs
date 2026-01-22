@@ -273,8 +273,9 @@ public class AI_Enemy : MonoBehaviour
 
     private void LauchGranade()
     {
+        Vector3 dir = enemy.player.transform.position - transform.position; 
         GameObject newGranade = Instantiate(enemy.granade, transform.position, transform.rotation);
-        newGranade.GetComponent<Rigidbody>().AddForce(transform.forward * 700);
+        newGranade.GetComponent<Rigidbody>().AddForce(dir * 700);
         currentAction = Combat.Shoot;
     }
 
