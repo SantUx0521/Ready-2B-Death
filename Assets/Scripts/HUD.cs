@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
     public GameObject[] Icons;
+    public GameObject normalPoint;
+    public GameObject shotgunPoint;
     public PlayerWeaponController playerWeapon;
     public WeaponController weapon;
     private Fade fade;
@@ -20,6 +23,27 @@ public class HUD : MonoBehaviour
     void Update()
     {
         GranadeIcon();
+    }
+
+    public IEnumerator Pointer(bool isShotgun)
+    {
+        yield return null;
+        if (isShotgun == true)
+        {
+            shotgunPoint.SetActive(true);
+            normalPoint.SetActive(false);
+        }
+        else
+        {
+            normalPoint.SetActive(true);
+            shotgunPoint.SetActive(false);
+        }
+    }
+
+    public void TakeOffPointer()
+    {
+        shotgunPoint.SetActive(false);
+        normalPoint.SetActive(false);
     }
 
     public void ChangeIcon(int index)

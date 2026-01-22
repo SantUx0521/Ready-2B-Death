@@ -94,7 +94,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             isAiming = true;
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV - 20f, Time.deltaTime * adsSpeed);
-            ShootPoint.SetActive(false);
+            playerHud.TakeOffPointer();
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     AimParent.localPosition + activeWeapon.desviacion,
@@ -119,7 +119,7 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
             }
-            ShootPoint.SetActive(true);
+            StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     DefaultParent.localPosition,
@@ -156,7 +156,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void SwitchWeapon(int index)
     {
-        if (index < 0 || index >= weaponSlots.Length || weaponSlots[index] == null)
+        if (index < 0 || index >= weaponSlots.Length || weaponSlots[index] == null || activeWeaponIndex == index)
         {
             return;
         }
@@ -178,6 +178,7 @@ public class PlayerWeaponController : MonoBehaviour
         activeWeapon = weapon;
         activeWeapon.canShoot = true;
         activeWeapon.initAnim();
+        StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
     }
 
     public void GoBack()
