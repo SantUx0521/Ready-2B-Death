@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     [Header("Interact")]
     public LayerMask InteractableLayer;
     public bool isInteractable = false;
+    public bool isDoor = false;
     InputAction interactAction;
     public float interactRange;
 
@@ -202,11 +203,18 @@ public class PlayerController : MonoBehaviour
         RaycastHit Interact;
         if (Physics.Raycast(cameraP.transform.position, cameraP.transform.forward, out Interact, interactRange, InteractableLayer))
         {
-            if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0)
+            if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Note"))
             {
                 isInteractable = true;
                 Interact.collider.gameObject.GetComponent<InteractableObject>().state = true;
                 Interact.collider.gameObject.GetComponent<StaticText>().ShowText();
+            }
+            if(((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Door"))
+            {
+                if (interactAction.WasPressedThisFrame())
+                {
+                    Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().Interact();
+                }
             }
         }
         else
