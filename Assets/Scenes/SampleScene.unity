@@ -3682,7 +3682,8 @@ PrefabInstance:
       propertyPath: 'destinations.Array.data[2]'
       value: 
       objectReference: {fileID: 1412027938}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5820537872337825527, guid: d437998797c645741a15342982ac3b8b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3828,7 +3829,8 @@ PrefabInstance:
       propertyPath: 'Covers.Array.data[4]'
       value: 
       objectReference: {fileID: 348723811}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2860554666072088789, guid: 928dd9d2e1ac37b4385c07cbfa2fb334, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3945,7 +3947,8 @@ PrefabInstance:
       propertyPath: 'Covers.Array.data[11]'
       value: 
       objectReference: {fileID: 964215901}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9201734147760234490, guid: 333aee12728983a438e36a7e2c4ccf68, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

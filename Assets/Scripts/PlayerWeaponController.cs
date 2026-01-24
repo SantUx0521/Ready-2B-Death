@@ -104,11 +104,11 @@ public class PlayerWeaponController : MonoBehaviour
 
             if (playerController.isCrouching)
             {
-                playerController.velocity = 6.0f;
+                playerController.velocity = 4f;
             }
             else
             {
-                playerController.velocity = 8.5f;
+                playerController.velocity = 5.5f;
             }
             
         }
@@ -176,8 +176,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         rigBuilder.Build();
         activeWeapon = weapon;
-        activeWeapon.canShoot = true;
-        activeWeapon.initAnim();
+        StartCoroutine(activeWeapon.InitAnim());
         StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
     }
 

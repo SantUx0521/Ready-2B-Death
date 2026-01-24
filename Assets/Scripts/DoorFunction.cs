@@ -10,7 +10,6 @@ public class DoorFunction : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Hola");
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Door_Open"))
             {
                 anim.ResetTrigger("Open");

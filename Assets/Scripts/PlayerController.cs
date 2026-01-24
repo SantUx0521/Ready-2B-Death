@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         if (crouchAction.WasPressedThisFrame() && !isCrouching)
         {
             characterController.height = crouchHeight;
-            velocity = 6.5f;
+            velocity = 4.5f;
             isCrouching = true;
             if (volume.profile.TryGet<UnityEngine.Rendering.Universal.Vignette>(out var vignette))
             {

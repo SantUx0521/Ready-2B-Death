@@ -184,9 +184,12 @@ public class WeaponController : MonoBehaviour
         reloading = false;
     }
 
-    public void initAnim()
+    public IEnumerator InitAnim()
     {
+        canShoot = false;
         anim.SetTrigger("Opening");
+        yield return new WaitForSeconds(0.8f);
+        canShoot = true;
     }
 
     private IEnumerator Delay()
