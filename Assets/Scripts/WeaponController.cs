@@ -25,7 +25,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject bulletHole;
     [SerializeField] GameObject bulletHoleContainer;
     [HideInInspector] public bool isShotgun;
-    [HideInInspector] public string wepname;
+    public string wepname;
 
     [SerializeField] AudioMixer shootAudioMixer;
     [HideInInspector] public AudioSource shootSound;

@@ -26,6 +26,5 @@ public class GlockSystem : MonoBehaviour
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
         weaponControl.shootSound = shootSound;
-        weaponControl.wepname = wepname;
     }
 }

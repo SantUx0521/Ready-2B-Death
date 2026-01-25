@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public UnityEngine.UI.Image HealthBar;
+    public GameObject of;
     public TextMeshProUGUI HealthCounter;
     public GameObject HUD;
     public GameObject Notes;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Color originalColor;
     private Color originalTextColor;
     private PlayerController player;
+    private PlayerWeaponController playerWeap;
     [HideInInspector] public float MaxHealth = 100;
     public bool isMenuOn;
     void Start()
@@ -24,13 +26,24 @@ public class GameManager : MonoBehaviour
         originalColor = HealthBar.color;
         originalTextColor = HealthCounter.color;
         player = GetComponent<PlayerController>();
+        playerWeap = GetComponent<PlayerWeaponController>();
     }
 
     void Update()
     {
+        ShowUI();
         UpdateBar();
         Die();
         InMenu();
+    }
+
+    private void ShowUI()
+    {
+        if(playerWeap.activeWeaponIndex >= 0)
+        {
+            HealthBar.gameObject.SetActive(true);
+            of.SetActive(true);
+        }
     }
 
     public void Heal(int healAmount)

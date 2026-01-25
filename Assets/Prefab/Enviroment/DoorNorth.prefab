@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5096556478710172073}
   - component: {fileID: 4283355155055536793}
   m_Layer: 0
-  m_Name: Pivot
+  m_Name: DoorNorth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

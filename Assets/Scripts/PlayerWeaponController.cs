@@ -89,7 +89,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Aim()
     {
-        if (playerController.playerInput.actions["Aim"].IsPressed())
+        if (playerController.playerInput.actions["Aim"].IsPressed() && activeWeaponIndex >= 0)
         {
             isAiming = true;
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV - 20f, Time.deltaTime * adsSpeed);
@@ -119,7 +119,7 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
             }
-            if(activeWeaponIndex >= 1)
+            if(activeWeaponIndex >= 0)
             {
                 StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
             }
@@ -134,7 +134,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    public void AddWeapon(String name)
+    public void AddWeapon(String objectname)
     {
        int slotIndex = 0;
         foreach (Transform child in weaponParent)
@@ -143,8 +143,7 @@ public class PlayerWeaponController : MonoBehaviour
                     break;
 
             WeaponController weapon = child.GetComponent<WeaponController>();
-            Debug.Log(name);
-            if(name == weapon.wepname)
+            if(string.Equals(objectname, weapon.wepname, StringComparison.OrdinalIgnoreCase))
             {
                 weaponParent.position = DefaultParent.position; 
                 weaponParent.rotation = DefaultParent.rotation; 
@@ -153,7 +152,7 @@ public class PlayerWeaponController : MonoBehaviour
                 weaponSlots[slotIndex] = weapon;
                 starter.Add(weapon);
                 weapon.gameObject.SetActive(true);
-                SwitchWeapon(activeWeaponIndex);
+                SwitchWeapon(slotIndex);
             }
             slotIndex++;
         }
