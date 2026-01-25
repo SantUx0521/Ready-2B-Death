@@ -8,6 +8,7 @@ public class Pump_System : MonoBehaviour
     public float spread = 0.6f;
     public int maxBullets = 8;
     public string ReloadName = "pump_Reload";
+    public string wepname = "Pump";
     public float weaponForce = 100;
     public float cadence = 1.5f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);
@@ -28,5 +29,6 @@ public class Pump_System : MonoBehaviour
         weaponControl.desviacion = desviacion;
         weaponControl.shootSound = shootSound;
         weaponControl.isShotgun = isShotgun;
+        weaponControl.wepname = wepname;
     }
 }

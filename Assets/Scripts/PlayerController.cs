@@ -209,11 +209,20 @@ public class PlayerController : MonoBehaviour
                 Interact.collider.gameObject.GetComponent<InteractableObject>().state = true;
                 Interact.collider.gameObject.GetComponent<StaticText>().ShowText();
             }
-            if(((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Door"))
+            else if(((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Door"))
             {
                 if (interactAction.WasPressedThisFrame())
                 {
                     Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().Interact();
+                }
+            }
+            else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Weapon"))
+            {
+                if (interactAction.WasPressedThisFrame())
+                {
+                    Debug.Log("Tocado");
+                    string wName = Interact.collider.transform.root.gameObject.GetComponent<GetWeapon>().wepname;
+                    playerWeapon.AddWeapon(wName);
                 }
             }
         }

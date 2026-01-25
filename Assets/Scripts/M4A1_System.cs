@@ -8,6 +8,7 @@ public class M4A1_System : MonoBehaviour
     public float spread = 0.6f;
     public int maxBullets = 30;
     public string ReloadName = "M4A1_Reload";
+    public string wepname = "M4A1";
     public float weaponForce = 60;
     public float cadence = 0.3f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);

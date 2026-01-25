@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -9,8 +10,8 @@ public class PlayerWeaponController : MonoBehaviour
 {
     // Script for managing how the player's weapons work
     [Header("Armas en posesion")]
+    public List<GameObject> actualWeapons = new List<GameObject>();
     public List<WeaponController> starter = new List<WeaponController>();
-
     public Transform weaponParent;
     public Transform DefaultParent;
     public Transform AimParent;
@@ -20,7 +21,7 @@ public class PlayerWeaponController : MonoBehaviour
     public string GripL = "GripL";
     public int activeWeaponIndex {get; private set;}
 
-    private WeaponController[] weaponSlots = new WeaponController[3];
+    public WeaponController[] weaponSlots = new WeaponController[3];
 
     public HUD playerHud;
     private PlayerController playerController;
@@ -59,8 +60,6 @@ public class PlayerWeaponController : MonoBehaviour
         playerHud = GetComponent<HUD>();
         actualGranades = maxGranadeCap;
         granadeAction = playerController.playerInput.actions["Granade"];
-
-        AddWeapon();
         
         if (weaponSlots[0] != null)
         {
@@ -72,17 +71,17 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Aim();
         TrowGranade();
-        if(isAiming || activeWeapon.reloading || activeWeapon.canShoot == false){return;}
+        if(activeWeaponIndex >= 0 && (isAiming || activeWeapon.reloading || activeWeapon.canShoot == false)){return;}
 
-        if (playerController.playerInput.actions["FirstWeapon"].triggered)
+        if (playerController.playerInput.actions["FirstWeapon"].triggered && weaponSlots.Length >= 0)
         {
             SwitchWeapon(0);
         }
-        else if (playerController.playerInput.actions["SecondWeapon"].triggered)
+        else if (playerController.playerInput.actions["SecondWeapon"].triggered && weaponSlots.Length >= 1)
         {
             SwitchWeapon(1);
         }
-        else if (playerController.playerInput.actions["ThirdWeapon"].triggered)
+        else if (playerController.playerInput.actions["ThirdWeapon"].triggered && weaponSlots.Length >= 2)
         {
             SwitchWeapon(2);
         }
@@ -115,11 +114,16 @@ public class PlayerWeaponController : MonoBehaviour
         else
         {
             isAiming = false;
+
             if(!playerController.isSprinting)
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
             }
-            StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
+            if(activeWeaponIndex >= 1)
+            {
+                StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));
+            }
+
             weaponParent.localPosition = Vector3.Lerp(
                                                     weaponParent.localPosition,
                                                     DefaultParent.localPosition,
@@ -130,9 +134,33 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    private void AddWeapon()
+    public void AddWeapon(String name)
     {
+       int slotIndex = 0;
+        foreach (Transform child in weaponParent)
+        {
+            if (slotIndex >= weaponSlots.Length)
+                    break;
 
+            WeaponController weapon = child.GetComponent<WeaponController>();
+            Debug.Log(name);
+            if(name == weapon.wepname)
+            {
+                weaponParent.position = DefaultParent.position; 
+                weaponParent.rotation = DefaultParent.rotation; 
+                weaponParent.localScale = DefaultParent.localScale;
+
+                weaponSlots[slotIndex] = weapon;
+                starter.Add(weapon);
+                weapon.gameObject.SetActive(true);
+                SwitchWeapon(activeWeaponIndex);
+            }
+            slotIndex++;
+        }
+    }
+
+    private void AddAllWeapon()
+    {
         int slotIndex = 0;
 
             foreach (Transform child in weaponParent)

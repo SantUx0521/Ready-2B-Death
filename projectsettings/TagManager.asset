@@ -8,6 +8,7 @@ TagManager:
   - Head
   - Door
   - Note
+  - Weapon
   layers:
   - Default
   - TransparentFX

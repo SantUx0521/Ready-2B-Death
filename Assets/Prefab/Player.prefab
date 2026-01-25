@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3930349551457221036
 Transform:
   m_ObjectHideFlags: 0
@@ -343,8 +343,9 @@ MonoBehaviour:
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
-  bulletHoleContainer: {fileID: 0}
+  bulletHoleContainer: {fileID: 3107784368638664919}
   isShotgun: 0
+  wepname: 
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
   shootSound: {fileID: 0}
   bulletsText: {fileID: 4119915392685138805}
@@ -369,6 +370,7 @@ MonoBehaviour:
   spread: 0.1
   maxBullets: 8
   ReloadName: pump_Reload
+  wepname: Pump
   weaponForce: 30
   cadence: 1
   desviacion: {x: 0.1, y: -0.08, z: 0.3}
@@ -2369,7 +2371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4577568508093079292
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,6 +2429,7 @@ MonoBehaviour:
   spread: 0.005
   maxBullets: 15
   ReloadName: Glock_Reload
+  wepname: Glock
   shootSound: {fileID: 3305144887089598419}
   weaponForce: 15
   cadence: 0.5
@@ -2464,8 +2467,9 @@ MonoBehaviour:
   weaponForce: 0
   desviacion: {x: 0, y: 0, z: 0}
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
-  bulletHoleContainer: {fileID: 0}
+  bulletHoleContainer: {fileID: 3107784368638664919}
   isShotgun: 0
+  wepname: 
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
   shootSound: {fileID: 0}
   bulletsText: {fileID: 4119915392685138805}
@@ -3437,7 +3441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5483640876649176636
 Transform:
   m_ObjectHideFlags: 0
@@ -3495,6 +3499,7 @@ MonoBehaviour:
   spread: 0.02
   maxBullets: 30
   ReloadName: M4A1_Reload
+  wepname: M4A1
   weaponForce: 25
   cadence: 0.15
   desviacion: {x: 0.06, y: -0.05, z: 0}
@@ -3535,6 +3540,7 @@ MonoBehaviour:
   bulletHole: {fileID: 6400500984387539033, guid: defd2f7ad3bf5014587a100c322bf75e, type: 3}
   bulletHoleContainer: {fileID: 3107784368638664919}
   isShotgun: 0
+  wepname: 
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
   shootSound: {fileID: 0}
   bulletsText: {fileID: 4119915392685138805}
@@ -5228,7 +5234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5546955942526999207}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.99285746, z: -0, w: -0.11930653}
+  m_LocalRotation: {x: 0, y: 0.9928577, z: -0, w: -0.119304955}
   m_LocalPosition: {x: -0.531, y: 1.319, z: -0.886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5300,19 +5306,20 @@ MonoBehaviour:
   mouseSensitivityX: 30
   mouseSensitivityY: 40
   volume: {fileID: 0}
-  velocity: 10
+  velocity: 6
   playerInput: {fileID: 0}
   gravity: -9.8
   crouchHeight: 0.5
   isCrouching: 0
   actualVelocity: 0
-  sprintVelocity: 15
+  sprintVelocity: 10
   isSprinting: 0
   flashlight: {fileID: 870517207957258896}
   InteractableLayer:
     serializedVersion: 2
     m_Bits: 1024
   isInteractable: 0
+  isDoor: 0
   interactRange: 2
 --- !u!114 &3072057883346996573
 MonoBehaviour:
@@ -5345,10 +5352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef8a5a4a86bd3d408f7f3978ef37557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponController
+  actualWeapons: []
   starter:
-  - {fileID: 6961702267380606052, guid: 81a553ca7b1169947a7083fe6a66a167, type: 3}
-  - {fileID: 8246932395962104084}
-  - {fileID: 1826575264587280984}
+  - {fileID: 0}
   weaponParent: {fileID: 8373851573594568404}
   DefaultParent: {fileID: 346246614806859934}
   AimParent: {fileID: 2109990912874969305}
@@ -5356,6 +5362,10 @@ MonoBehaviour:
   leftHandIK: {fileID: 698249863084352807}
   GripR: GripR
   GripL: GripL
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerHud: {fileID: 0}
   ShootPoint: {fileID: 36768854115511554}
   playerCamera: {fileID: 3921407962592088610}
