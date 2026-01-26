@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private Color originalTextColor;
     private PlayerController player;
     private PlayerWeaponController playerWeap;
+    public List<string> playerKeys = new List<string>();
     [HideInInspector] public float MaxHealth = 100;
     public bool isMenuOn;
     void Start()

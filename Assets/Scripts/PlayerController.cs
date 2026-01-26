@@ -214,6 +214,16 @@ public class PlayerController : MonoBehaviour
                 if (interactAction.WasPressedThisFrame())
                 {
                     Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().Interact();
+                    if (Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().locked)
+                    {
+                        foreach (string key in gameManager.playerKeys)
+                        {
+                            if(key == Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().requiredKey)
+                            {
+                                Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().Unlock();
+                            }
+                        }
+                    }
                 }
             }
             else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Weapon"))
