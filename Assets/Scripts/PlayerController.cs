@@ -230,7 +230,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (interactAction.WasPressedThisFrame())
                 {
-                    Debug.Log("Tocado");
                     string wName = Interact.collider.transform.root.gameObject.GetComponent<GetWeapon>().wepname;
                     playerWeapon.AddWeapon(wName);
                 }

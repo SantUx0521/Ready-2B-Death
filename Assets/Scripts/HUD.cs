@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
 {
     public GameObject[] Icons;
     public GameObject normalPoint;
+    public GameObject point;
     public GameObject shotgunPoint;
     public PlayerWeaponController playerWeapon;
     public WeaponController weapon;
@@ -37,6 +38,7 @@ public class HUD : MonoBehaviour
         {
             normalPoint.SetActive(true);
             shotgunPoint.SetActive(false);
+            point.SetActive(false);
         }
     }
 

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public UnityEngine.UI.Image HealthBar;
+    public GameObject HealthContainer;
     public GameObject of;
     public TextMeshProUGUI HealthCounter;
     public GameObject HUD;
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
         if(playerWeap.activeWeaponIndex >= 0)
         {
             HealthBar.gameObject.SetActive(true);
+            HealthContainer.SetActive(true);
+            HealthCounter.gameObject.SetActive(true);
             of.SetActive(true);
         }
     }

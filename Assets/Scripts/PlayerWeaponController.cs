@@ -119,6 +119,7 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
             }
+            
             if(activeWeaponIndex >= 0)
             {
                 StartCoroutine(playerHud.Pointer(activeWeapon.isShotgun));

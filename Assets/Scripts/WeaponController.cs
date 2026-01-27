@@ -23,6 +23,7 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public float weaponForce;
     [HideInInspector] public Vector3 desviacion;
     [SerializeField] GameObject bulletHole;
+    [SerializeField] GameObject bulletEffect;
     [SerializeField] GameObject bulletHoleContainer;
     [HideInInspector] public bool isShotgun;
     public string wepname;
@@ -144,8 +145,11 @@ public class WeaponController : MonoBehaviour
         else if (((1 << hit.collider.gameObject.layer) & Hittable) != 0)
             {
                 GameObject spawned = Instantiate(bulletHole, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal, cameraPlayer.up));
+                GameObject effect = Instantiate(bulletEffect, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(-hit.normal, cameraPlayer.up));
+                effect.transform.SetParent(bulletHoleContainer.transform);
                 spawned.transform.SetParent(bulletHoleContainer.transform);
                 Destroy(spawned, 30f);
+                Destroy(spawned, 2f);
             }
     }
 
