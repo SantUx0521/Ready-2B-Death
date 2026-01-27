@@ -7,6 +7,10 @@ public class DoorFunction : MonoBehaviour
     public string CloseName;
     public string requiredKey;
     public bool locked;
+    public AudioSource audioSource;
+    public AudioClip open;
+    public AudioClip close;
+    public AudioClip unlock;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -15,6 +19,7 @@ public class DoorFunction : MonoBehaviour
     public void Unlock()
     {
         locked = false;
+        audioSource.PlayOneShot(unlock);
     }
 
     public void Interact()
@@ -23,11 +28,13 @@ public class DoorFunction : MonoBehaviour
             {
                 anim.ResetTrigger("Open");
                 anim.SetTrigger("Close");
+                audioSource.PlayOneShot(close);
             }                    
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName(CloseName) && !locked)
             {
                 anim.ResetTrigger("Close");
                 anim.SetTrigger("Open");
+                audioSource.PlayOneShot(open);
             }
     }
 }

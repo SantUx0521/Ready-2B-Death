@@ -25,12 +25,13 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private Vector3 playerVelocity;
     private Vector3 moveDirection = Vector3.zero;
+    public float stepTime = 0.5f;
 
     [Header("Jumping")]
 
     private InputAction jumpAction;
     private readonly float JumpHeight = 1f;
-    public float gravity = -9.8f;
+    public float gravity = -10f;
     private bool isGrounded;
     private CharacterController characterController;
 
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour
     private InputAction flashlightAction;
     [SerializeField] private GameObject flashlight;
     private bool flashing = false;
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip steps;
+    float count = 0;
 
     [Header("Interact")]
     public LayerMask InteractableLayer;
@@ -104,10 +110,6 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y = -2f;
         }
-        else
-        {
-            playerVelocity.y += gravity * Time.deltaTime; 
-        }
         characterController.Move(playerVelocity * Time.deltaTime);
 
         // Handle Jumping
@@ -116,8 +118,16 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
         }
 
-        playerVelocity.y += gravity * Time.deltaTime;
-        characterController.Move(playerVelocity * Time.deltaTime);        
+        if(characterController.isGrounded && moveAction.IsPressed())
+        {
+            count += Time.deltaTime;
+            if(count >= stepTime)
+            {
+                audioSource.PlayOneShot(steps);
+                count = 0;
+            }
+        }
+        playerVelocity.y += gravity * Time.deltaTime;    
     }
 
     private void CameraMovement()
@@ -170,11 +180,13 @@ public class PlayerController : MonoBehaviour
             isCrouching = false;
             characterController.height = actualHeight;
             velocity = sprintVelocity;
+            stepTime = 0.4f;
             cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV + 20f, Time.deltaTime * adsSpeed);
         }
         else if (isSprinting && moveAction.WasReleasedThisFrame()){
             isSprinting = false;
             velocity = actualVelocity;
+            stepTime = 0.5f;
             cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
         }
         if (playerWeapon.isAiming)
@@ -232,6 +244,13 @@ public class PlayerController : MonoBehaviour
                 {
                     string wName = Interact.collider.transform.root.gameObject.GetComponent<GetWeapon>().wepname;
                     playerWeapon.AddWeapon(wName);
+                }
+            }
+            else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Cinematic"))
+            {
+                if (interactAction.WasPressedThisFrame())
+                {
+                    Interact.collider.transform.root.gameObject.GetComponent<ActiveCinematic>().Active();
                 }
             }
         }

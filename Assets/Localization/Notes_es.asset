@@ -23,7 +23,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3981914824704
-    m_Localized: Adios Dexter Morgan
+    m_Localized: "S\xE9 que sueles ser olvidadizo asi que te lo dejo por escrito.
+      \nPor seguridad mantengo una habitacion donde dejo cajas con las cosas de valor,
+      la llave de repuesto esta debajo de la carpeta frente a la lampara.\n\nSi necesitas
+      sacar algo vuelve a ponerla donde la encontraste. "
     m_Metadata:
       m_Items: []
   references:

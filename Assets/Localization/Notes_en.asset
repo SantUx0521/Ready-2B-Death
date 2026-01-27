@@ -23,7 +23,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3981914824704
-    m_Localized: GoodBye Dexter Morgan
+    m_Localized: 'I know you forget everything so I''ll write it for you.
+
+      Due
+      to security things, i have the room with all the valuable stuff locked, the
+      spare key is under the carpet that is in front of the lamp.
+
+
+      If you
+      need to get something, please let it back where you found it.
+
+'
     m_Metadata:
       m_Items: []
   references:
