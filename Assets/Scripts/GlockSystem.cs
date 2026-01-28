@@ -12,6 +12,7 @@ public class GlockSystem : MonoBehaviour
     public string ReloadName = "Glock_Reload";
     public string wepname = "Glock";
     public AudioSource shootSound;
+    public AudioClip reloadSound;
     public float weaponForce = 40;
     public float cadence = 0.5f;
     void Start()
@@ -26,5 +27,6 @@ public class GlockSystem : MonoBehaviour
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
         weaponControl.shootSound = shootSound;
+        weaponControl.reloadSound = reloadSound;
     }
 }

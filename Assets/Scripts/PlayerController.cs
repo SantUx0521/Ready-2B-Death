@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip steps;
+    public AudioClip getItem;
     float count = 0;
 
     [Header("Interact")]
@@ -246,6 +247,7 @@ public class PlayerController : MonoBehaviour
                 {
                     string wName = Interact.collider.transform.root.gameObject.GetComponent<GetWeapon>().wepname;
                     playerWeapon.AddWeapon(wName);
+                    Destroy(Interact.collider.transform.root.gameObject);
                 }
             }
             else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Key"))
@@ -254,6 +256,8 @@ public class PlayerController : MonoBehaviour
                 {
                     string kName = Interact.collider.transform.root.gameObject.GetComponent<GetKey>().keyName;
                     gameManager.playerKeys.Add(kName);
+                    audioSource.PlayOneShot(getItem);
+                    Destroy(Interact.collider.transform.root.gameObject);
                 }
             }
             else if (interactAction.WasPressedThisFrame())

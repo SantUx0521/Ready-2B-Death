@@ -7,6 +7,7 @@ public class DoorFunction : MonoBehaviour
     public string CloseName;
     public string requiredKey;
     public bool locked;
+    public GameObject padlock;
     public AudioSource audioSource;
     public AudioClip open;
     public AudioClip close;
@@ -24,6 +25,14 @@ public class DoorFunction : MonoBehaviour
 
     public void Interact()
     {
+        if(padlock != null)
+        {
+            if(padlock.GetComponent<Rigidbody>().isKinematic == false)
+            {
+                locked = false;
+            }
+        }
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName(OpenName) && !locked)
             {
                 anim.ResetTrigger("Open");

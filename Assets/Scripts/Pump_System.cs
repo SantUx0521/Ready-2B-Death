@@ -13,6 +13,7 @@ public class Pump_System : MonoBehaviour
     public float cadence = 1.5f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);
     public AudioSource shootSound;
+    public AudioClip reloadSound;
     public bool isShotgun = true;
     
     void Start()

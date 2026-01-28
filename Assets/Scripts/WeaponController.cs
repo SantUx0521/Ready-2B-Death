@@ -30,6 +30,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] AudioMixer shootAudioMixer;
     [HideInInspector] public AudioSource shootSound;
+    [HideInInspector] public AudioClip reloadSound;
+    public AudioClip openSound;
 
     CameraShake cameraShake;
     public TextMeshProUGUI bulletsText;
@@ -46,6 +48,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
+        shootSound = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -149,7 +152,11 @@ public class WeaponController : MonoBehaviour
                 effect.transform.SetParent(bulletHoleContainer.transform);
                 spawned.transform.SetParent(bulletHoleContainer.transform);
                 Destroy(spawned, 30f);
-                Destroy(spawned, 2f);
+                var grb = hit.collider.gameObject.GetComponent<Rigidbody>();
+                if( grb != null)
+                {
+                    grb.isKinematic = false;
+                }
             }
     }
 
@@ -173,7 +180,8 @@ public class WeaponController : MonoBehaviour
         {
             reloading = true;
             canShoot = false;
-            anim.SetTrigger(ReloadName); 
+            anim.SetTrigger(ReloadName);
+            shootSound.PlayOneShot(reloadSound);
         }
     }
 
@@ -193,6 +201,7 @@ public class WeaponController : MonoBehaviour
     {
         canShoot = false;
         anim.SetTrigger("Opening");
+        shootSound.PlayOneShot(openSound);
         yield return new WaitForSeconds(0.8f);
         canShoot = true;
     }

@@ -13,6 +13,7 @@ public class M4A1_System : MonoBehaviour
     public float cadence = 0.3f;
     public Vector3 desviacion = new Vector3(1f, 2f, 3f);
     public AudioSource shootSound;
+    public AudioClip reloadSound;
     
 void Start()
     {
