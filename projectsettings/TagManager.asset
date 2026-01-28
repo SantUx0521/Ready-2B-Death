@@ -10,7 +10,6 @@ TagManager:
   - Note
   - Weapon
   - Key
-  - Cinematic
   layers:
   - Default
   - TransparentFX

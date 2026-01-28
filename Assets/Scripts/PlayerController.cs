@@ -215,6 +215,8 @@ public class PlayerController : MonoBehaviour
         RaycastHit Interact;
         if (Physics.Raycast(cameraP.transform.position, cameraP.transform.forward, out Interact, interactRange, InteractableLayer))
         {
+            InteractInterface interactable = Interact.collider.transform.root.gameObject.GetComponent<InteractInterface>();
+            
             if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Note"))
             {
                 isInteractable = true;
@@ -246,12 +248,17 @@ public class PlayerController : MonoBehaviour
                     playerWeapon.AddWeapon(wName);
                 }
             }
-            else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Cinematic"))
+            else if (((1 << Interact.collider.gameObject.layer) & InteractableLayer) != 0 && Interact.collider.gameObject.CompareTag("Key"))
             {
                 if (interactAction.WasPressedThisFrame())
                 {
-                    Interact.collider.transform.root.gameObject.GetComponent<ActiveCinematic>().Active();
+                    string kName = Interact.collider.transform.root.gameObject.GetComponent<GetKey>().keyName;
+                    gameManager.playerKeys.Add(kName);
                 }
+            }
+            else if (interactAction.WasPressedThisFrame())
+            {
+                interactable.Interact();
             }
         }
         else

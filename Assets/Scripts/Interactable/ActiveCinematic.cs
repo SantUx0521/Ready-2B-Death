@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class ActiveCinematic : MonoBehaviour
+public class ActiveCinematic : MonoBehaviour, InteractInterface
 {
     public PlayableDirector Cinematica;
     public bool hasBeenActive;
-    public void Active()
+    public void Interact()
     {
         if (!hasBeenActive)
         {

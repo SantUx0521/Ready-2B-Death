@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public GameManager instance;
     public UnityEngine.UI.Image HealthBar;
     public GameObject HealthContainer;
     public GameObject of;
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
     public List<string> playerKeys = new List<string>();
     [HideInInspector] public float MaxHealth = 100;
     public bool isMenuOn;
+
+    void Awake() {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
     void Start()
     {
         Cursor.visible = false;
