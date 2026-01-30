@@ -58,7 +58,6 @@ public class PlayerWeaponController : MonoBehaviour
         rigBuilder = GetComponentInChildren<RigBuilder>();
         anim = GetComponent<Animator>();
         playerHud = GetComponent<HUD>();
-        actualGranades = maxGranadeCap;
         granadeAction = playerController.playerInput.actions["Granade"];
         
         if (weaponSlots[0] != null)
