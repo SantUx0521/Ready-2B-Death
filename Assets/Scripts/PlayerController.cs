@@ -26,12 +26,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private Vector3 moveDirection = Vector3.zero;
     public float stepTime = 0.5f;
+    public bool isMoving;
 
     [Header("Jumping")]
 
     private InputAction jumpAction;
     private readonly float JumpHeight = 1f;
-    public float gravity = -10f;
+    public float gravity = -15f;
     private bool isGrounded;
     private CharacterController characterController;
 
@@ -121,12 +122,17 @@ public class PlayerController : MonoBehaviour
 
         if(characterController.isGrounded && moveAction.IsPressed())
         {
+            isMoving = true;
             count += Time.deltaTime;
             if(count >= stepTime)
             {
                 audioSource.PlayOneShot(steps);
                 count = 0;
             }
+        }
+        else
+        {
+            isMoving = false;
         }
         playerVelocity.y += gravity * Time.deltaTime;    
     }

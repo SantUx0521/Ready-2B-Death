@@ -45,6 +45,8 @@ public class WeaponController : MonoBehaviour
     private Transform cameraPlayer;
     public static System.Action<Vector3, float> OnNoise;
 
+    public Figure8Movement figure;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -56,6 +58,7 @@ public class WeaponController : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         cameraShake = cameraPlayer.GetComponent<CameraShake>();
         playerWeapon = GetComponentInParent<PlayerWeaponController>();
+        figure = GetComponent<Figure8Movement>();
     }
 
     void Update()
@@ -64,7 +67,7 @@ public class WeaponController : MonoBehaviour
         Shoot();
         Debug.DrawRay(cameraPlayer.position, cameraPlayer.forward * range, Color.red);
         Reload();
-        
+        Bounce();
     }
 
     private void Shoot()
@@ -211,5 +214,17 @@ public class WeaponController : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(cadence);
         canShoot = true;
+    }
+
+    private void Bounce()
+    {
+        if (playerController.isMoving)
+        {
+            figure.enabled = true;
+        }
+        else
+        {
+            figure.enabled = false;
+        }
     }
 }
