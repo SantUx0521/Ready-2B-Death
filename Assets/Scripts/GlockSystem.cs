@@ -13,6 +13,7 @@ public class GlockSystem : MonoBehaviour
     public string wepname = "Glock";
     public AudioSource shootSound;
     public AudioClip reloadSound;
+    public Vector3 desviacion = new Vector3(1f, 2f, 3f);
     public float weaponForce = 40;
     public float cadence = 0.5f;
     void Start()
@@ -28,5 +29,6 @@ public class GlockSystem : MonoBehaviour
         weaponControl.cadence = cadence;
         weaponControl.shootSound = shootSound;
         weaponControl.reloadSound = reloadSound;
+        weaponControl.desviacion = desviacion;
     }
 }

@@ -64,6 +64,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             SwitchWeapon(0);
         }
+        AddAllWeapon();
     }
 
     void Update()

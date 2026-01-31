@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
                     Destroy(Interact.collider.transform.root.gameObject);
                 }
             }
-            else if (interactAction.WasPressedThisFrame())
+            if (interactAction.WasPressedThisFrame() && interactable != null)
             {
                 interactable.Interact();
             }
