@@ -46,4 +46,13 @@ public class DoorFunction : MonoBehaviour
                 audioSource.PlayOneShot(open);
             }
     }
+
+    public void ForceLock()
+    {
+        anim.SetTrigger("Close");
+        audioSource.PlayOneShot(close);
+        padlock = null;
+        locked = true;
+        requiredKey = "None";
+    }
 }

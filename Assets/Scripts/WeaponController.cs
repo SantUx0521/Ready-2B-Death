@@ -221,6 +221,14 @@ public class WeaponController : MonoBehaviour
         if (playerController.isMoving)
         {
             figure.enabled = true;
+            if (playerController.isSprinting)
+            {
+                figure.speed = 20f;
+            }
+            else
+            {
+                figure.speed = 10f;
+            }
         }
         else
         {
