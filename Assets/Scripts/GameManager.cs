@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI HealthCounter;
     public GameObject HUD;
     public GameObject Notes;
+    public PauseMenu pauseMenu;
     public float currentHealth;
     private Color originalColor;
     private Color originalTextColor;
@@ -114,6 +116,24 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
+        HUD.SetActive(true);
+        Notes.SetActive(false);
+        pauseMenu.bG.SetActive(false);
+        pauseMenu.pauseMenu.SetActive(false);
+        isMenuOn = false;
+        player.playerInput.SwitchCurrentActionMap("Player");
+        AudioSource[] allAudios = FindObjectsByType<AudioSource>();
+
+        for(int i = 0; i < allAudios.Length; i++)
+        {
+            allAudios[i].Pause();
+        }
+    }
+
+    private T[] FindObjectsByType<T>()
+    {
+        throw new NotImplementedException();
     }
 
     public void InMenu()
@@ -125,13 +145,13 @@ public class GameManager : MonoBehaviour
             if (player.playerInput.actions["Close"].WasPressedThisFrame())
             {
                 Resume();
-                Cursor.visible = false;
-                HUD.SetActive(true);
-                Notes.SetActive(false);
-                isMenuOn = false;
-                player.playerInput.SwitchCurrentActionMap("Player");
             }
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit(); //Luego le coloco un aviso de si realmente quiere cerrar el juego por si aca xd
     }
 
 }

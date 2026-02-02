@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     public bool isDoor = false;
     InputAction interactAction;
     public float interactRange;
+    public InputAction pauseAction;
 
 
     void Awake()
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         sprintAction = playerInput.actions["Sprint"];
         flashlightAction = playerInput.actions["Flashlight"];
         interactAction = playerInput.actions["Interact"];
+        pauseAction = playerInput.actions["Pause"];
         gameManager = GetComponent<GameManager>();
         actualHeight = characterController.height;
         actualVelocity = velocity;
