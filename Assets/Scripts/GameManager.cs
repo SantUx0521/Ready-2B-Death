@@ -1,9 +1,5 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
 
@@ -123,17 +119,12 @@ public class GameManager : MonoBehaviour
         pauseMenu.pauseMenu.SetActive(false);
         isMenuOn = false;
         player.playerInput.SwitchCurrentActionMap("Player");
-        AudioSource[] allAudios = FindObjectsByType<AudioSource>();
+        AudioSource[] allAudios = FindObjectsOfType<AudioSource>();
 
         for(int i = 0; i < allAudios.Length; i++)
         {
-            allAudios[i].Pause();
+            allAudios[i].Play();
         }
-    }
-
-    private T[] FindObjectsByType<T>()
-    {
-        throw new NotImplementedException();
     }
 
     public void InMenu()

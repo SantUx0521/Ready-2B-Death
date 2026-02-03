@@ -28,7 +28,7 @@ public class Pump_System : MonoBehaviour
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
         weaponControl.desviacion = desviacion;
-        weaponControl.shootSound = shootSound;
+        weaponControl.audioSource = shootSound;
         weaponControl.isShotgun = isShotgun;
         weaponControl.wepname = wepname;
     }

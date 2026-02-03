@@ -26,10 +26,13 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject bulletEffect;
     [SerializeField] GameObject bulletHoleContainer;
     [HideInInspector] public bool isShotgun;
+
+    public string bulletTipe;
     public string wepname;
 
     [SerializeField] AudioMixer shootAudioMixer;
-    [HideInInspector] public AudioSource shootSound;
+    [HideInInspector] public AudioSource audioSource;
+    [SerializeField] AudioClip shootSound;
     [HideInInspector] public AudioClip reloadSound;
     public AudioClip openSound;
 
@@ -50,7 +53,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
-        shootSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -101,8 +104,8 @@ public class WeaponController : MonoBehaviour
         Vector3 direction = cameraPlayer.forward;
 
         OnNoise?.Invoke(transform.position, 42f);
-        shootSound.Stop();
-        shootSound.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(shootSound);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraPlayer.position, (direction + UnityEngine.Random.insideUnitSphere * spread).normalized, out hit, range, combinedMask))
@@ -116,8 +119,8 @@ public class WeaponController : MonoBehaviour
         LayerMask combinedMask = Enemy | Hittable | Head;
         Vector3 direction = cameraPlayer.forward;
         OnNoise?.Invoke(transform.position, 42f);
-        shootSound.Stop();
-        shootSound.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(shootSound);
 
         int pellets = 8;
         for(int i = 0; i < pellets; i++)
@@ -184,7 +187,7 @@ public class WeaponController : MonoBehaviour
             reloading = true;
             canShoot = false;
             anim.SetTrigger(ReloadName);
-            shootSound.PlayOneShot(reloadSound);
+            audioSource.PlayOneShot(reloadSound);
         }
     }
 
@@ -200,11 +203,19 @@ public class WeaponController : MonoBehaviour
         reloading = false;
     }
 
+    public void GetAmmo(string tipe, int amount)
+    {
+        if(tipe == bulletTipe)
+        {
+            actualBulletsAmount += amount;
+        }
+    }
+
     public IEnumerator InitAnim()
     {
         canShoot = false;
         anim.SetTrigger("Opening");
-        shootSound.PlayOneShot(openSound);
+        audioSource.PlayOneShot(openSound);
         yield return new WaitForSeconds(0.8f);
         canShoot = true;
     }

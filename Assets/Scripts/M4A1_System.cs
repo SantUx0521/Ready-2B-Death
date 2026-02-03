@@ -27,7 +27,8 @@ void Start()
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
         weaponControl.desviacion = desviacion;
-        weaponControl.shootSound = shootSound;
+        weaponControl.audioSource = shootSound;
+        weaponControl.reloadSound = reloadSound;
         weaponControl.wepname = wepname;
     }
 }

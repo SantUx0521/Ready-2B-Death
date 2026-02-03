@@ -2505,8 +2505,10 @@ MonoBehaviour:
   bulletEffect: {fileID: 9047643855138769750, guid: afad628cdfd32ab449b9aa39bc309705, type: 3}
   bulletHoleContainer: {fileID: 1260290066}
   isShotgun: 0
+  bulletTipe: 
   wepname: Glock
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
+  audioSource: {fileID: 0}
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
   openSound: {fileID: 8300000, guid: 6ef8de6c7e7a5044c88ae3c5c93e1495, type: 3}
@@ -3377,8 +3379,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4289440683
+  m_fontColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5856,8 +5858,10 @@ MonoBehaviour:
   bulletEffect: {fileID: 9047643855138769750, guid: afad628cdfd32ab449b9aa39bc309705, type: 3}
   bulletHoleContainer: {fileID: 1260290066}
   isShotgun: 0
+  bulletTipe: 
   wepname: Pump
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
+  audioSource: {fileID: 0}
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
   openSound: {fileID: 0}
@@ -7344,7 +7348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded085d155cde949b60f67a11dbc3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolume
-  mode: 1
+  mode: 0
   size: {x: 70.30952, y: 17.312431, z: 57.108727}
   overrideRendererFilters: 0
   minRendererVolumeSize: 0.1
@@ -7359,11 +7363,11 @@ MonoBehaviour:
     e00: 1
     e01: 0
     e02: 0
-    e03: 8.732796
+    e03: 8.732792
     e10: 0
     e11: 1
     e12: 0
-    e13: -6.5760474
+    e13: -6.5760484
     e20: 0
     e21: 0
     e22: 1
@@ -7372,7 +7376,7 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  cachedHashCode: -434758582
+  cachedHashCode: -797120305
   fillEmptySpaces: 0
   version: 2
   globalVolume: 0
@@ -8629,8 +8633,10 @@ MonoBehaviour:
   bulletEffect: {fileID: 9047643855138769750, guid: afad628cdfd32ab449b9aa39bc309705, type: 3}
   bulletHoleContainer: {fileID: 1260290066}
   isShotgun: 0
+  bulletTipe: 
   wepname: M4A1
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
+  audioSource: {fileID: 0}
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
   openSound: {fileID: 0}
@@ -12654,7 +12660,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -14179,7 +14185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a2b7cf430b94ee46b4fc2c04db08cff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fa3f2991ae91ab4aadb921637b9577f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14467,7 +14473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15461,7 +15467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_CustomShadowLayers: 0
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
@@ -17395,7 +17401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_CustomShadowLayers: 0
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
@@ -17423,7 +17429,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 7.3469777
+  m_Range: 6.248067
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -17461,10 +17467,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 25
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -18023,7 +18029,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: de5b0c40d1239e84683b7e1c96eea328, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -19143,7 +19149,7 @@ Transform:
   m_GameObject: {fileID: 1620190670}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000059604645, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17878792, y: 0.26, z: 0.01}
+  m_LocalPosition: {x: -0.18, y: -0.04, z: 0.32}
   m_LocalScale: {x: 1.5151515, y: 1.5151516, z: 1.5151516}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21210,6 +21216,18 @@ PrefabInstance:
       value: Pump
       objectReference: {fileID: 0}
     - target: {fileID: 1826575264587280984, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 66d3076074d6e574e9c06dc6c939edde, type: 3}
+    - target: {fileID: 1826575264587280984, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: bulletTipe
+      value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826575264587280984, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a3e4ff99a73f6e5429a43d2ecb90629d, type: 3}
+    - target: {fileID: 1826575264587280984, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: bulletEffect
       value: 
       objectReference: {fileID: 9047643855138769750, guid: afad628cdfd32ab449b9aa39bc309705, type: 3}
@@ -21217,6 +21235,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2011196145621402818, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: reloadSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d871f691a52c0f2489f5f69db0bb0eef, type: 3}
     - target: {fileID: 2204199524139215946, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -21253,6 +21275,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3305144887089598419, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3716710381709855406, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -21274,6 +21300,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 6ef8de6c7e7a5044c88ae3c5c93e1495, type: 3}
     - target: {fileID: 4349784956834170939, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: bulletTipe
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349784956834170939, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d30b1724197957840b6a165225eef941, type: 3}
+    - target: {fileID: 4349784956834170939, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: bulletEffect
       value: 
       objectReference: {fileID: 9047643855138769750, guid: afad628cdfd32ab449b9aa39bc309705, type: 3}
@@ -21292,6 +21326,10 @@ PrefabInstance:
     - target: {fileID: 6244880310639548504, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129135715715579741, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: m_Resource
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7877566398090845217, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: m_AnchorMax.x
@@ -21313,6 +21351,18 @@ PrefabInstance:
       propertyPath: wepname
       value: M4A1
       objectReference: {fileID: 0}
+    - target: {fileID: 8246932395962104084, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ef8de6c7e7a5044c88ae3c5c93e1495, type: 3}
+    - target: {fileID: 8246932395962104084, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: bulletTipe
+      value: Fusil
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246932395962104084, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cd4bea8afceda4b4795662ecb3e7adce, type: 3}
     - target: {fileID: 8246932395962104084, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: bulletEffect
       value: 
@@ -21361,6 +21411,10 @@ PrefabInstance:
       propertyPath: point
       value: 
       objectReference: {fileID: 285074418}
+    - target: {fileID: 8463755005981538358, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7540195952164115432, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
     m_RemovedGameObjects: []
@@ -21594,7 +21648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_CustomShadowLayers: 0
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
@@ -21633,7 +21687,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.23
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -21660,10 +21714,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 20
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour
     public AudioSource audioSource;
     public GameObject blood;
     public GameObject granade;
+    public string tipe;
+    public GameObject Bullet;
     RagdollEnemy ragdoll;
     RigBuilder rig;
 
@@ -56,10 +59,22 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
-            audioSource.PlayOneShot(scream);
+            StartCoroutine(DeathConsecuences());
             rig.enabled = false;
             ragdoll.ragdollON();
             Destroy(gameObject, 120);
         }   
+    }
+
+    private IEnumerator DeathConsecuences()
+    {
+        bool already = false;
+        if (!already)
+        {
+            audioSource.PlayOneShot(scream);
+            yield return null;
+            Instantiate(Bullet, transform.position, transform.rotation);
+            already = true;
+        }
     }
 }

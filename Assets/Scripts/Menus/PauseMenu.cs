@@ -28,16 +28,11 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
         gameManager.Pause();
         pauseMenu.SetActive(true);
-        AudioSource[] allAudios = FindObjectsByType<AudioSource>();
+        AudioSource[] allAudios = FindObjectsOfType<AudioSource>();
 
         for(int i = 0; i < allAudios.Length; i++)
         {
             allAudios[i].Pause();
         }
-    }
-
-    private T[] FindObjectsByType<T>()
-    {
-        throw new NotImplementedException();
     }
 }

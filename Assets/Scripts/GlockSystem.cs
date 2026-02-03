@@ -27,7 +27,7 @@ public class GlockSystem : MonoBehaviour
         weaponControl.ReloadName = ReloadName;
         weaponControl.weaponForce = weaponForce;
         weaponControl.cadence = cadence;
-        weaponControl.shootSound = shootSound;
+        weaponControl.audioSource = shootSound;
         weaponControl.reloadSound = reloadSound;
         weaponControl.desviacion = desviacion;
     }
