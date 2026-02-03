@@ -159,6 +159,17 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
+    public void GetAmmo(string tipe, int amount)
+    {
+        foreach (WeaponController weapon in weaponSlots)
+        {
+            if (weapon != null && string.Equals(weapon.bulletTipe, tipe))
+            {
+                weapon.actualBulletsAmount += amount;
+            }
+        }
+    }
+
     private void AddAllWeapon()
     {
         int slotIndex = 0;

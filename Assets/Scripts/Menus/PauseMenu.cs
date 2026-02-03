@@ -25,10 +25,10 @@ public class PauseMenu : MonoBehaviour
 
     public IEnumerator ShowPause()
     {
-        yield return new WaitForSeconds(1f);
         gameManager.Pause();
+        yield return null;
         pauseMenu.SetActive(true);
-        AudioSource[] allAudios = FindObjectsOfType<AudioSource>();
+        AudioSource[] allAudios = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 
         for(int i = 0; i < allAudios.Length; i++)
         {

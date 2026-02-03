@@ -3578,54 +3578,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2077187348}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[1]'
-      value: 
-      objectReference: {fileID: 691117290}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[2]'
-      value: 
-      objectReference: {fileID: 671634325}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1973931503}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[4]'
-      value: 
-      objectReference: {fileID: 348723811}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[5]'
-      value: 
-      objectReference: {fileID: 1041859333}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[6]'
-      value: 
-      objectReference: {fileID: 915763361}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[7]'
-      value: 
-      objectReference: {fileID: 2094815950}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[8]'
-      value: 
-      objectReference: {fileID: 66663627}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[9]'
-      value: 
-      objectReference: {fileID: 1850530072}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[10]'
-      value: 
-      objectReference: {fileID: 1672820417}
-    - target: {fileID: 887790190479404854, guid: d437998797c645741a15342982ac3b8b, type: 3}
-      propertyPath: 'Covers.Array.data[11]'
-      value: 
-      objectReference: {fileID: 964215901}
     - target: {fileID: 1529258072869912035, guid: d437998797c645741a15342982ac3b8b, type: 3}
       propertyPath: m_Name
       value: Militar Escopeta
@@ -3900,6 +3852,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412027938}
     - target: {fileID: 7115777650771607364, guid: 333aee12728983a438e36a7e2c4ccf68, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115777650771607364, guid: 333aee12728983a438e36a7e2c4ccf68, type: 3}
       propertyPath: 'Covers.Array.data[0]'
       value: 
       objectReference: {fileID: 2077187348}
@@ -3965,6 +3921,10 @@ PrefabInstance:
       propertyPath: volume
       value: 
       objectReference: {fileID: 1260176432}
+    - target: {fileID: 1344919542211439964, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: pauseAction.m_Name
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 1826575264587280984, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: bulletHoleContainer
       value: 

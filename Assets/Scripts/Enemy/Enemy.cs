@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public string tipe;
     public GameObject Bullet;
     RagdollEnemy ragdoll;
+    bool already = false;
     RigBuilder rig;
 
     public PlayerController player;
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     void die()
     {
-        if(health <= 0)
+        if(health <= 0 && !already)
         {
             isDead = true;
             StartCoroutine(DeathConsecuences());
@@ -68,7 +69,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DeathConsecuences()
     {
-        bool already = false;
         if (!already)
         {
             audioSource.PlayOneShot(scream);

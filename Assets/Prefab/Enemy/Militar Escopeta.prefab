@@ -13328,6 +13328,8 @@ MonoBehaviour:
   audioSource: {fileID: 1009676302387100104}
   blood: {fileID: 967470697964410980}
   granade: {fileID: 1831743473824476997, guid: 37fc3a9b815eac24bb9d3c5e77cf6db2, type: 3}
+  tipe: Shotgun
+  Bullet: {fileID: 697141738136302593, guid: a7626f9c052e25d41b4e46f14362f3a7, type: 3}
   player: {fileID: 0}
 --- !u!114 &7713924650649894760
 MonoBehaviour:
@@ -13406,7 +13408,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1946147706789812320, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: a3e4ff99a73f6e5429a43d2ecb90629d, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1

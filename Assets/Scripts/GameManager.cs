@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.pauseMenu.SetActive(false);
         isMenuOn = false;
         player.playerInput.SwitchCurrentActionMap("Player");
-        AudioSource[] allAudios = FindObjectsOfType<AudioSource>();
+        AudioSource[] allAudios = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 
         for(int i = 0; i < allAudios.Length; i++)
         {

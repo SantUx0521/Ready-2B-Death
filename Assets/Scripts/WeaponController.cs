@@ -203,14 +203,6 @@ public class WeaponController : MonoBehaviour
         reloading = false;
     }
 
-    public void GetAmmo(string tipe, int amount)
-    {
-        if(tipe == bulletTipe)
-        {
-            actualBulletsAmount += amount;
-        }
-    }
-
     public IEnumerator InitAnim()
     {
         canShoot = false;
