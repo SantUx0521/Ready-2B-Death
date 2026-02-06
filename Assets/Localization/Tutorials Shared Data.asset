@@ -23,6 +23,18 @@ MonoBehaviour:
     m_Key: Press_F
     m_Metadata:
       m_Items: []
+  - m_Id: 1473003462221824
+    m_Key: Press_LClick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473198132453376
+    m_Key: Press_RClick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473280231759872
+    m_Key: Press_R
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

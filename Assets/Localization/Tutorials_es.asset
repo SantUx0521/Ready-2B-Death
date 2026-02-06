@@ -26,6 +26,18 @@ MonoBehaviour:
     m_Localized: Para encender/apagar la linterna presiona
     m_Metadata:
       m_Items: []
+  - m_Id: 1473003462221824
+    m_Localized: Dispara usando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473198132453376
+    m_Localized: Apunta presionando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473280231759872
+    m_Localized: Recarga el arma presionando
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

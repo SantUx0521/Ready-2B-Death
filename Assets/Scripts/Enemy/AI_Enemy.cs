@@ -7,6 +7,7 @@ public class AI_Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform[] destinations;
+    public GameObject destinationsParent;
     private EnemyFOV view;
     public LayerMask Hittable;
     public LayerMask Player;
@@ -58,6 +59,19 @@ public class AI_Enemy : MonoBehaviour
         getCover = GetComponent<GetCover>();
 
         GoToNextPatrolPoint();
+    }
+
+    void OnValidate()
+    {
+        if(destinationsParent != null)
+        {
+            int childs = destinationsParent.transform.childCount;
+            destinations = new Transform[childs];
+            for (int i = 0; i < childs; i++)
+            { 
+                destinations[i] = destinationsParent.transform.GetChild(i);
+            }
+        }
     }
 
     void Update()
@@ -153,6 +167,10 @@ public class AI_Enemy : MonoBehaviour
 
     private void GoToNextPatrolPoint()
     {
+        if(destinations[i] == null)
+        {
+            Debug.Log("Nada");
+        }
         agent.SetDestination(destinations[i].transform.position);
         i++;
         if (i >= destinations.Length)

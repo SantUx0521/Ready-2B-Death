@@ -72,8 +72,8 @@ public class Enemy : MonoBehaviour
         if (!already)
         {
             audioSource.PlayOneShot(scream);
-            yield return null;
             Instantiate(Bullet, transform.position, transform.rotation);
+            yield return null;
             already = true;
         }
     }

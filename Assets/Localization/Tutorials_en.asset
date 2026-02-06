@@ -26,6 +26,18 @@ MonoBehaviour:
     m_Localized: To turn on/off your flashlight press
     m_Metadata:
       m_Items: []
+  - m_Id: 1473003462221824
+    m_Localized: 'Fire using '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473198132453376
+    m_Localized: Aim pressing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1473280231759872
+    m_Localized: Reload by pressing
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
