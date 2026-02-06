@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,13 +58,12 @@ public class GameManager : MonoBehaviour
     {
         if(currentHealth < MaxHealth)
         {
-            currentHealth += healAmount;
+            currentHealth = Mathf.Min(currentHealth + healAmount, MaxHealth);
         }
         else
         {
             Debug.Log("Tu salud está al maximo");
         }
-        
     }
 
     public void TakeDamage(int damage)

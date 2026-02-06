@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Localization;
 
 public class HUD : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class HUD : MonoBehaviour
     private Fade fade;
     public Image granadeIcon;
     public float duration;
+    public TextMeshProUGUI alert;
     public int activeIcon {get; private set;}
     void Start()
     {
@@ -70,6 +73,14 @@ public class HUD : MonoBehaviour
             granadeIcon.color = warningColor;
             fade.FadeOut(granadeIcon, 1f, 1f);
         }
+    }
+
+    public IEnumerator ShowAlert(LocalizedString textToPut)
+    {
+        alert.gameObject.SetActive(true);
+        alert.text = textToPut.GetLocalizedString();
+        yield return new WaitForSeconds(5f);
+        alert.gameObject.SetActive(false);
     }
 
 }
