@@ -13347,6 +13347,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  destinationsParent: {fileID: 0}
   Hittable:
     serializedVersion: 2
     m_Bits: 1
@@ -13360,7 +13361,9 @@ MonoBehaviour:
   decisionTimer: 0
   waiting: 1
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
-  shootSound: {fileID: 1009676302387100104}
+  shootSound: {fileID: 8300000, guid: a3e4ff99a73f6e5429a43d2ecb90629d, type: 3}
+  audioSource: {fileID: 1009676302387100104}
+  haveGranades: 0
 --- !u!114 &8304640079721668129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13519,7 +13522,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  ocupao: 0
+  coversParent: {fileID: 0}
+  lastCover: {fileID: 0}
 --- !u!1 &1653106322874882585 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8139853090755257685, guid: dbb9ca701756dce4cbab1a3df2d1a055, type: 3}

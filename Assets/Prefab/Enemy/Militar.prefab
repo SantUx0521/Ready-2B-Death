@@ -14493,6 +14493,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  destinationsParent: {fileID: 0}
   Hittable:
     serializedVersion: 2
     m_Bits: 1
@@ -14506,7 +14510,9 @@ MonoBehaviour:
   decisionTimer: 0
   waiting: 1
   shootAudioMixer: {fileID: 24100000, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
-  shootSound: {fileID: 5407003505104666046}
+  shootSound: {fileID: 8300000, guid: d30b1724197957840b6a165225eef941, type: 3}
+  audioSource: {fileID: 5407003505104666046}
+  haveGranades: 0
 --- !u!114 &3786302374020072555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14525,7 +14531,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  ocupao: 0
+  coversParent: {fileID: 0}
+  lastCover: {fileID: 0}
 --- !u!114 &2213744581562477681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14539,7 +14546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFOV
   viewRadius: 21
-  viewAngle: 88
+  viewAngle: 144
   playerSeen: 0
   agent: {fileID: 0}
   head: {fileID: 2116337918706256020}
@@ -14573,7 +14580,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1946147706789812320, guid: 434c6c5a2851bbc458c4b365e995b31e, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d30b1724197957840b6a165225eef941, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.65
   m_Pitch: 1

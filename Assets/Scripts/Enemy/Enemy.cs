@@ -60,20 +60,19 @@ public class Enemy : MonoBehaviour
         if(health <= 0 && !already)
         {
             isDead = true;
-            StartCoroutine(DeathConsecuences());
+            DeathConsecuences();
             rig.enabled = false;
             ragdoll.ragdollON();
             Destroy(gameObject, 120);
         }   
     }
 
-    private IEnumerator DeathConsecuences()
+    private void DeathConsecuences()
     {
         if (!already)
         {
             audioSource.PlayOneShot(scream);
             Instantiate(Bullet, transform.position, transform.rotation);
-            yield return null;
             already = true;
         }
     }

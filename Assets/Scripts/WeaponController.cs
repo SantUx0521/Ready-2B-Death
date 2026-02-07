@@ -162,6 +162,7 @@ public class WeaponController : MonoBehaviour
                 if( grb != null)
                 {
                     grb.isKinematic = false;
+                    grb.gameObject.transform.SetParent(null);
                 }
             }
     }

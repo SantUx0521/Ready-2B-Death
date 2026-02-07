@@ -6,13 +6,11 @@ public class InteractableObject : MonoBehaviour
     public MeshRenderer render;
     public Material OutlineMaterial;
     public Material NormalMaterial;
-    PlayerController isPlayerLooking;
     public bool state = false;
 
     void Start()
     {
         render = GetComponent<MeshRenderer>();    
-        isPlayerLooking = FindAnyObjectByType<PlayerController>(); 
     }
     void Update()
     {

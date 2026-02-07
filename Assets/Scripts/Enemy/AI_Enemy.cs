@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class AI_Enemy : MonoBehaviour
 {
+    [Header("AI")]
     private NavMeshAgent agent;
     public Transform[] destinations;
     public GameObject destinationsParent;
@@ -24,12 +25,17 @@ public class AI_Enemy : MonoBehaviour
     private bool beDummierIsRunning = false;
     public float waiting;
     Combat currentAction;
+    [Header("Audio")]
     [SerializeField] AudioMixer shootAudioMixer;
-     public AudioSource shootSound;
+    [SerializeField] AudioClip shootSound;
+    public AudioSource audioSource;
+
+    [Header("Cover")]
     bool movingToCover;
     GetCover getCover;
     private bool stay;
     float distToTarget;
+    public bool haveGranades;
     enum AIState
     {
         Patrol,
@@ -239,8 +245,8 @@ public class AI_Enemy : MonoBehaviour
 
         fire.SetActive(true);
         Firelight.SetActive(true);
-        shootSound.Stop();
-        shootSound.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(shootSound);
         Vector3 currentEuler = fire.transform.localEulerAngles;
         currentEuler.y = Random.Range(-180, 180);
         fire.transform.localEulerAngles = currentEuler;
@@ -291,10 +297,17 @@ public class AI_Enemy : MonoBehaviour
 
     private void LauchGranade()
     {
-        Vector3 dir = enemy.player.transform.position - transform.position; 
-        GameObject newGranade = Instantiate(enemy.granade, transform.position, transform.rotation);
-        newGranade.GetComponent<Rigidbody>().AddForce(dir * 700);
-        currentAction = Combat.Shoot;
+        if (haveGranades)
+        {
+            Vector3 dir = enemy.player.transform.position - transform.position; 
+            GameObject newGranade = Instantiate(enemy.granade, transform.position, transform.rotation);
+            newGranade.GetComponent<Rigidbody>().AddForce(dir * 700);
+            currentAction = Combat.Shoot;
+        }
+        else
+        {
+            currentAction = Combat.Shoot;
+        }
     }
 
     void LookAtPlayer()

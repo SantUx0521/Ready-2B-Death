@@ -103,11 +103,11 @@ public class PlayerWeaponController : MonoBehaviour
 
             if (playerController.isCrouching)
             {
-                playerController.velocity = 4f;
+                playerController.velocity = 3f;
             }
             else
             {
-                playerController.velocity = 5.5f;
+                playerController.velocity = 3.5f;
             }
             
         }

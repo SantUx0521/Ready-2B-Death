@@ -1,3 +1,4 @@
+using System.Collections;
 using NUnit.Framework;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -94,10 +95,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Run();
+        Crouch();
         Move();
         CameraMovement();
-        Crouch();
-        Run();
         Flashlight();
         Interactable();
     }
@@ -183,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void Run()
     {
-        if((sprintAction.IsPressed() || sprintAction.WasPressedThisFrame()) && moveAction.IsPressed())
+        if(sprintAction.IsPressed() && moveAction.IsPressed())
         {
             isSprinting = true;
             isCrouching = false;
@@ -192,16 +193,11 @@ public class PlayerController : MonoBehaviour
             stepTime = 0.4f;
             cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV + 20f, Time.deltaTime * adsSpeed);
         }
-        else if (isSprinting && moveAction.WasReleasedThisFrame()){
+        else if (isSprinting && moveAction.WasReleasedThisFrame() || sprintAction.WasReleasedThisFrame()){
             isSprinting = false;
             velocity = actualVelocity;
             stepTime = 0.5f;
             cameraP.fieldOfView = Mathf.Lerp(cameraP.fieldOfView, originalFOV, Time.deltaTime * adsSpeed);
-        }
-        if (playerWeapon.isAiming)
-        {
-            isSprinting = false;
-            velocity = actualVelocity;
         }
     }
 
