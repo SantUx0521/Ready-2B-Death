@@ -43,7 +43,10 @@ public class GetCover : MonoBehaviour
                 }                
             }
         }
-        lastCover.GetComponent<IsCoverOcupao>().ocupao = true;
+        if (lastCover != null)
+        {
+            lastCover.GetComponent<IsCoverOcupao>().ocupao = true;
+        }
         return best;
     }
 }
