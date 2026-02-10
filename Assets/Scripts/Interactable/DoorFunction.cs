@@ -3,6 +3,7 @@ using UnityEngine;
 public class DoorFunction : MonoBehaviour
 {
     Animator anim;
+    public GameObject doorIsSeparated;
     public string OpenName;
     public string CloseName;
     public string requiredKey;
@@ -14,7 +15,14 @@ public class DoorFunction : MonoBehaviour
     public AudioClip unlock;
     void Start()
     {
-        anim = GetComponent<Animator>();
+        if(doorIsSeparated != null)
+        {
+            anim = doorIsSeparated.GetComponent<Animator>();   
+        }
+        else
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     public void Unlock()

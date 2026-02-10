@@ -240,7 +240,12 @@ public class PlayerController : MonoBehaviour
                             if(key == Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().requiredKey)
                             {
                                 Interact.collider.transform.root.gameObject.GetComponent<DoorFunction>().Unlock();
+                                return;
                             }
+                        }
+                        if(Interact.collider.transform.root.gameObject.GetComponent<PlayerAdvice>() != null)
+                        {
+                            Interact.collider.transform.root.gameObject.GetComponent<PlayerAdvice>().ShowAdvice();
                         }
                     }
                 }
