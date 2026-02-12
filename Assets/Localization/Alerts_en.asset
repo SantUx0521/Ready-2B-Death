@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: <fade>Already at full health
     m_Metadata:
       m_Items: []
+  - m_Id: 2637838543642624
+    m_Localized: <fade>I don't have the key...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -4,6 +4,7 @@ public class DoorFunction : MonoBehaviour
 {
     Animator anim;
     public GameObject doorIsSeparated;
+    public GameObject canvasForUnlock;
     public string OpenName;
     public string CloseName;
     public string requiredKey;
@@ -53,6 +54,11 @@ public class DoorFunction : MonoBehaviour
                 anim.SetTrigger("Open");
                 audioSource.PlayOneShot(open);
             }
+
+        if(GetComponent<PutCode>() != null)
+        {
+            canvasForUnlock.SetActive(false);
+        }
     }
 
     public void ForceLock()

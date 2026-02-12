@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: <fade>Ya tienes la vida al maximo
     m_Metadata:
       m_Items: []
+  - m_Id: 2637838543642624
+    m_Localized: <fade>No tengo la llave...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
