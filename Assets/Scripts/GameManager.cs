@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject of;
     public TextMeshProUGUI HealthCounter;
     public GameObject HUD;
+    private bool noUI;
     public GameObject Notes;
     private GameObject activeCanvas;
     public PauseMenu pauseMenu;
@@ -39,9 +40,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ShowUI();
+        HideUI();
         UpdateBar();
         Die();
         InMenu();
+    }
+
+    private void HideUI()
+    {
+        if (player.playerInput.actions["HideHud"].WasPressedThisFrame() && !noUI)
+        {
+            HUD.SetActive(false);
+            noUI = true;
+        }
+        else if(player.playerInput.actions["HideHud"].WasPressedThisFrame() && noUI)
+        {
+            HUD.SetActive(true);
+            noUI = false;
+        }
     }
 
     private void ShowUI()

@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: Note02
     m_Metadata:
       m_Items: []
+  - m_Id: 9336132628013056
+    m_Key: PC_01
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
