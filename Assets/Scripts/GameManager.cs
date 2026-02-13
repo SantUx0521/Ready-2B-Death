@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI HealthCounter;
     public GameObject HUD;
     public GameObject Notes;
+    private GameObject activeCanvas;
     public PauseMenu pauseMenu;
     public float currentHealth;
     private Color originalColor;
@@ -115,6 +116,10 @@ public class GameManager : MonoBehaviour
         Notes.SetActive(false);
         pauseMenu.bG.SetActive(false);
         pauseMenu.pauseMenu.SetActive(false);
+        if(activeCanvas != null)
+        {
+            activeCanvas.SetActive(false);
+        }
         isMenuOn = false;
         player.playerInput.SwitchCurrentActionMap("Player");
         AudioSource[] allAudios = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
@@ -123,6 +128,12 @@ public class GameManager : MonoBehaviour
         {
             allAudios[i].Play();
         }
+    }
+    
+
+    public void GetActiveCanva(GameObject canva)
+    {
+        activeCanvas = canva;
     }
 
     public void InMenu()
