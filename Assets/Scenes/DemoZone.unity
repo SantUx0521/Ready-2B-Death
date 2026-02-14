@@ -29780,6 +29780,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5615541725602509603, guid: e3032560e752d3f4c9a8fc449b78771d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5615541725602509603, guid: e3032560e752d3f4c9a8fc449b78771d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -8896624839919815055, guid: e3032560e752d3f4c9a8fc449b78771d, type: 3}
     - target: {fileID: -4528580837080611903, guid: e3032560e752d3f4c9a8fc449b78771d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -44866,7 +44874,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

@@ -28,7 +28,8 @@ MonoBehaviour:
   - {fileID: 7833122117494664109}
   - {fileID: 1899916279033480803}
   - {fileID: 2604545287978774720}
-  m_RendererFeatureMap: ad6b866f10d7b46c63c6c522cadb5d1ac07064d323342524
+  - {fileID: 8945208744535322607}
+  m_RendererFeatureMap: ad6b866f10d7b46c63c6c522cadb5d1ac07064d323342524efefbe9bf5c3237c
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -119,3 +120,18 @@ MonoBehaviour:
     BlurQuality: 1
     Falloff: 100
     SampleCount: -1
+--- !u!114 &8945208744535322607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ec43bb34e3ff542892e0b797881487, type: 3}
+  m_Name: ScreenSpaceReflection
+  m_EditorClassIdentifier: Assembly-CSharp::UniversalScreenSpaceReflection.ScreenSpaceReflection
+  m_Active: 1
+  settings: {fileID: 11400000, guid: 819bd64bc53777e43bd01e5e231961f4, type: 2}
+  renderingPath: 2

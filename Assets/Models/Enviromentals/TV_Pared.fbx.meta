@@ -3,7 +3,17 @@ guid: 50ddb7fa7740b7c47a6e62793cf0f43e
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carcasa
+    second: {fileID: 2100000, guid: 1ff03e9c639e0c540b779fd1adeb2d64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pantalla
+    second: {fileID: 2100000, guid: 03deeb41f1087404b9e9b49dedebb0a9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
