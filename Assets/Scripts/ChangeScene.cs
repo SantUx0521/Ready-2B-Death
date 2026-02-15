@@ -1,26 +1,32 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using Unity.VisualScripting;
 
 public class ChangeScene : MonoBehaviour
 {
     public Animator anim;
     public string sceneName;
+    private bool hasLoaded = false;
+    public GameObject Elevator;
+    [SerializeField] private Vector3 elevPos;
+    [SerializeField] private Vector3 PlayerPos;
     private AsyncOperation loadOperation;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !hasLoaded)
         {
-            StartCoroutine(ElevatorRoutine());
+            DontDestroyOnLoad(Elevator);
+            DontDestroyOnLoad(gameObject);
+            StartCoroutine(ElevatorRoutine(other.gameObject));
         }
     }
 
-    public IEnumerator ElevatorRoutine()
+    public IEnumerator ElevatorRoutine(GameObject player)
     {
         anim.SetTrigger("Close");
         anim.SetTrigger("Up");
+        yield return new WaitForSecondsRealtime(5f);
 
         loadOperation = SceneManager.LoadSceneAsync(sceneName);
         loadOperation.allowSceneActivation = false;
@@ -31,8 +37,11 @@ public class ChangeScene : MonoBehaviour
         }
 
         loadOperation.allowSceneActivation = true;
-        yield return null;
+        Elevator.transform.position = elevPos;
+        player.transform.position = PlayerPos;
+        yield return new WaitForSecondsRealtime(3f);
 
         anim.SetTrigger("Open");
+        hasLoaded = true;
     }
 }

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float angleY;
     public Volume volume;
     GameManager gameManager;
+    public static PlayerController Instance;
 
     [Header("Movement")]
     public float velocity = 1f;
@@ -91,6 +92,15 @@ public class PlayerController : MonoBehaviour
         actualVelocity = velocity;
         cameraP = GetComponentInChildren<Camera>();
         originalFOV = cameraP.fieldOfView;
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     void Update()

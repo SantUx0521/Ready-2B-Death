@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
     public List<string> playerKeys = new List<string>();
     [HideInInspector] public float MaxHealth = 100;
     public bool isMenuOn;
+    public bool isDead;
+    public GameObject DeathScreen;
 
     void Awake() {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
@@ -117,6 +120,11 @@ public class GameManager : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
+            isDead = true;
+            DeathScreen.SetActive(true);
+            Pause();
+            player.playerInput.SwitchCurrentActionMap("UI");
+            Cursor.visible = true;
         } 
     }
 
