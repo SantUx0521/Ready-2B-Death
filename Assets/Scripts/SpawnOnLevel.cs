@@ -8,11 +8,5 @@ public class SpawnOnLevel : MonoBehaviour
         {
             PlayerController.Instance.transform.position = transform.position;
         }
-
-        GameObject elevator;
-        if (elevator = GameObject.FindGameObjectWithTag("Elevator"))
-        {
-            elevator.transform.position = transform.position;
-        }
     }
 }

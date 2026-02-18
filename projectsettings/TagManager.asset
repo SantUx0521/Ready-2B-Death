@@ -8,7 +8,6 @@ TagManager:
   - Note
   - Weapon
   - Key
-  - Elevator
   layers:
   - Default
   - TransparentFX

@@ -16,8 +16,6 @@ public class ChangeScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !hasLoaded)
         {
-            DontDestroyOnLoad(Elevator);
-            DontDestroyOnLoad(gameObject);
             StartCoroutine(ElevatorRoutine(other.gameObject));
         }
     }
