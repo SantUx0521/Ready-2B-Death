@@ -1688,6 +1688,32 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &46522696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3447026871920072319, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+  m_PrefabInstance: {fileID: 1764525213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &46522704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46522696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2a599cd2a9e24cb7890b8dc33aeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponInertia
+  cameraTransform: {fileID: 1766463652}
+  rotationLag: 12
+  yawAmount: 4
+  pitchAmount: 2
+  positionLag: 10
+  positionAmount: 0.02
+  maxYaw: 8
+  maxPitch: 5
+  maxPosition: 0.03
 --- !u!1 &47358468
 GameObject:
   m_ObjectHideFlags: 0
@@ -18468,6 +18494,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1398223003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &449473581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 216326900974862254, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+  m_PrefabInstance: {fileID: 1764525213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &449473589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449473581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2a599cd2a9e24cb7890b8dc33aeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponInertia
+  cameraTransform: {fileID: 1766463652}
+  rotationLag: 10
+  yawAmount: 4
+  pitchAmount: 2
+  positionLag: 12
+  positionAmount: 0.02
+  maxYaw: 8
+  maxPitch: 5
+  maxPosition: 0.03
 --- !u!1 &450432161
 GameObject:
   m_ObjectHideFlags: 0
@@ -23518,6 +23570,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &563761955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2517079443215037336, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+  m_PrefabInstance: {fileID: 1764525213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563761958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563761955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2a599cd2a9e24cb7890b8dc33aeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponInertia
+  cameraTransform: {fileID: 1766463652}
+  rotationLag: 12
+  yawAmount: 4
+  pitchAmount: 2
+  positionLag: 10
+  positionAmount: 0.02
+  maxYaw: 8
+  maxPitch: 5
+  maxPosition: 0.03
 --- !u!1001 &565845849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75373,6 +75451,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6484067530072179441, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8249633476313663904, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.868
@@ -75427,6 +75509,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1634422074}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5546955942526999207, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1819207070}
+    - targetCorrespondingSourceObject: {fileID: 2517079443215037336, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 563761958}
+    - targetCorrespondingSourceObject: {fileID: 3447026871920072319, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 46522704}
+    - targetCorrespondingSourceObject: {fileID: 216326900974862254, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 449473589}
     - targetCorrespondingSourceObject: {fileID: 5900449006094081640, guid: 0c020721ff9f6dc499d6567c950395be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1764525216}
@@ -76439,6 +76533,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+--- !u!114 &1819207070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819207060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d731ec8d839854d8beadfa75203abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeadMovement
+  maxLean: 10
+  leanSpeed: 10
 --- !u!1 &1820762293
 GameObject:
   m_ObjectHideFlags: 0
